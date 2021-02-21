@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 
 
-
-
 // let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.9qvbs.mongodb.net/testdatabase";
 // let dbURI = 'mongodb://localhost:27017/abc-database';
 let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.j83vk.mongodb.net/testdatabase?retryWrites=true&w=majority"
