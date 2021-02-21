@@ -171,7 +171,9 @@ api.post("/logout",(req, res, next) =>{
         httpOnly: true
     });
 
-    res.send("logout success");
+    res.status(200).send({
+        message: ("logout success")
+    });
 })
 
 

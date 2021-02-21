@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Icon from '@material-ui/core/Icon';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import axios from 'axios'
 
 
 
@@ -35,12 +36,27 @@ function AppRoute() {
 
     const classes = useStyles();
     let history = useHistory()
+    function logout() {
 
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/logout',
+    
+        }).then((response) => {
+            console.log(response)
+            alert(response.data.message)
+            history.push('/login')
+    
+        }, (err) => {
+            console.log(err);
+            alert(err)
+        });
+    
+    
+    
+        return false;
+    } 
 
-    const logout = () => {
-        history.push('/login')
-        console.log('clicked')
-    }
 
     return (
         <>
