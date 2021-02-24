@@ -1,4 +1,6 @@
 import {LoginSignup} from '../routes/AppRouting'
+import CardPost  from '../card/CardPost'
+
 
 
 function Home() {
@@ -7,6 +9,7 @@ function Home() {
         <>
             <LoginSignup />
             <h1>This is Home page</h1>
+            <CardPost />
 
 
         </>

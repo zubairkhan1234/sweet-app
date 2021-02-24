@@ -3,6 +3,7 @@ import { LoginSignup } from '../routes/AppRouting'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 
 import axios from 'axios'
 import { useHistory } from 'react-router-dom';
@@ -61,7 +62,7 @@ function SignUp() {
             })
             .catch(function (error) {
                 alert(error.response.data.message)
-                
+
             });
 
         document.getElementById("name").value = ""
@@ -75,15 +76,18 @@ function SignUp() {
     return (
         <>
             <LoginSignup />
-            <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="name" label="Name" variant="outlined" /> <br />
-                <TextField id="phone" label="Phone" variant="outlined" /> <br />
-                <TextField id="email" label="Email" variant="outlined" /> <br />
-                <TextField id="password" label="Password" variant="outlined" /><br />
-                <Button variant="contained" color="secondary" onClick={signup}>
-                    Sign Up
-                </Button>
-            </form>
+            <Container maxWidth="sm">
+                <h1 style={{display:"inline", marginLeft: 100}}>SignUp Now</h1>
+                <form className={classes.root} noValidate autoComplete="off">
+                    <TextField id="name" label="Name" variant="outlined" /> <br />
+                    <TextField id="phone" label="Phone" variant="outlined" /> <br />
+                    <TextField id="email" label="Email" variant="outlined" /> <br />
+                    <TextField id="password" label="Password" variant="outlined" /><br />
+                    <Button variant="contained" color="secondary" onClick={signup}>
+                        Sign Up
+                    </Button>
+                </form>
+            </Container>
 
 
 
