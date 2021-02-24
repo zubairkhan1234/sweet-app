@@ -11,6 +11,9 @@ import Icon from '@material-ui/core/Icon';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import axios from 'axios'
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 
 
@@ -32,30 +35,57 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const useStyles2 = makeStyles((theme) => ({
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
+
 function AppRoute() {
 
     const classes = useStyles();
+    const classes2 = useStyles2();
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+
+
     let history = useHistory()
     function logout() {
 
         axios({
             method: 'post',
             url: 'http://localhost:5000/logout',
-    
+
         }).then((response) => {
             console.log(response)
             alert(response.data.message)
             history.push('/login')
-    
+
         }, (err) => {
             console.log(err);
             alert(err)
         });
-    
-    
-    
+
+
+
         return false;
-    } 
+    }
 
 
     return (
@@ -72,9 +102,9 @@ function AppRoute() {
 
                         <Link to="/dashboard" >  <Button style={{ color: '#fff' }}>Dashboard</Button></Link>
                         <Button onClick={logout} style={{ color: '#fff' }}>logout</Button>
-                        <Button style={{ color: '#fff' }}><AddCircleOutlineOutlinedIcon /></Button>
-                        <Button style={{ color: '#fff' }}><AddShoppingCartIcon /></Button>
-                                                
+                        {/* <Button style={{ color: '#fff' }}><AddCircleOutlineOutlinedIcon /></Button> */}
+                        <Button style={{ color: '#fff' }}><AddShoppingCartIcon onClick={handleOpen} /></Button>
+
                         {/* <Link to="/">  <Button color="inherit">Home</Button></Link> */}
                         {/* <Link to="/signup">  <Button color="inherit">SingUp</Button></Link> */}
                         {/* <Link to="/login">  <Button color="inherit">Login</Button></Link> */}
@@ -82,7 +112,29 @@ function AppRoute() {
                     </Toolbar>
                 </AppBar>
 
+
+
             </form>
+
+            <Modal
+                aria-labelledby="transition-modal-title"
+                aria-describedby="transition-modal-description"
+                className={classes2.modal}
+                open={open}
+                onClose={handleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                    timeout: 500,
+                }}
+            >
+                <Fade in={open}>
+                    <div className={classes2.paper}>
+                        <h2 id="transition-modal-title">Transition modal</h2>
+                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                    </div>
+                </Fade>
+            </Modal>
         </>
     )
 
@@ -102,8 +154,8 @@ function LoginSignup() {
                         Sweet Place
                     </Typography>
                     <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>
-                    <Link style={{ color: 'black' }} to="/signup">  <Button  color="inherit">SingUp</Button></Link>
-                    <Link style={{ color: 'black' }} to="/login">  <Button  color="inherit">Login</Button></Link>
+                    <Link style={{ color: 'black' }} to="/signup">  <Button color="inherit">SingUp</Button></Link>
+                    <Link style={{ color: 'black' }} to="/login">  <Button color="inherit">Login</Button></Link>
 
                 </Toolbar>
             </AppBar>
@@ -117,5 +169,7 @@ function LoginSignup() {
 
 export default AppRoute
 export { LoginSignup };
+
+
 
 

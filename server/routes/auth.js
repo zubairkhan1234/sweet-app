@@ -86,8 +86,8 @@ api.post('/signup', (req, res, next) => {
 api.post("/login", (req, res, next) => {
     var userEmail = req.body.email;
     var userPassword = req.body.password;
-    // console.log(userEmail)
-    // console.log(userPassword)
+    console.log(userEmail)
+    console.log(userPassword)
 
     if (!userEmail || !userPassword) {
 
@@ -103,6 +103,7 @@ api.post("/login", (req, res, next) => {
 
     userModle.findOne({ email: userEmail },
         function (err, loginRequestUser) {
+        console.log(loginRequestUser)
 
             if (err) {
                 res.status(500).send({
