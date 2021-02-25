@@ -1,11 +1,11 @@
 // import React, {useState} from 'react'
-import { LoginSignup } from '../routes/AppRouting'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import { Alert, AlertTitle } from '@material-ui/lab';
-
+// import { Alert, AlertTitle } from '@material-ui/lab';
+import { BaseURL } from '../Url/BaseURL'
+import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
 
 
 
@@ -29,10 +29,15 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
 
-    let history = useHistory();
+    const golobalState = UseGlobalState()
+    const globalStateUpdate = UseGlobalStateUpdate()
+
+
+
+    const history = useHistory();
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
-    function login(event) {
+    function Login(event) {
         event.preventDefault()
 
         var loginEmail = document.getElementById('loginEmail').value
@@ -40,49 +45,56 @@ function Login() {
 
         axios({
             method: 'post',
-            url: "http://localhost:5000/login",
+            url: BaseURL + '/login',
             data: {
                 email: loginEmail,
                 password: loginPassword
             },
             withCredentials: true
         })
-
             .then(function (response) {
-                if(response.status === 200){
+                if (response.status === 200) {
                     alert(response.data.message)
+                    // alert(response.status)
+                    globalStateUpdate(prev => ({
+                        ...prev,
+                        loginStatus: true,
+                    }))
                     history.push('/dashboard')
+                } else if (response.status === 404) {
+
+                    alert(response.data.message)
+
+                    history.push('/login')
                 }
-                // setAlertMessage(response.data.message)
             })
             .catch(function (error) {
-
-                alert(error.response.data.message)
+                if (error.status === 403) {
+                    alert(error.message)
+                }
             });
 
 
 
         return false;
 
-
     }
+
+
 
     return (
         <>
-            <LoginSignup />
 
             {/* {alertMessage ? <Alert severity="success">
                 <AlertTitle>Success</AlertTitle>
                 {alertMessage}
             </Alert>: null} */}
             <Container maxWidth="sm">
-                <h1 style={{ display: "inline", marginLeft: 100 }}>Login Now</h1>
-                <form className={classes.root} noValidate autoComplete="off">
+                <h1 style={{ display: "inline", marginLeft: 100 }} >Login Now</h1>
+                <form className={classes.root} noValidate autoComplete="off" onSubmit={Login}>
                     <TextField id="loginEmail" label="Email" variant="outlined" /><br />
                     <TextField id="loginPassword" label="Password" variant="outlined" /><br />
-                    <Button variant="contained" color="secondary" onClick={login}>
-                        LogIn
-                </Button>
+                    <Button type="submit" variant="contained" color="secondary"> LogIn </Button>
                 </form>
             </Container>
         </>
