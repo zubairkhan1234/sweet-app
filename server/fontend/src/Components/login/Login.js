@@ -54,12 +54,12 @@ function Login() {
         })
             .then(function (response) {
                 if (response.status === 200) {
-                    alert(response.data.message)
                     // alert(response.status)
                     globalStateUpdate(prev => ({
                         ...prev,
                         loginStatus: true,
                     }))
+                    alert(response.data.message)
                     history.push('/dashboard')
                 } else if (response.status === 404) {
 

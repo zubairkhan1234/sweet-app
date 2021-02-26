@@ -45,6 +45,7 @@ var userSchema = new mongoose.Schema({
     email: String,
     password: String,
     phone: String,
+    role: {type: String , "default": "user"},
     createdOn: { type: Date, 'default': Date.now },
     activeSince: Date
 
@@ -57,8 +58,18 @@ var otpSchema = new mongoose.Schema({
     "createdOn": { "type": Date, "default": Date.now },
 });
 var otpModel = mongoose.model("otps", otpSchema);
+var shopCart = new mongoose.Schema({
+    "title": String,
+    "price": String,
+    "availablity": String,
+    "descriprion": String,
+    "cartimage": String,
+    "createdOn": { "type": Date, "default": Date.now },
+});
+var shopCartModel = mongoose.model("shopCart", shopCart);
 
 module.exports = {
     userModle: userModle,
-    otpModel: otpModel
+    otpModel: otpModel,
+    shopCartModel: shopCartModel
 }

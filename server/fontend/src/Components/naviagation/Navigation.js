@@ -6,7 +6,9 @@ import Login from '../login/Login'
 import Signup from '../signup/SignUp'
 import Dashboard from '../dashboard/Dashboard'
 import Home from "../home/Home";
+import AddShopCard from '../admin/AddShopCard'
 import AppRoute from '../routes/AppRouting'
+import Allorders from '../admin/Allorders'
 import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
 
 
@@ -29,13 +31,16 @@ function Navigation() {
         <>
             <Router>
                 <AppRoute />
-                {globalState.loginStatus === false ?
+                {globalState.role === null ?
                     <>
                         <Route path="/login">
                             <Login />
                         </Route>
                         <Route path="/signup">
                             <Signup />
+                        </Route>
+                        <Route path="/AddShopCard">
+                            <AddShopCard />
                         </Route>
                         <Route exact path="/">
                             <Home />
@@ -45,7 +50,7 @@ function Navigation() {
                         </Route>
                     </>
                     : null}
-                {globalState.loginStatus === true ?
+                {globalState.role === "user" ?
                     <>
                         {/* <Route path="/login">
                             <Login />
@@ -53,8 +58,24 @@ function Navigation() {
                         <Route path="/signup">
                             <Signup />
                         </Route> */}
-                        <Route path="/">
+                        <Route exact path="/">
                             <Dashboard />
+                        </Route>
+                    </>
+                    : null}
+                {globalState.role === "admin" ?
+                    <>
+                        {/* <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/signup">
+                            <Signup />
+                        </Route> */}
+                        <Route path="/AddShopCard">
+                            <AddShopCard />
+                        </Route>
+                        <Route exact path="/">
+                            <Allorders />
                         </Route>
                     </>
                     : null}

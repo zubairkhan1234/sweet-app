@@ -82,7 +82,6 @@ api.post('/signup', (req, res, next) => {
 
 });
 
-
 api.post("/login", (req, res, next) => {
     var userEmail = req.body.email;
     var userPassword = req.body.password;
@@ -122,6 +121,7 @@ api.post("/login", (req, res, next) => {
                             name: loginRequestUser.name,
                             email: loginRequestUser.email,
                             phone: loginRequestUser.phone,
+                            role: loginRequestUser.role,
                             id: loginRequestUser.id,
                             ip: req.connection.remoteAddress
 
@@ -138,7 +138,8 @@ api.post("/login", (req, res, next) => {
                             loginRequestUser: {
                                 name: loginRequestUser.name,
                                 email: loginRequestUser.email,
-                                phone: loginRequestUser.phone
+                                phone: loginRequestUser.phone,
+                                role: loginRequestUser.phone
                             }
                         });
 
@@ -163,8 +164,6 @@ api.post("/login", (req, res, next) => {
 
 })
 
-
-
 api.post("/logout",(req, res, next) =>{
 
     res.cookie('jToken', "", {
@@ -176,8 +175,6 @@ api.post("/logout",(req, res, next) =>{
         message: ("logout success")
     });
 })
-
-
 
 api.post("/forget-password", (req, res, next) => {
 

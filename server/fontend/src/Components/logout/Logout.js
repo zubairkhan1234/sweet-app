@@ -15,7 +15,7 @@ function Logout() {
             withCredentials: true
         }).then((response) => {
             if (response.status === 200) {
-                history.push("/login");
+                history.push('/login');
             }
         }).catch((error) => {
             console.log(error.data.message);
