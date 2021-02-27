@@ -36,8 +36,10 @@ app.use(function (req, res, next) {
         res.status(401).send("include http-only credentials with every request")
         return;
     }
+    console.log("Asign value of token" , req.cookies.jToken)
 
     jwt.verify(req.cookies.jToken, SERVER_SECRET, function (err, decodedData) {
+        console.log("decodedData .................>>>>>>>>>>" , decodedData)
         if (!err) {
             const issueDate = decodedData.iat * 1000
             const nowDate = new Date().getTime()
@@ -58,6 +60,7 @@ app.use(function (req, res, next) {
                     httpOnly: true
                 })
                 req.body.jToken = decodedData
+                req.headers.jToken = decodedData
                 next()
             }
         } else {
@@ -162,11 +165,17 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
                     expires: '03-09-2491'
                 }).then((urlData, err) => {
                     // console.log(req.body.email)
+                    // console.log(req.body.email)
+                    // console.log(req.body.email)
+                    // console.log(req.body.email)
                     if (!err) {
                         // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
                         console.log(req.body.email)
+                        console.log( "headerskdflasfjks ka data  ===================>>>>> " ,req.headers.jToken.id)
+                        console.log( "headerskdflasfjks request headers  ===================>>>>> " ,req.headers)
                         userModle.findById(req.headers.jToken.id, 'email role', (err, users) => {
-                            console.log("Adminperson ====> ", user.email)
+                            console.log("Adminperson ====> ", users.email)
+
                             if (!err) {
                                 shopCartModel.create({
                                     "title": req.body.title,

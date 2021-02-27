@@ -56,6 +56,7 @@ export default function AddShopCard() {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [responserMessage, setresponserMessage] = React.useState('');
     const [value, setValue] = React.useState('');
 
     const handleChange = (event) => {
@@ -86,7 +87,7 @@ export default function AddShopCard() {
 
         let formData = new FormData();
         formData.append("myFile", fileInput.files[0]);
-        formData.append("productName", title);
+        formData.append("title", title);
         formData.append("price", price);
         formData.append("description", description);
         formData.append("avalablity", value);
@@ -100,7 +101,7 @@ export default function AddShopCard() {
         })
             .then(response => {
                 console.log("response data=> ", response.data);
-                setMsg(response.data.message)
+                setresponserMessage(response.data.message)
             })
             .catch(err => {
                 console.log(err);
@@ -111,7 +112,7 @@ export default function AddShopCard() {
 
 
     }
-
+console.log(responserMessage)
 
     return (
         <>
@@ -151,12 +152,13 @@ export default function AddShopCard() {
                                 </RadioGroup>
                             </FormControl><br />
                             <input accept="image/*" className={classes.input} style={{ display: 'none' }} id="raised-button-file" multiple type="file" />
-                            <label htmlFor="raised-button-file">
+                            <label htmlFor="raised-button-file"> 
                                 <Button variant="raised" component="span" className={classes.button}>  Upload image </Button>
-                                <Button variant="raised" type="submit">  Upload Cart </Button>
                             </label>
+                                <Button variant="raised" type="submit">  Upload Cart </Button>
                         </form>
                     </div>
+                        
                 </Fade>
             </Modal>
         </>

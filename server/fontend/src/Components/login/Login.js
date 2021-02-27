@@ -60,7 +60,8 @@ function Login() {
                         loginStatus: true,
                     }))
                     alert(response.data.message)
-                    history.push('/dashboard')
+                    // history.push('/dashboard')
+                    history.push('/')
                 } else if (response.status === 404) {
 
                     alert(response.data.message)

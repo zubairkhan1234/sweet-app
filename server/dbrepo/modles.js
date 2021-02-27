@@ -61,8 +61,8 @@ var otpModel = mongoose.model("otps", otpSchema);
 var shopCart = new mongoose.Schema({
     "title": String,
     "price": String,
-    "availablity": String,
-    "descriprion": String,
+    "availability": String,
+    "description": String,
     "cartimage": String,
     "createdOn": { "type": Date, "default": Date.now },
 });
