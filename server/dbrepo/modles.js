@@ -67,9 +67,20 @@ var shopCart = new mongoose.Schema({
     "createdOn": { "type": Date, "default": Date.now },
 });
 var shopCartModel = mongoose.model("shopCart", shopCart);
+var sweetOrders = new mongoose.Schema({
+    "name": String,
+    "email": String,
+    "phone": String,
+    "address": String,
+    "total": String,
+    "orders": Array,
+    "createdOn": { "type": Date, "default": Date.now },
+});
+var sweetOrdersModel = mongoose.model("orders", sweetOrders);
 
 module.exports = {
     userModle: userModle,
     otpModel: otpModel,
-    shopCartModel: shopCartModel
+    shopCartModel : shopCartModel,
+    sweetOrdersModel: sweetOrdersModel,
 }

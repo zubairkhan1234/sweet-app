@@ -9,9 +9,9 @@ const fs = require('fs')
 const multer = require('multer')
 const admin = require("firebase-admin");
 
-var { userModle, shopCartModel } = require("./dbrepo/modles");
+var { userModle, shopCartModel, sweetOrdersModel } = require("./dbrepo/modles");
 var authRoutes = require("./routes/auth")
-console.log(userModle, shopCartModel)
+console.log(userModle, shopCartModel, sweetOrdersModel)
 
 var { SERVER_SECRET } = require("./core/index");
 
@@ -236,6 +236,62 @@ app.get('/getProducts', (req, res, next) => {
 })
 
 
+
+app.post("/order", (req, res, next) => {
+    console.log("fsfsf", req.body)
+    if (!req.body.orders || !req.body.total) {
+
+        res.status(403).send(`
+            please send email and passwod in json body.
+            e.g:
+            {
+                "orders": "order",
+                "total": "12342",
+            }`)
+        return;
+    }
+
+    userModle.findOne({ email: req.body.jToken.email }, (err, user) => {
+        console.log("afafa", user)
+        if (!err) {
+            sweetOrdersModel.create({
+                name: req.body.name,
+                phone: req.body.phone,
+                address: req.body.address,
+                email: user.email,
+                orders: req.body.orders,
+                total: req.body.total
+            }).then((data) => {
+                res.status(200).send({
+                    message: "Order have been submitted",
+                    data: data
+                })
+            }).catch(() => {
+                res.status(500).send({
+                    message: "order submit error, " + err
+                })
+            })
+        }
+        else {
+            console.log(err)
+        }
+    })
+})
+
+
+app.get('/getorders', (req, res, next) => {
+    sweetOrdersModel.find({}, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
 
 app.listen(PORT, () => {
     console.log("surver is running on : ", PORT)

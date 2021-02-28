@@ -16,7 +16,8 @@ function GlobalStateProvider({ children }) {
         darkTheme: false,
         loginStatus: false,
         role: null,
-        token: null
+        token: null,
+        orderUser : null
     })
 
     

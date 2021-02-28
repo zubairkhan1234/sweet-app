@@ -1,65 +1,44 @@
-export const CardData = [
+import React, { useState } from 'react';
+import CartPost from './CartPost';
+import Cart from './Cart';
 
-]
-// export const CardData = [
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYz4TiGF1tJ6gjLHlRkYPOSAmXao5_1HJS1w&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFrGlZBCCq-vpP_iJf7xIGO_WTbDKBEmg7g&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzZRbLcS16VyVq0sml9Z_yTuHcRFm2BIhy4A&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2T_anqamXYL3ny6dH6eFmilMArwWBcP3cmg&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYz4TiGF1tJ6gjLHlRkYPOSAmXao5_1HJS1w&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFrGlZBCCq-vpP_iJf7xIGO_WTbDKBEmg7g&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzZRbLcS16VyVq0sml9Z_yTuHcRFm2BIhy4A&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2T_anqamXYL3ny6dH6eFmilMArwWBcP3cmg&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYz4TiGF1tJ6gjLHlRkYPOSAmXao5_1HJS1w&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfFrGlZBCCq-vpP_iJf7xIGO_WTbDKBEmg7g&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzZRbLcS16VyVq0sml9Z_yTuHcRFm2BIhy4A&usqp=CAU"
-//     },
-//     {
-//         Title : "Sweet",
-//         price : "1$0",
-//         imageUrl : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2T_anqamXYL3ny6dH6eFmilMArwWBcP3cmg&usqp=CAU"
-//     },
-// ]
+const PAGE_PRODUCTS = 'products';
+const PAGE_CART = 'cart';
+
+function CartData() {
+  const [cart, setCart] = useState([]);
+  const [page, setPage] = useState(PAGE_PRODUCTS);
+
+  const navigateTo = (nextPage) => {
+    setPage(nextPage);
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce(
+      (sum, { quantity }) => sum + quantity,
+      0
+    );
+  };
+
+  return (
+    <div className="App">
+      <header>
+        <button onClick={() => navigateTo(PAGE_CART)}>
+          Go to Cart ({getCartTotal()})
+        </button>
+
+        <button onClick={() => navigateTo(PAGE_PRODUCTS)}>
+          View Products
+        </button>
+      </header>
+      {page === PAGE_PRODUCTS && (
+        <CartPost cart={cart} setCart={setCart} />
+      )}
+      {page === PAGE_CART && (
+        <Cart cart={cart} setCart={setCart} />
+      )}
+    </div>
+  );
+}
+
+export default CartData;

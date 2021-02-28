@@ -80,6 +80,7 @@ function AppRoute() {
                                 
                                 <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
                                 <Link style={{ color: 'black' }} to="/admin-home">  <Button color="inherit">Allorders</Button></Link>
+                                <LogoutRequest />
                                 
                             </>
                             : null }
