@@ -31,6 +31,8 @@ function Login() {
 
     const golobalState = UseGlobalState()
     const globalStateUpdate = UseGlobalStateUpdate()
+    console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", golobalState)
+    console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", globalStateUpdate)
 
 
 
@@ -55,16 +57,23 @@ function Login() {
             .then(function (response) {
                 if (response.status === 200) {
                     // alert(response.status)
+                    console.log("loginRequestUser ====>" , response.data.loginRequestUser.role)
                     globalStateUpdate(prev => ({
                         ...prev,
+                        
                         loginStatus: true,
+                        user : response.data.loginRequestUser,
+                        role: response.data.loginRequestUser.role
                     }))
                     alert(response.data.message)
-                    // history.push('/dashboard')
-                    history.push('/')
+                    if(response.data.loginRequestUser.role === "user"){
+                        history.push('/dashboard')
+                    }else if(response.data.loginRequestUser.role === "admin"){
+                        history.push('/admin-home')
+                    }
                 } else if (response.status === 404) {
-
                     alert(response.data.message)
+                    
 
                     history.push('/login')
                 }
@@ -80,6 +89,7 @@ function Login() {
         return false;
 
     }
+
 
 
 

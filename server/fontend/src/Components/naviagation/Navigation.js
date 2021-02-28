@@ -52,29 +52,17 @@ function Navigation() {
                     : null}
                 {globalState.role === "user" ?
                     <>
-                        {/* <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/signup">
-                            <Signup />
-                        </Route> */}
-                        <Route exact path="/">
+                        <Route exact path="/dashboard">
                             <Dashboard />
                         </Route>
                     </>
                     : null}
                 {globalState.role === "admin" ?
                     <>
-                        {/* <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/signup">
-                            <Signup />
-                        </Route> */}
                         <Route path="/AddShopCard">
                             <AddShopCard />
                         </Route>
-                        <Route exact path="/">
+                        <Route exact path="/admin-home">
                             <Allorders />
                         </Route>
                     </>

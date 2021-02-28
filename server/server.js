@@ -222,6 +222,21 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
 
 
 
+app.get('/getProducts', (req, res, next) => {
+    shopCartModel.find({}, (err, data) => {
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+
 app.listen(PORT, () => {
     console.log("surver is running on : ", PORT)
 });

@@ -139,7 +139,7 @@ api.post("/login", (req, res, next) => {
                                 name: loginRequestUser.name,
                                 email: loginRequestUser.email,
                                 phone: loginRequestUser.phone,
-                                role: loginRequestUser.phone
+                                role: loginRequestUser.role
                             }
                         });
 

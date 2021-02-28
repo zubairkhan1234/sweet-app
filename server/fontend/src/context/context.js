@@ -67,6 +67,5 @@ function GlobalStateProvider({ children }) {
     )
 }
 
-console.log(GlobalStateProvider.data)
 
 export { UseGlobalState, UseGlobalStateUpdate, GlobalStateProvider }

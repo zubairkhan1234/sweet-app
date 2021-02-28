@@ -135,16 +135,27 @@ console.log(responserMessage)
                         <h2 id="transition-modal-title">Cart Form</h2>
                         <p id="transition-modal-description">Read careFully before Upload Cart</p>
                         <form onSubmit={CratUpload} className={classes.paper}>
-                            <TextField id="title" label="Tilte" variant="outlined" /><br />
-                            <TextField id="price" label="Price" variant="outlined" /><br />
-                            <TextareaAutosize
+                            <input id="title" label="Tilte" variant="outlined" /><br />
+                            <input id="price" label="Price" variant="outlined" /><br />
+                            {/* <TextField id="title" label="Tilte" variant="outlined" /><br />
+                            <TextField id="price" label="Price" variant="outlined" /><br /> */}
+                            <textarea
                                 id="description"
                                 className={classes.textAreaStyling}
                                 rowsMax={4}
                                 aria-label="maximum height"
                                 placeholder="Type a short Description about cart"
                             // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                            /><br />
+                            />
+                            {/* <TextareaAutosize
+                                id="description"
+                                className={classes.textAreaStyling}
+                                rowsMax={4}
+                                aria-label="maximum height"
+                                placeholder="Type a short Description about cart"
+                            // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                            /> */}
+                            <br />
                             <FormControl component="fieldset">
                                 <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
                                     <FormControlLabel value="Available" control={<Radio />} label="Available" />
@@ -152,8 +163,9 @@ console.log(responserMessage)
                                 </RadioGroup>
                             </FormControl><br />
                             <input accept="image/*" className={classes.input} style={{ display: 'none' }} id="raised-button-file" multiple type="file" />
-                            <label htmlFor="raised-button-file"> 
-                                <Button variant="raised" component="span" className={classes.button}>  Upload image </Button>
+                            <label className={classes.button} htmlFor="raised-button-file"> 
+                            Upload Image
+                                {/* <Button variant="raised" component="span" className={classes.button}>  Upload image </Button> */}
                             </label>
                                 <Button variant="raised" type="submit">  Upload Cart </Button>
                         </form>
