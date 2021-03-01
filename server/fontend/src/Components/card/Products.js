@@ -88,22 +88,12 @@ export default function Products({ setCart, cart }) {
 
                                 </Typography>
                                 <Typography id="price" variant="body2" color="textSecondary" component="p">
-                                    {product.price}
+                                    Rs:{product.price}/=
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <label >
-                                Kg :
-                            <select style={{ marginLeft: 20 }}>
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </label>
+                        
                             <Button size="small" onClick={() => addToCart(product)} color="primary">
                                 Add To Card
                             </Button>

@@ -201,7 +201,7 @@ export default function Cart({ cart, setCart }) {
                                         <TextField id="phone" label="Phone" variant="outlined" /> <br />
                                         <TextField id="address" label="Address" variant="outlined" /><br />
                                         <Button type="submit" variant="contained" color="secondary" >
-                                            Sign Up
+                                            Send Order
                                  </Button>
                                     </form>
                                 </div>

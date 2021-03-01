@@ -66,7 +66,6 @@ function AppRoute() {
                             <>
                                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
                                 <Link style={{ color: 'black' }} to="/signup">  <Button color="inherit">SingUp</Button></Link>
                                 <Link style={{ color: 'black' }} to="/login">  <Button color="inherit">Login</Button></Link>
                                 <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>

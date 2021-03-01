@@ -39,9 +39,6 @@ function Navigation() {
                         <Route path="/signup">
                             <Signup />
                         </Route>
-                        <Route path="/AddShopCard">
-                            <AddShopCard />
-                        </Route>
                         <Route exact path="/">
                             <Home />
                         </Route>
