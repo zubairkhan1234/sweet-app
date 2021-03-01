@@ -71,7 +71,9 @@ app.use(function (req, res, next) {
 
 })
 
-
+////// Get profile and user data in user interface
+////// Get profile and user data in user interface
+////// Get profile and user data in user interface
 
 app.get('/profile', (req, res, next) => {
 
@@ -95,13 +97,10 @@ app.get('/profile', (req, res, next) => {
 
 })
 
-
-
-/////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
+//////Cart Upload Api
+//////Cart Upload Api
+//////Cart Upload Api
+//////Cart Upload Api
 
 const storage = multer.diskStorage({
     destination: './upload/',
@@ -110,10 +109,8 @@ const storage = multer.diskStorage({
     }
 })
 var upload = multer({ storage: storage })
-// console.log(upload)
 
 //==============================================
-
 
 var SERVICE_ACCOUNT = {
     "type": "service_account",
@@ -128,8 +125,6 @@ var SERVICE_ACCOUNT = {
     "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-7txwc%40sweet-shop-95e0d.iam.gserviceaccount.com"
 }
 
-
-
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
     DATABASE_URL: "https://sweet-shop-95e0d-default-rtdb.firebaseio.com/"
@@ -139,19 +134,7 @@ const bucket = admin.storage().bucket("gs://sweet-shop-95e0d.appspot.com");
 
 //==============================================
 
-
-
-
 app.post("/uploadcart", upload.any(), (req, res, next) => {
-
-    // console.log("req.body: ", req.body);
-    // console.log("req.body: ", JSON.parse(req.body.myDetails));
-    // console.log("req.files: ", req.files);
-
-    // console.log("uploaded file name: ", req.files[0].originalname);
-    // console.log("file type: ", req.files[0].mimetype);
-    // console.log("file name in server folders: ", req.files[0].filename);
-    // console.log("file path in server folders: ", req.files[0].path);
 
     bucket.upload(
         req.files[0].path,
@@ -164,10 +147,7 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
                     action: 'read',
                     expires: '03-09-2491'
                 }).then((urlData, err) => {
-                    // console.log(req.body.email)
-                    // console.log(req.body.email)
-                    // console.log(req.body.email)
-                    // console.log(req.body.email)
+              
                     if (!err) {
                         // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
                         console.log(req.body.email)
@@ -221,6 +201,12 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
 })
 
 
+////// Get Products frrom Database in user Interfase
+////// Get Products frrom Database in user Interfase
+////// Get Products frrom Database in user Interfase
+////// Get Products frrom Database in user Interfase
+////// Get Products frrom Database in user Interfase
+
 
 app.get('/getProducts', (req, res, next) => {
     shopCartModel.find({}, (err, data) => {
@@ -235,6 +221,12 @@ app.get('/getProducts', (req, res, next) => {
     })
 })
 
+
+/////// Save order in Database
+/////// Save order in Database
+/////// Save order in Database
+/////// Save order in Database
+/////// Save order in Database
 
 
 app.post("/order", (req, res, next) => {
@@ -277,6 +269,13 @@ app.post("/order", (req, res, next) => {
         }
     })
 })
+
+
+/////// Get all orders in Admin panel 
+/////// Get all orders in Admin panel 
+/////// Get all orders in Admin panel 
+/////// Get all orders in Admin panel 
+/////// Get all orders in Admin panel 
 
 
 app.get('/getorders', (req, res, next) => {

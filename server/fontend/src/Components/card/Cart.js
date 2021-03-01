@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
     },
+    header: {
+        width: "20%",
+        textAlign: 'center'
+    }
 }));
 
 export default function Cart({ cart, setCart }) {
@@ -56,7 +60,7 @@ export default function Cart({ cart, setCart }) {
         event.preventDefault()
 
         var name = document.getElementById('name').value
-        var  email = document.getElementById('email').value.toLowerCase()
+        var email = document.getElementById('email').value.toLowerCase()
         var phone = document.getElementById('phone').value
         var address = document.getElementById('address').value
 
@@ -64,10 +68,10 @@ export default function Cart({ cart, setCart }) {
         var orderData = {
             name: name,
             email: email,
-            phone: phone ,
+            phone: phone,
             address: address,
-            total : document.getElementById('Totalcost').innerHTML ,
-            orders : cart,
+            total: document.getElementById('Totalcost').innerHTML,
+            orders: cart,
         }
         console.log("order data ..... .>>>>>>>>>>>>>>>>..... ", orderData)
         axios({
@@ -95,14 +99,6 @@ export default function Cart({ cart, setCart }) {
         return false;
     }
 
-
-
-
-
-
-
-
-
     const getTotalSum = () => {
         return cart.reduce(
             (sum, { price, quantity }) => sum + price * quantity,
@@ -129,13 +125,19 @@ export default function Cart({ cart, setCart }) {
         <>
             <h1>Cart</h1>
             <Container maxWidth="xl" >
+                <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
+                    <div className={classes.header}><h2>Image</h2></div>
+                    <div className={classes.header}><h2>Sweet Name</h2></div>
+                    <div className={classes.header}><h2>Sweet Price</h2></div>
+                    <div className={classes.header}><h2>Sweet Quantity in kg</h2></div>
+                    <div className={classes.header}><h2>action</h2></div>
+                </div>
                 <div>
-
                     {cart.map((product, idx) => (
                         <Card key={idx} value={product.id}  >    {/* style={{ display: "inline-block", margin: "15px" }} */}
                             <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between' }}>
 
-                                <div >
+                                <div className={classes.header} >
                                     <CardMedia
                                         className={`products ${classes.root}`}
                                         // className={classes.media}
@@ -144,17 +146,17 @@ export default function Cart({ cart, setCart }) {
                                         title="Contemplative Reptile"
                                     />
                                 </div>
-                                <div>
+                                <div className={classes.header}>
                                     <Typography style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
                                         {product.title}
                                     </Typography>
                                 </div>
-                                <div>
+                                <div className={classes.header}>
                                     <Typography style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
                                         {product.price}
                                     </Typography>
                                 </div>
-                                <div>
+                                <div className={classes.header}>
                                     <Typography style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2" onChange={(e) =>
                                         setQuantity(
                                             product,
@@ -165,9 +167,9 @@ export default function Cart({ cart, setCart }) {
                                     </Typography>
 
                                 </div>
-                                <div>
-                                    <CardActions>
-                                        <Button style={{ lineHeight: "100px", padding: "10px" }} size="small" onClick={() => removeFromCart(product)} color="primary">
+                                <div style={{ width: "20%", textAlign: '' }}>
+                                    <CardActions className={classes.header}>
+                                        <Button style={{ lineHeight: "100px", padding: "10px" }} className={classes.header} size="small" onClick={() => removeFromCart(product)} color="primary">
                                             Remove
                                     </Button>
                                     </CardActions>
@@ -175,40 +177,38 @@ export default function Cart({ cart, setCart }) {
                             </div>
                         </Card>
                     ))}
-                    <div id="Totalcost" >Total Cost: ${getTotalSum()}</div>
+                    <div style={{ width: "100%", display: "flex", justifyContent: 'space-around', color: "red", fontSize: 25, padding: 10 }}>
 
 
-
-
-
-
-                    <Button style={{ color: 'black' }} onClick={handleOpen}  ><AddShoppingCartIcon />  Order Now</Button>
-                    <Modal
-                        aria-labelledby="transition-modal-title"
-                        aria-describedby="transition-modal-description"
-                        className={classes.modal}
-                        open={open}
-                        onClose={handleClose}
-                        closeAfterTransition
-                        BackdropComponent={Backdrop}
-                        BackdropProps={{
-                            timeout: 500,
-                        }}
-                    >
-                        <Fade in={open}>
-                            <div className={classes.paper}>
-                                <form noValidate autoComplete="off" onSubmit={SendOrder}>
-                                    <TextField id="name" label="Name" variant="outlined" /> <br />
-                                    <TextField id="email" label="Email" variant="outlined" /> <br />
-                                    <TextField id="phone" label="Phone" variant="outlined" /> <br />
-                                    <TextField id="address" label="Address" variant="outlined" /><br />
-                                    <Button type="submit" variant="contained" color="secondary" >
-                                        Sign Up
+                        <Button style={{ color: 'black' }} onClick={handleOpen}  ><AddShoppingCartIcon />  Order Now</Button>
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <form noValidate autoComplete="off" onSubmit={SendOrder}>
+                                        <TextField id="name" label="Name" variant="outlined" /> <br />
+                                        <TextField id="email" label="Email" variant="outlined" /> <br />
+                                        <TextField id="phone" label="Phone" variant="outlined" /> <br />
+                                        <TextField id="address" label="Address" variant="outlined" /><br />
+                                        <Button type="submit" variant="contained" color="secondary" >
+                                            Sign Up
                                  </Button>
-                                </form>
-                            </div>
-                        </Fade>
-                    </Modal>
+                                    </form>
+                                </div>
+                            </Fade>
+                        </Modal>
+                        <div id="Totalcost" >Total Cost: ${getTotalSum()}</div>
+                    </div>
                 </div>
             </Container>
 
