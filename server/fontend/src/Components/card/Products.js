@@ -74,6 +74,7 @@ export default function Products({ setCart, cart }) {
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
+                            
                             <CardMedia
                                 className={classes.media}
                                 image={product.cartimage}

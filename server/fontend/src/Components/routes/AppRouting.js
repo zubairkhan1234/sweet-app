@@ -42,7 +42,7 @@ function AppRoute() {
 
     const classes = useStyles();
 
-   
+
 
     let history = useHistory()
 
@@ -53,16 +53,7 @@ function AppRoute() {
             <form>
                 <AppBar position="static">
                     <Toolbar>
-                        {(globalState.role === "user") ?
-                            <>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
-                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                                <Link to="/dashboard" >  <Button style={{ color: '#fff' }}>Dashboard</Button></Link>
-                                <LogoutRequest />
-                                <CheckOut />
-
-                            </>: null}
-                            {(globalState.role === null) ?
+                        {(globalState.role === null) ?
                             <>
                                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
@@ -71,18 +62,28 @@ function AppRoute() {
                                 <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>
                                 <CheckOut />
                             </>
-                            : null }
-
-
-                            {(globalState.role === "admin") ?
+                            : null}
+                        {(globalState.role === "user") ?
                             <>
-                                
-                                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
-                                <Link style={{ color: 'black' }} to="/admin-home">  <Button color="inherit">Allorders</Button></Link>
+                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
+                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
+                                <Link to="/" >  <Button style={{ color: '#fff' }}>Dashboard</Button></Link>
                                 <LogoutRequest />
-                                
+                                <CheckOut />
+
+                            </> : null}
+
+
+                        {(globalState.role === "admin") ?
+                            <>
+                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
+                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
+                                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Allorders</Button></Link>
+                                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
+                                <LogoutRequest />
+
                             </>
-                            : null }
+                            : null}
 
                     </Toolbar>
                 </AppBar>
@@ -91,7 +92,7 @@ function AppRoute() {
 
             </form>
 
-          
+
         </>
     )
 

@@ -20,6 +20,23 @@ const useStyles = makeStyles((theme) => ({
             width: '40ch',
         },
     },
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
 }));
 
 
@@ -57,23 +74,23 @@ function Login() {
             .then(function (response) {
                 if (response.status === 200) {
                     // alert(response.status)
-                    console.log("loginRequestUser ====>" , response.data.loginRequestUser.role)
+                    console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
                     globalStateUpdate(prev => ({
                         ...prev,
-                        
+
                         loginStatus: true,
-                        user : response.data.loginRequestUser,
+                        user: response.data.loginRequestUser,
                         role: response.data.loginRequestUser.role
                     }))
                     alert(response.data.message)
-                    if(response.data.loginRequestUser.role === "user"){
+                    if (response.data.loginRequestUser.role === "user") {
                         history.push('/dashboard')
-                    }else if(response.data.loginRequestUser.role === "admin"){
+                    } else if (response.data.loginRequestUser.role === "admin") {
                         history.push('/admin-home')
                     }
                 } else if (response.status === 404) {
                     alert(response.data.message)
-                    
+
 
                     history.push('/login')
                 }
@@ -95,18 +112,48 @@ function Login() {
 
     return (
         <>
-
-            {/* {alertMessage ? <Alert severity="success">
-                <AlertTitle>Success</AlertTitle>
-                {alertMessage}
-            </Alert>: null} */}
-            <Container maxWidth="sm">
-                <h1 style={{ display: "inline", marginLeft: 100 }} >Login Now</h1>
-                <form className={classes.root} noValidate autoComplete="off" onSubmit={Login}>
-                    <TextField id="loginEmail" label="Email" variant="outlined" /><br />
-                    <TextField id="loginPassword" label="Password" variant="outlined" /><br />
-                    <Button type="submit" variant="contained" color="secondary"> LogIn </Button>
-                </form>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Login
+                    </Typography>
+                    <form className={classes.form} noValidate onSubmit={Login}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="loginEmail"
+                            label="Email Address"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            label="Password"
+                            type="password"
+                            id="loginPassword"
+                            autoComplete="current-password"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Login
+                        </Button>
+                    </form>
+                </div>
+                
             </Container>
         </>
     )
@@ -114,3 +161,11 @@ function Login() {
 }
 
 export default Login;
+
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+
+
+

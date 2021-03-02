@@ -49,9 +49,12 @@ function Navigation() {
                     : null}
                 {globalState.role === "user" ?
                     <>
-                        <Route exact path="/dashboard">
+                        <Route exact path="/">
                             <Dashboard />
                         </Route>
+                        {/* <Redirect  path="*">
+                            <Dashboard />
+                        </Redirect> */}
                     </>
                     : null}
                 {globalState.role === "admin" ?
@@ -59,12 +62,15 @@ function Navigation() {
                         <Route path="/AddShopCard">
                             <AddShopCard />
                         </Route>
-                        <Route exact path="/admin-home">
+                        <Route  path="/">
                             <Allorders />
                         </Route>
+                        <Redirect  path="*">
+                            <Allorders />
+                        </Redirect>
                     </>
-                    : null}
 
+                    : null}
             </Router>
         </>
     )

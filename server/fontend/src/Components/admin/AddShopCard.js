@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import css from './admin.css'
-import {BaseURL} from '../Url/BaseURL'
+import { BaseURL } from '../Url/BaseURL'
 import axios from 'axios'
 
 
@@ -75,15 +75,16 @@ export default function AddShopCard() {
     function CratUpload(event) {
         event.preventDefault()
 
-        var price = document.getElementById('price').value
-        var title = document.getElementById('title').value
+        var price = document.getElementById('price').innerText
+        var title = document.getElementById('title').innerText
         var description = document.getElementById('description').value
+        var Availablty = value
         var fileInput = document.getElementById('raised-button-file')
 
-        // console.log(price)
-        // console.log(title)
-        // console.log(description)
-        // console.log(value)
+        console.log(price)
+        console.log(title)
+        console.log(description)
+        console.log(Availablty)
 
         let formData = new FormData();
         formData.append("myFile", fileInput.files[0]);
@@ -112,7 +113,7 @@ export default function AddShopCard() {
 
 
     }
-console.log(responserMessage)
+    console.log(responserMessage)
 
     return (
         <>
@@ -135,42 +136,31 @@ console.log(responserMessage)
                         <h2 id="transition-modal-title">Cart Form</h2>
                         <p id="transition-modal-description">Read careFully before Upload Cart</p>
                         <form onSubmit={CratUpload} className={classes.paper}>
-                            <input id="title" label="Tilte" variant="outlined" /><br />
-                            <input id="price" label="Price" variant="outlined" /><br />
-                            {/* <TextField id="title" label="Tilte" variant="outlined" /><br />
-                            <TextField id="price" label="Price" variant="outlined" /><br /> */}
+                            <input type='text' id="title" placeholder="Title" /><br />
+                            <input type='text' id="price" placeholder="Price" /><br />
                             <textarea
                                 id="description"
                                 className={classes.textAreaStyling}
                                 rowsMax={4}
                                 aria-label="maximum height"
                                 placeholder="Type a short Description about cart"
-                            // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                             />
-                            {/* <TextareaAutosize
-                                id="description"
-                                className={classes.textAreaStyling}
-                                rowsMax={4}
-                                aria-label="maximum height"
-                                placeholder="Type a short Description about cart"
-                            // defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                            /> */}
                             <br />
                             <FormControl component="fieldset">
-                                <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-                                    <FormControlLabel value="Available" control={<Radio />} label="Available" />
+                                <RadioGroup aria-label="gender"  name="gender1"  value={value} onChange={handleChange}>
+                                    <FormControlLabel  value="Available" control={<Radio />} label="Available" />
                                     <FormControlLabel value="UnAvailable Now" control={<Radio />} label="Un Available" />
                                 </RadioGroup>
                             </FormControl><br />
                             <input accept="image/*" className={classes.input} style={{ display: 'none' }} id="raised-button-file" multiple type="file" />
-                            <label className={classes.button} htmlFor="raised-button-file"> 
-                            Upload Image
+                            <label className={classes.button} htmlFor="raised-button-file">
+                                Upload Image
                                 {/* <Button variant="raised" component="span" className={classes.button}>  Upload image </Button> */}
                             </label>
-                                <Button variant="raised" type="submit">  Upload Cart </Button>
+                            <Button variant="raised" type="submit">  Upload Cart </Button>
                         </form>
                     </div>
-                        
+
                 </Fade>
             </Modal>
         </>
