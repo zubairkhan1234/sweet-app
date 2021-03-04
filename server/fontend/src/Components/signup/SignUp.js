@@ -89,7 +89,7 @@ function SignUp() {
                 }
             })
             .catch(function (error) {
-                alert(error.response.data.message)
+                alert(error)
 
             });
 

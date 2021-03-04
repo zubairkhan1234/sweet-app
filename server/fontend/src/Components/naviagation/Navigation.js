@@ -13,67 +13,67 @@ import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
 
 
 import {
-    BrowserRouter as Router,
-    Route,
-    Redirect
+  BrowserRouter as Router,
+  Route,
+  Redirect
 } from "react-router-dom";
 
 
 function Navigation() {
 
-    const globalState = UseGlobalState();
-    const setGlobalState = UseGlobalStateUpdate()
+  const globalState = UseGlobalState();
+  const setGlobalState = UseGlobalStateUpdate()
 
 
 
 
-    return (
-        <>
-            <Router>
-                <AppRoute />
-                {globalState.role === null ?
-                    <>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/signup">
-                            <Signup />
-                        </Route>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route path="*">
-                            <Redirect to="/" />
-                        </Route>
-                    </>
-                    : null}
-                {globalState.role === "user" ?
-                    <>
-                        <Route exact path="/">
-                            <Dashboard />
-                        </Route>
-                        {/* <Redirect  path="*">
-                            <Dashboard />
-                        </Redirect> */}
-                    </>
-                    : null}
-                {globalState.role === "admin" ?
-                    <>
-                        <Route path="/AddShopCard">
-                            <AddShopCard />
-                        </Route>
-                        <Route  path="/">
-                            <Allorders />
-                        </Route>
-                        <Redirect  path="*">
-                            <Allorders />
-                        </Redirect>
-                    </>
+  return (
+    <>
+      <Router>
+        <AppRoute />
+        {globalState.role === null ?
+          <>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </>
+          : null}
+        {globalState.role === "user" ?
+          <>
+            <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </>
+          : null}
+        {globalState.role === "admin" ?
+          <>
+            <Route path="/AddShopCard">
+              <AddShopCard />
+            </Route>
+            <Route path="/">
+              <Allorders />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </>
 
-                    : null}
-            </Router>
-        </>
-    )
+          : null}
+      </Router>
+    </>
+  )
 }
 
 

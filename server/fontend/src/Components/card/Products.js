@@ -32,7 +32,6 @@ export default function Products({ setCart, cart }) {
     const classes = useStyles();
     const [products, setProducts] = useState([])
 
-
     useEffect(() => {
         axios({
             method: 'get',
@@ -63,13 +62,8 @@ export default function Products({ setCart, cart }) {
     setCart(newCart);
   };
 
-
-
-
-
     return (
         <React.Fragment>
-
             <Container maxWidth="xl" >
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
@@ -101,9 +95,7 @@ export default function Products({ setCart, cart }) {
                         </CardActions>
                     </Card>
                 })}
-
             </Container>
         </React.Fragment>
-
     )
 }

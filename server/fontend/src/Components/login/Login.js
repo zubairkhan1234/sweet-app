@@ -6,9 +6,10 @@ import Container from '@material-ui/core/Container';
 // import { Alert, AlertTitle } from '@material-ui/lab';
 import { BaseURL } from '../Url/BaseURL'
 import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
-
-
-
+import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
 
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
@@ -38,11 +39,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }));
-
-
-
-
-
 
 function Login() {
 
@@ -84,15 +80,12 @@ function Login() {
                     }))
                     alert(response.data.message)
                     if (response.data.loginRequestUser.role === "user") {
-                        history.push('/dashboard')
+                        history.push('/')
                     } else if (response.data.loginRequestUser.role === "admin") {
                         history.push('/admin-home')
                     }
                 } else if (response.status === 404) {
                     alert(response.data.message)
-
-
-                    history.push('/login')
                 }
             })
             .catch(function (error) {
@@ -100,9 +93,6 @@ function Login() {
                     alert(error.message)
                 }
             });
-
-
-
         return false;
 
     }
@@ -162,10 +152,6 @@ function Login() {
 
 export default Login;
 
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 
 
 

@@ -15,20 +15,20 @@ import CheckOut from '../checkOut/CheckOut'
 
 
 import {
-    Link,
-    useHistory
+  Link,
+  useHistory
 } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
 
 }));
 
@@ -36,65 +36,65 @@ const useStyles = makeStyles((theme) => ({
 
 function AppRoute() {
 
-    const globalState = UseGlobalState();
-    const setGlobalState = UseGlobalStateUpdate()
+  const globalState = UseGlobalState();
+  const setGlobalState = UseGlobalStateUpdate()
 
 
-    const classes = useStyles();
-
-
-
-    let history = useHistory()
+  const classes = useStyles();
 
 
 
-    return (
-        <>
-            <form>
-                <AppBar position="static">
-                    <Toolbar>
-                        {(globalState.role === null) ?
-                            <>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
-                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                                <Link style={{ color: 'black' }} to="/signup">  <Button color="inherit">SingUp</Button></Link>
-                                <Link style={{ color: 'black' }} to="/login">  <Button color="inherit">Login</Button></Link>
-                                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>
-                                <CheckOut />
-                            </>
-                            : null}
-                        {(globalState.role === "user") ?
-                            <>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
-                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                                <Link to="/" >  <Button style={{ color: '#fff' }}>Dashboard</Button></Link>
-                                <LogoutRequest />
-                                <CheckOut />
-
-                            </> : null}
-
-
-                        {(globalState.role === "admin") ?
-                            <>
-                                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
-                                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Allorders</Button></Link>
-                                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
-                                <LogoutRequest />
-
-                            </>
-                            : null}
-
-                    </Toolbar>
-                </AppBar>
+  let history = useHistory()
 
 
 
-            </form>
+  return (
+    <>
+      <form>
+        <AppBar position="static">
+          <Toolbar>
+            {(globalState.role === null) ?
+              <>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
+                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
+                <Link style={{ color: 'black' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
+                <Link style={{ color: 'black' }} to="/login">  <Button color="inherit">Login</Button></Link>
+                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>
+                <CheckOut />
+              </>
+              : null}
+            {(globalState.role === "user") ?
+              <>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
+                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
+                <Link to="/" ><Button style={{ color: '#fff' }}>Dashboard</Button></Link>
+                <LogoutRequest />
+                <CheckOut />
+
+              </> : null}
 
 
-        </>
-    )
+            {(globalState.role === "admin") ?
+              <>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
+                <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
+                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Allorders</Button></Link>
+                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
+                <LogoutRequest />
+
+              </>
+              : null}
+
+          </Toolbar>
+        </AppBar>
+
+
+
+      </form>
+
+
+    </>
+  )
 
 }
 
