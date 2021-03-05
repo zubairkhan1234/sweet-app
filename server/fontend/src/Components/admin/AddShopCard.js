@@ -75,8 +75,8 @@ export default function AddShopCard() {
     function CratUpload(event) {
         event.preventDefault()
 
-        var price = document.getElementById('price').innerText
-        var title = document.getElementById('title').innerText
+        var price = document.getElementById('price').value
+        var title = document.getElementById('title').value
         var description = document.getElementById('description').value
         var Availablty = value
         var fileInput = document.getElementById('raised-button-file')

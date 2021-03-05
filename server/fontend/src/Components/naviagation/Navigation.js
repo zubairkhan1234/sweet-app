@@ -52,7 +52,7 @@ function Navigation() {
             <Route exact path="/">
               <Dashboard />
             </Route>
-            <Route path="*">
+            <Route  path="*">
               <Redirect to="/" />
             </Route>
           </>
@@ -62,7 +62,7 @@ function Navigation() {
             <Route path="/AddShopCard">
               <AddShopCard />
             </Route>
-            <Route path="/">
+            <Route exact path="/">
               <Allorders />
             </Route>
             <Route path="*">
