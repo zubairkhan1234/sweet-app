@@ -42,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
 
-    const golobalState = UseGlobalState()
+    const globalState = UseGlobalState()
     const globalStateUpdate = UseGlobalStateUpdate()
-    console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", golobalState)
-    console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", globalStateUpdate)
+    // console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", golobalState)
+    // console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", globalStateUpdate)
 
 
 
@@ -70,7 +70,7 @@ function Login() {
             .then(function (response) {
                 if (response.status === 200) {
                     // alert(response.status)
-                    console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
+                    // console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
                     globalStateUpdate(prev => ({
                         ...prev,
 
@@ -79,11 +79,6 @@ function Login() {
                         role: response.data.loginRequestUser.role
                     }))
                     alert(response.data.message)
-                    if (response.data.loginRequestUser.role === "user") {
-                        history.push('/')
-                    } else if (response.data.loginRequestUser.role === "admin") {
-                        history.push('/admin-home')
-                    }
                 } else if (response.status === 404) {
                     alert(response.data.message)
                 }
@@ -93,10 +88,12 @@ function Login() {
                     alert(error.message)
                 }
             });
+            
         return false;
 
     }
 
+    console.log("GlobalState on Login Component   " , globalState)
 
 
 
@@ -143,7 +140,7 @@ function Login() {
                         </Button>
                     </form>
                 </div>
-                
+
             </Container>
         </>
     )

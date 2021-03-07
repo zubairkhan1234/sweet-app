@@ -12,50 +12,53 @@ const UseGlobalStateUpdate = () => useContext(GlobalStateUpdateContext)
 function GlobalStateProvider({ children }) {
 
     const [data, setData] = useState({
-        user: null,
-        darkTheme: false,
-        loginStatus: false,
         role: null,
-        token: null,
-        orderUser : null
+        user: null,
+        loginStatus: false,
+        orderUser: null
     })
 
-    
+
     useEffect(() => {
-        
+
         axios({
             method: "get",
-            url: BaseURL + '/profile',
+            url: BaseURL + `/profile`,
             withCredentials: true
         })
-        .then(function (response) {
-            // handle success
-            // console.log("response: ", response.status);
-            if (response.status === 200) {
-                console.log(response.data)
-                console.log("lkdflasdfkj " , response.data.profile)
-                setData(prev => ({ ...prev, loginStatus: true, user: response.data.profile, role: response.data.profile.role }))
-            }
-        })
-        .catch(function (error) {
-            // handle error
-            // console.log("error: ==== ", error);
-            if (error && error.response && error.response.status) {
-                // console.log("error ==============> ", error.response.status);
-                setData(prev => ({ ...prev, loginStatus: false }))
-            }
-        })
-        
+            .then(function (response) {
+                // handle success
+                // console.log("response: ", response.status);
+                if (response.data.status === 200) {
+                    // console.log(response.data)
+                    // console.log("lkdflasdfkj " , response.data.profile)
+                    setData(prev => ({
+                        ...prev,
+                        user: response.data.profile,
+                        loginStatus: true,
+                        role: response.data.profile.role
+                    }))
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                // console.log("error: ==== ", error);
+                if (error && error.response && error.response.status) {
+                    // console.log("error ==============> ", error.response.status);
+                    setData(prev => ({ ...prev, loginStatus: false }))
+                }
+            })
+
         return () => {
-            console.log("cleanup")
+            // console.log("cleanup")
         }
-    },[])
-    
-    console.log()
-    
-    console.log(data);
-    
-    
+    }, [])
+
+    // console.log()
+
+    // console.log(data);
+
+
 
     return (
 

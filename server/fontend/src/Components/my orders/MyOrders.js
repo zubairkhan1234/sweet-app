@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { BaseURL } from '../Url/BaseURL'
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { Table } from '@material-ui/core';
-import CardActions from '@material-ui/core/CardActions';
-import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
+
 
 
 
@@ -46,56 +37,63 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Allorders() {
-    const globalState = UseGlobalState()
-    const globalStateUpdate = UseGlobalStateUpdate()
 
+export default function MyOrders() {
     const classes = useStyles()
 
-    const [order, setorder] = useState([])
+
+    const [order, setOrder] = useState([])
+
 
     useEffect(() => {
 
         axios({
             method: "get",
-            url: BaseURL + '/getorders',
+            url: BaseURL + '/myorders',
             withCredentials: true
         })
             .then(function (response) {
-
+                console.log(response.data)
                 if (response.status === 200) {
-                    // console.log(response.data.data)
-                    // console.log("lkdflasdfkj ", response.data.data)
-                    setorder(response.data.data)
-
+                    setOrder(response.data.data)
                 }
             })
-            .catch(function (error) {
-                console.log(error)
-
+            .catch(function (response) {
+                console.log(response)
             })
+
     }, [])
 
+
+    console.log(order)
 
     const removeFromCart = (productToRemove) => {
         setorder(
             order.filter((product) => product !== productToRemove)
         );
     };
+    
+    // function myGeeks(product) { 
+    //     var theDate = new Date(Date.parse( 
+    //         product.createdOn)); 
 
-    console.log(globalState)
+    //     document.getElementById("demo") 
+    //         .innerHTML = "Local date Time: " 
+    //         + theDate.toLocaleString(); 
+    // } 
+
 
     return (
         <div style={{ margin: 20 }}>
 
-            <h1>All Order With delever detail</h1>
+            <h1>This is my all order</h1>
             <div maxWidth="xl">
                 <div>
                     {order.map((product, idx) => {
-                        return <div style={{ backgroundColor: 'white', margin: 20, padding: 20, borderRadius: 10  }} key={idx} value={product.id}>
+                        return <div style={{ backgroundColor: 'white', margin: 20, padding: 20, borderRadius: 10 }} key={idx} value={product.id}>
 
 
-                            <h1>Order Detail</h1>
+                            {/* <h1>Order Detail</h1>
                             <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', height: 70 }}>
                                 <div className={classes.header}><h2>Image</h2></div>
                                 <div className={classes.header}><h2>Sweet Name</h2></div>
@@ -103,11 +101,18 @@ export default function Allorders() {
                                 <div className={classes.header}><h2>Sweet Price</h2></div>
                                 <div className={classes.header}><h2>Sweet Quantity in kg</h2></div>
                                 <div className={classes.header}><h2>total</h2></div>
-                            </div>
+                            </div> */}
+
+                            <div>
+                                Name:  {product.createdOn}
+                            </div> <br />
+                            {/* <div onChange={() => myGeeks(product)}>
+                            {myGeeks()}
+                            </div> <br /> */}
 
                             {
                                 product.orders.map((order, index) => {
-                                    {/* console.log(order) */}
+                                    {/* console.log(order) */ }
 
                                     return (
                                         <>
@@ -159,7 +164,7 @@ export default function Allorders() {
                             }
 
 
-                            <h1>Reciever Detail</h1>
+                            {/* <h1>Reciever Detail</h1>
                             <div style={{ padding: 20, textAlign: 'left'  }} >
                                 <div>
                                     Name:  {product.name}
@@ -184,7 +189,7 @@ export default function Allorders() {
                                         Remove Order
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     })}
 

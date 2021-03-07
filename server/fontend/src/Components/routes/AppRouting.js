@@ -57,17 +57,18 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'black' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
-                <Link style={{ color: 'black' }} to="/login">  <Button color="inherit">Login</Button></Link>
-                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link>
-                <CheckOut />
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/">  <Button color="inherit">Login</Button></Link>
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
+                {/* <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link> */}
+                {/* <CheckOut /> */}
               </>
               : null}
             {(globalState.role === "user") ?
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link to="/" ><Button style={{ color: '#fff' }}>Dashboard</Button></Link>
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/" ><Button>Dashboard</Button></Link>
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/my-all-orders" ><Button>my orders</Button></Link>
                 <LogoutRequest />
                 <CheckOut />
 
@@ -78,13 +79,12 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Allorders</Button></Link>
-                <Link style={{ color: 'black' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/">  <Button color="inherit">Allorders</Button></Link>
+                <Link style={{ color: 'white',textDecoration: 'none' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
                 <LogoutRequest />
 
               </>
               : null}
-
           </Toolbar>
         </AppBar>
 

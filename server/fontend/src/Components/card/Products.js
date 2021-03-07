@@ -38,7 +38,7 @@ export default function Products({ setCart, cart }) {
             url: 'http://localhost:5000/getProducts',
             withCredentials: true
         }).then((response) => {
-            console.log(response.data.data)
+            // console.log(response.data.data)
             setProducts(response.data.data)
         }).catch((err) => {
             console.log(err)

@@ -73,7 +73,7 @@ export default function Cart({ cart, setCart }) {
             total: document.getElementById('Totalcost').innerHTML,
             orders: cart,
         }
-        console.log("order data ..... .>>>>>>>>>>>>>>>>..... ", orderData)
+        // console.log("order data ..... .>>>>>>>>>>>>>>>>..... ", orderData)
         axios({
             method: 'post',
             url: BaseURL + '/order',
@@ -82,12 +82,12 @@ export default function Cart({ cart, setCart }) {
 
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.data.status === 200) {
                     alert(response.data.message)
                 } else {
                     alert(response.data.message)
-                    console.log(response.data)
+                    // console.log(response.data)
                 }
             })
             .catch(function (error) {

@@ -14,6 +14,7 @@ var authRoutes = require("./routes/auth")
 console.log(userModle, shopCartModel, sweetOrdersModel)
 
 var { SERVER_SECRET } = require("./core/index");
+const { CreateInboundRuleRequest } = require('postmark/dist/client/models');
 
 const PORT = process.env.PORT || 5000;
 
@@ -36,16 +37,16 @@ app.use(function (req, res, next) {
         res.status(401).send("include http-only credentials with every request")
         return;
     }
-    console.log("Asign value of token" , req.cookies.jToken)
+    console.log("Asign value of token  " , req.cookies.jToken)
 
     jwt.verify(req.cookies.jToken, SERVER_SECRET, function (err, decodedData) {
-        console.log("decodedData .................>>>>>>>>>>" , decodedData)
+        console.log("decodedData .................>>>>>>>>>>  " , decodedData)
         if (!err) {
             const issueDate = decodedData.iat * 1000
             const nowDate = new Date().getTime()
             const diff = nowDate - issueDate
 
-            if (diff > 30000) {
+            if (diff > 300000) {
                 res.status(401).send('Token Expired')
 
             } else {
@@ -55,6 +56,7 @@ app.use(function (req, res, next) {
                     email: decodedData.email,
                     role: decodedData.role
                 }, SERVER_SECRET)
+                
                 res.cookie('jToken', token, {
                     maxAge: 86_400_000,
                     httpOnly: true
@@ -80,11 +82,14 @@ app.get('/profile', (req, res, next) => {
     console.log(req.body)
 
 
-    userModle.findById(req.body.jToken.id, "name email phone role gender cratedOn",
+    userModle.findById(req.body.jToken.id, "name email phone role cratedOn",
         function (err, data) {
-            console.log(data)
+
+            console.log("Get profile Err " , err)
+            console.log("Get Profile Data " ,data)
             if (!err) {
                 res.send({
+                    status: 200,
                     profile: data
                 })
             } else {
@@ -252,7 +257,7 @@ app.post("/order", (req, res, next) => {
                 address: req.body.address,
                 email: user.email,
                 orders: req.body.orders,
-                total: req.body.total
+                total: req.body.total,
             }).then((data) => {
                 res.status(200).send({
                     message: "Order have been submitted",
@@ -291,6 +296,36 @@ app.get('/getorders', (req, res, next) => {
         }
     })
 })
+
+
+
+
+/////// Get my all orders in user Interface 
+/////// Get my all orders in user Interface 
+/////// Get my all orders in user Interface 
+/////// Get my all orders in user Interface 
+/////// Get my all orders in user Interface 
+
+
+app.get('/myorders', (req, res, next) => {
+    sweetOrdersModel.find({email: req.body.jToken.email  }, (err, data) => {
+        console.log("get Order in UserInterface", data)
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.status(304).send({
+                message : 'you have not ordered Now'
+            })
+        }
+    })
+})
+
+
+
 
 app.listen(PORT, () => {
     console.log("surver is running on : ", PORT)

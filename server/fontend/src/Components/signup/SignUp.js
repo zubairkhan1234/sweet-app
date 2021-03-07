@@ -56,7 +56,7 @@ function SignUp() {
     function signup(event) {
         event.preventDefault()
 
-        console.log('clicked')
+        
         var userName = document.getElementById('name').value
         var userEmail = document.getElementById('email').value.toLowerCase()
         var userPhone = document.getElementById('phone').value
@@ -69,7 +69,7 @@ function SignUp() {
             userPhone: userPhone,
             userPassword: userPassword
         }
-        console.log(userData)
+        // console.log(userData)
         axios({
             method: 'post',
             url: BaseURL + '/signup',
@@ -78,14 +78,14 @@ function SignUp() {
 
         })
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.data.status === 200) {
                     alert(response.data.message)
-                    console.log(response.data)
+                    // console.log(response.data)
                     history.push('/login')
                 } else {
                     alert(response.data.message)
-                    console.log(response.data)
+                    // console.log(response.data)
                 }
             })
             .catch(function (error) {
@@ -122,7 +122,7 @@ function SignUp() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Login
+                        Sign up
                     </Typography>
                     <form className={classes.form} noValidate onSubmit={signup}>
                         <TextField

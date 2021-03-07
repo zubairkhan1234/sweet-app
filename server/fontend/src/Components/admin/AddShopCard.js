@@ -56,7 +56,6 @@ export default function AddShopCard() {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [responserMessage, setresponserMessage] = React.useState('');
     const [value, setValue] = React.useState('');
 
     const handleChange = (event) => {
@@ -81,10 +80,10 @@ export default function AddShopCard() {
         var Availablty = value
         var fileInput = document.getElementById('raised-button-file')
 
-        console.log(price)
-        console.log(title)
-        console.log(description)
-        console.log(Availablty)
+        // console.log(price)
+        // console.log(title)
+        // console.log(description)
+        // console.log(Availablty)
 
         let formData = new FormData();
         formData.append("myFile", fileInput.files[0]);
@@ -101,8 +100,7 @@ export default function AddShopCard() {
             withCredentials: true
         })
             .then(response => {
-                console.log("response data=> ", response.data);
-                setresponserMessage(response.data.message)
+                // console.log("response data=> ", response.data);
             })
             .catch(err => {
                 console.log(err);
@@ -113,7 +111,7 @@ export default function AddShopCard() {
 
 
     }
-    console.log(responserMessage)
+
 
     return (
         <>

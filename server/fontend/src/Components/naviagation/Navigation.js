@@ -9,6 +9,7 @@ import Home from "../home/Home";
 import AddShopCard from '../admin/AddShopCard'
 import AppRoute from '../routes/AppRouting'
 import Allorders from '../admin/Allorders'
+import MyOrders from '../my orders/MyOrders';
 import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
 
 
@@ -33,15 +34,15 @@ function Navigation() {
         <AppRoute />
         {globalState.role === null ?
           <>
-            <Route path="/login">
+            <Route exact path="/">
               <Login />
             </Route>
             <Route path="/signup">
               <Signup />
             </Route>
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <Home />
-            </Route>
+            </Route> */}
             <Route path="*">
               <Redirect to="/" />
             </Route>
@@ -51,6 +52,9 @@ function Navigation() {
           <>
             <Route exact path="/">
               <Dashboard />
+            </Route>
+            <Route path="/my-all-orders">
+              <MyOrders />
             </Route>
             <Route  path="*">
               <Redirect to="/" />
