@@ -23,7 +23,7 @@ function Logout() {
     }
 
 
-    return   <Button onClick={LogoutRequest} type="submit" > Logout </Button>
+    return   <Button style={{ color: 'white',textDecoration: 'none' }} onClick={LogoutRequest} type="submit" > Logout </Button>
 
 }
 

@@ -29,9 +29,17 @@ const useStyles = makeStyles((theme) => ({
     },
     paper: {
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        border: '2px solid #3f51b5',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+
+    },
+    form: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #3f51b5',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+
     },
     sizeeee: {
         fontSize: 300
@@ -41,13 +49,46 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 550,
         marginTop: 200,
     },
-    textAreaStyling: {
-        backgroundColor: theme.palette.background.paper,
+    // textAreaStyling: {
+    //     backgroundColor: theme.palette.background.paper,
+    //     border: '1px solid #3f51b5',
+    //     borderRadius: "5px",
+    //     boxShadow: theme.shadows[5],
+    //     padding: theme.spacing(1, 3, 2),
+    // },
+    input: {
+        width: "100%",
+        height: "25px",
+        border: "none",
+        backgroundColor: "#3f51b5",
+        opacity: 0.9,
+        color: "#ffffff",
+        paddingLeft: "15px",
+        marginBottom: "10px"
+    },
+    textArea: {
+        width: "100%",
+        height: "25px",
+        border: "none",
+        backgroundColor: "#3f51b5",
+        opacity: 0.9,
+        color: "#ffffff",
+        paddingLeft: "15px",
+        marginBottom: "10px",
+        overflow: "hidden",
         border: '1px solid gray',
         borderRadius: "5px",
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(1, 3, 2),
-    }
+        height: '60px',
+    },
+    color: {
+        color: "#3f51b5",
+    },
+    radio: {
+        '&$checked': {
+            color: '#3f51b5'
+        }
+    },
+    checked: {}
 
 }));
 
@@ -77,7 +118,6 @@ export default function AddShopCard() {
         var price = document.getElementById('price').value
         var title = document.getElementById('title').value
         var description = document.getElementById('description').value
-        var Availablty = value
         var fileInput = document.getElementById('raised-button-file')
 
         // console.log(price)
@@ -115,7 +155,7 @@ export default function AddShopCard() {
 
     return (
         <>
-            <Button className={classes.marginnn} style={{ color: 'black' }}><AddShoppingCartIcon className={classes.sizeeee} onClick={handleOpen} /></Button>
+            <Button className={classes.marginnn} style={{ color: '#3f51b5' }}><AddShoppingCartIcon className={classes.sizeeee} onClick={handleOpen} /></Button>
 
             <Modal
                 aria-labelledby="transition-modal-title"
@@ -130,32 +170,32 @@ export default function AddShopCard() {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Cart Form</h2>
-                        <p id="transition-modal-description">Read careFully before Upload Cart</p>
-                        <form onSubmit={CratUpload} className={classes.paper}>
-                            <input type='text' id="title" placeholder="Title" /><br />
-                            <input type='text' id="price" placeholder="Price" /><br />
+                    <div className={classes.form}>
+                        <h2 id="transition-modal-title" className={classes.color}>Cart Form</h2>
+                        <p id="transition-modal-description" className={classes.color}>Read careFully before Upload Cart</p>
+                        <form onSubmit={CratUpload} style={{ padding: '10px 30px 10px 10px' }} className={classes.paper}>
+                            <input className={classes.input} type='text' id="title" placeholder="Title" /><br />
+                            <input className={classes.input} type='text' id="price" placeholder="Price" /><br />
                             <textarea
+                                className={classes.textArea}
                                 id="description"
-                                className={classes.textAreaStyling}
                                 rowsMax={4}
                                 aria-label="maximum height"
                                 placeholder="Type a short Description about cart"
                             />
                             <br />
-                            <FormControl component="fieldset">
-                                <RadioGroup aria-label="gender"  name="gender1"  value={value} onChange={handleChange}>
-                                    <FormControlLabel  value="Available" control={<Radio />} label="Available" />
-                                    <FormControlLabel value="UnAvailable Now" control={<Radio />} label="Un Available" />
+                            <FormControl component="fieldset" className={classes.color}>
+                                <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+                                    <FormControlLabel value="Available" control={<Radio classes={{ root: classes.radio, checked: classes.checked }} />} label="Available" />
+                                    <FormControlLabel value="UnAvailable Now" control={<Radio classes={{ root: classes.radio, checked: classes.checked }} />} label="Un Available" />
                                 </RadioGroup>
                             </FormControl><br />
                             <input accept="image/*" className={classes.input} style={{ display: 'none' }} id="raised-button-file" multiple type="file" />
-                            <label className={classes.button} htmlFor="raised-button-file">
+                            <label className={classes.button} htmlFor="raised-button-file" className={classes.color}>
                                 Upload Image
                                 {/* <Button variant="raised" component="span" className={classes.button}>  Upload image </Button> */}
                             </label>
-                            <Button variant="raised" type="submit">  Upload Cart </Button>
+                            <Button variant="raised" type="submit" className={classes.color}>  Upload Cart </Button>
                         </form>
                     </div>
 

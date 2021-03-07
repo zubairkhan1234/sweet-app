@@ -75,14 +75,14 @@ export default function Products({ setCart, cart }) {
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" id="title" component="h2">
+                                <Typography gutterBottom variant="h5" color="primary" id="title" component="h2">
                                     {product.title}
                                 </Typography>
-                                <Typography id="description" variant="body2" color="textSecondary" component="p">
+                                <Typography id="description" variant="body2" color="primary" component="p">
                                     {product.description}
 
                                 </Typography>
-                                <Typography id="price" variant="body2" color="textSecondary" component="p">
+                                <Typography id="price" variant="body2" color="primary" component="p">
                                     Rs:{product.price}/=
                                 </Typography>
                             </CardContent>
