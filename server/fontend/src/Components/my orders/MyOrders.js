@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { BaseURL } from '../Url/BaseURL'
 import { makeStyles } from '@material-ui/core/styles';
+import Moment from 'react-moment';
+import 'moment-timezone';
+import axios from 'axios'
+
 
 
 
@@ -70,15 +73,26 @@ export default function MyOrders() {
   return (
     <div style={{ margin: 20 }}>
 
-      <h1 style={{color:'#3f51b5'}}>This is my all order</h1>
+      <h1 style={{ color: '#3f51b5' }}>This is my all order</h1>
       <div maxWidth="xl">
-        <div style={{border: '2px solid #3f51b5', borderRadius: '10px'}}>
+        <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
           {order.map((product, idx) => {
             return <div style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} key={idx} value={product.id}>
 
-              <div>
+              {/* <div>
                 Name:  {product.createdOn}
               </div> <br />
+              <div>
+                <b>Ordered Time</b>
+                <br />
+                <Moment format="dddd, MMMM Do YYYY, h:mm:ss a">{product.createdOn}</Moment>
+              </div>
+              <br /> */}
+              <div>
+                <b>Ordered Time : </b> 
+                <Moment fromNow>{product.createdOn}</Moment>
+              </div>
+              <br />
 
               {
                 product.orders.map((order, index) => {
@@ -93,7 +107,7 @@ export default function MyOrders() {
                           <div className={classes.header} >
                             <img
                               className={`products ${classes.root}`}
-                              style={{borderRadius: '5px'}}
+                              style={{ borderRadius: '5px' }}
                               src={order.cartimage}
                               alt={order.cartimage}
                             />

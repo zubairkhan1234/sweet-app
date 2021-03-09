@@ -38,29 +38,29 @@ export default function Products({ setCart, cart }) {
             url: 'http://localhost:5000/getProducts',
             withCredentials: true
         }).then((response) => {
-            // console.log(response.data.data)
+            console.log(response.data.data)
             setProducts(response.data.data)
         }).catch((err) => {
             console.log(err)
         })
     }, [])
     ///////////////////////////////
-  const addToCart = (product) => {
-    let newCart = [...cart];
-    let itemInCart = newCart.find(
-      (item) => product.title === item.title
-    );
-    if (itemInCart) {
-      itemInCart.quantity++;
-    } else {
-      itemInCart = {
-        ...product,
-        quantity: 1,
-      };
-      newCart.push(itemInCart);
-    }
-    setCart(newCart);
-  };
+    const addToCart = (product) => {
+        let newCart = [...cart];
+        let itemInCart = newCart.find(
+            (item) => product.title === item.title
+        );
+        if (itemInCart) {
+            itemInCart.quantity++;
+        } else {
+            itemInCart = {
+                ...product,
+                quantity: 1,
+            };
+            newCart.push(itemInCart);
+        }
+        setCart(newCart);
+    };
 
     return (
         <React.Fragment>
@@ -68,14 +68,18 @@ export default function Products({ setCart, cart }) {
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
-                            
+                            <CardContent>
+                                <Typography  variant="h5" color="primary" id="title" component="h2">
+                                    {product.availability}
+                                </Typography>
+                            </CardContent>
                             <CardMedia
                                 className={classes.media}
                                 image={product.cartimage}
                                 title="Contemplative Reptile"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" color="primary" id="title" component="h2">
+                                <Typography variant="h5" color="primary" id="title" component="h2">
                                     {product.title}
                                 </Typography>
                                 <Typography id="description" variant="body2" color="primary" component="p">
@@ -88,7 +92,7 @@ export default function Products({ setCart, cart }) {
                             </CardContent>
                         </CardActionArea>
                         <CardActions>
-                        
+
                             <Button size="small" onClick={() => addToCart(product)} color="primary">
                                 Add To Card
                             </Button>

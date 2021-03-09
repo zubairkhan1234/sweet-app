@@ -215,6 +215,7 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
 
 app.get('/getProducts', (req, res, next) => {
     shopCartModel.find({}, (err, data) => {
+        console.log('hfhfhfhhfhfhfhhhhhhhhhhhhhhhhhhhhhhh' , data )
         if (!err) {
             res.send({
                 data: data
