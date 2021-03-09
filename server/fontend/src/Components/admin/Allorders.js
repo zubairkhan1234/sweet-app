@@ -90,9 +90,9 @@ export default function Allorders() {
 
             <h1>All Order With delever detail</h1>
             <div maxWidth="xl">
-                <div>
+                <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
                     {order.map((product, idx) => {
-                        return <div style={{ backgroundColor: 'white', margin: 20, padding: 20, borderRadius: 10  }} key={idx} value={product.id}>
+                        return <div style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} key={idx} value={product.id}>
 
 
                             <h1>Order Detail</h1>
@@ -107,7 +107,7 @@ export default function Allorders() {
 
                             {
                                 product.orders.map((order, index) => {
-                                    {/* console.log(order) */}
+                                    {/* console.log(order) */ }
 
                                     return (
                                         <>
@@ -158,9 +158,8 @@ export default function Allorders() {
                                 })
                             }
 
-
                             <h1>Reciever Detail</h1>
-                            <div style={{ padding: 20, textAlign: 'left'  }} >
+                            <div style={{ padding: 20, textAlign: 'left' }} >
                                 <div>
                                     Name:  {product.name}
                                 </div> <br />
@@ -177,10 +176,14 @@ export default function Allorders() {
                                     {product.total}
                                 </div> <br />
                                 <div>
-                                    <button size="small" onClick={() => removeFromCart(product)} color="primary">
+                                    <button
+                                        style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
+                                        size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Accept Order
                                     </button>
-                                    <button size="small" onClick={() => removeFromCart(product)} color="primary">
+                                    <button
+                                        style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
+                                        size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Remove Order
                                     </button>
                                 </div>

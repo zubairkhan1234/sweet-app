@@ -57,8 +57,8 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/">  <Button color="inherit">Login</Button></Link>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to="/">  <Button color="inherit">Login</Button></Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
                 {/* <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link> */}
                 {/* <CheckOut /> */}
               </>
@@ -67,10 +67,9 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/" ><Button>Dashboard</Button></Link>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/my-all-orders" ><Button>my orders</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/" ><Button style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Button></Link>
+                <Link style={{ textDecoration: "none" }} to="/my-all-orders" ><Button style={{ color: 'white', textDecoration: 'none' }}>my orders</Button></Link>
                 <LogoutRequest />
-                <CheckOut />
 
               </> : null}
 
@@ -79,8 +78,8 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/">  <Button color="inherit">Allorders</Button></Link>
-                <Link style={{ color: 'white',textDecoration: 'none' }} to="/AddShopCard">  <Button color="inherit">AddShopCard</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/">  <Button style={{ color: 'white', textDecoration: 'none' }}>Allorders</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'white', textDecoration: 'none' }}>AddShopCard</Button></Link>
                 <LogoutRequest />
 
               </>

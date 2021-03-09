@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Products from '../card/Products';
 import Cart from '../card/Cart';
+import { colors } from '@material-ui/core';
 
 const PAGE_PRODUCTS = 'products';
 const PAGE_CART = 'cart';
@@ -24,11 +25,18 @@ function Dashboard() {
   return (
     <div className="app">
       <header>
-        <button onClick={() => navigateTo(PAGE_CART)}>
+        <button
+          style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
+          onClick={() => navigateTo(PAGE_CART)}>
           Go to Cart ({getCartTotal()})
         </button>
 
-        <button onClick={() => navigateTo(PAGE_PRODUCTS)}>
+        <button
+          style={{
+            margin: '20px', backgroundColor: '#3f51b5', border: 'none',
+            padding: '10px', borderRadius: '4px', color: '#ffff'
+          }}
+          onClick={() => navigateTo(PAGE_PRODUCTS)}>
           View Products
         </button>
       </header>

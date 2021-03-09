@@ -13,6 +13,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios'
+import { yellow } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +42,23 @@ const useStyles = makeStyles((theme) => ({
     header: {
         width: "20%",
         textAlign: 'center'
-    }
+    },
+    input: {
+        width: "100%",
+        height: "35px",
+        border: "none",
+        borderRadius: '5px',
+        backgroundColor: "#3f51b5",
+        opacity: 0.9,
+        color: "#ffffff",
+        paddingLeft: "5px",
+        marginBottom: "10px"
+    },
+    button: {
+        color: "#3f51b5",
+        border: 'none',
+        backgroundColor: 'none',
+    },
 }));
 
 export default function Cart({ cart, setCart }) {
@@ -195,14 +212,13 @@ export default function Cart({ cart, setCart }) {
                         >
                             <Fade in={open}>
                                 <div className={classes.paper}>
+                                    <h2 className={classes.button}>Order Info & address</h2>
                                     <form noValidate autoComplete="off" onSubmit={SendOrder}>
-                                        <TextField id="name" label="Name" variant="outlined" /> <br />
-                                        <TextField id="email" label="Email" variant="outlined" /> <br />
-                                        <TextField id="phone" label="Phone" variant="outlined" /> <br />
-                                        <TextField id="address" label="Address" variant="outlined" /><br />
-                                        <Button type="submit" variant="contained" color="secondary" >
-                                            Send Order
-                                 </Button>
+                                        <input className={classes.input} id="name" type="text" placeholder="Type name" required /> <br />
+                                        <input className={classes.input} id="email" type="text" placeholder="Type Email" required /> <br />
+                                        <input className={classes.input} id="phone" type="text" placeholder="Type Phone Number" required /> <br />
+                                        <input className={classes.input} id="address" type="text" placeholder="Type Complete and correct address" required /><br />
+                                        <button type="submit" className={classes.button}> Send Order </button>
                                     </form>
                                 </div>
                             </Fade>
