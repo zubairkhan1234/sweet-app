@@ -80,6 +80,7 @@ function AppRoute() {
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
                 <Link style={{ textDecoration: 'none' }} to="/">  <Button style={{ color: 'white', textDecoration: 'none' }}>Allorders</Button></Link>
                 <Link style={{ textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'white', textDecoration: 'none' }}>AddShopCard</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'white', textDecoration: 'none' }}>Accepted Order</Button></Link>
                 <LogoutRequest />
 
               </>

@@ -49,13 +49,6 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 550,
         marginTop: 200,
     },
-    // textAreaStyling: {
-    //     backgroundColor: theme.palette.background.paper,
-    //     border: '1px solid #3f51b5',
-    //     borderRadius: "5px",
-    //     boxShadow: theme.shadows[5],
-    //     padding: theme.spacing(1, 3, 2),
-    // },
     input: {
         width: "100%",
         height: "25px",
@@ -145,10 +138,6 @@ export default function AddShopCard() {
             .catch(err => {
                 console.log(err);
             })
-
-
-
-
 
     }
 

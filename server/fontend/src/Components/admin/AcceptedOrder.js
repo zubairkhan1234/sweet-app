@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Allorders() {
+export default function AcceptedOrder() {
     const globalState = UseGlobalState()
     const globalStateUpdate = UseGlobalStateUpdate()
 
@@ -58,9 +58,9 @@ export default function Allorders() {
 
         axios({
             method: "get",
-            url: BaseURL + '/admin/getorders/review',
+            url: BaseURL + '/admin/getorders/accepted',
             data: {
-                status: "Your Order in Review"
+                status: "Your Order Accepeted"
             },
             withCredentials: true
         })
@@ -201,3 +201,4 @@ export default function Allorders() {
         </div>
     )
 }
+

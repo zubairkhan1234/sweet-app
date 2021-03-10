@@ -73,6 +73,7 @@ var sweetOrders = new mongoose.Schema({
     "phone": String,
     "address": String,
     "total": String,
+    "status" : {"type": String, "default" : "Your Order in Review" },
     "orders": Array,
     "createdOn": { "type": Date, "default": Date.now },
 });

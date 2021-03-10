@@ -69,7 +69,7 @@ export default function Products({ setCart, cart }) {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
                             <CardContent>
-                                <Typography  variant="h5" color="primary" id="title" component="h2">
+                                <Typography   variant="body2"  style={{color: 'red'}} id="title" component="p">
                                     {product.availability}
                                 </Typography>
                             </CardContent>

@@ -14,7 +14,6 @@ var authRoutes = require("./routes/auth")
 console.log(userModle, shopCartModel, sweetOrdersModel)
 
 var { SERVER_SECRET } = require("./core/index");
-const { CreateInboundRuleRequest } = require('postmark/dist/client/models');
 
 const PORT = process.env.PORT || 5000;
 
@@ -156,6 +155,7 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
                     if (!err) {
                         // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
                         console.log(req.body.email)
+                        console.log(req.body.avalablity)
                         console.log( "headerskdflasfjks ka data  ===================>>>>> " ,req.headers.jToken.id)
                         console.log( "headerskdflasfjks request headers  ===================>>>>> " ,req.headers)
                         userModle.findById(req.headers.jToken.id, 'email role', (err, users) => {
@@ -165,7 +165,7 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
                                 shopCartModel.create({
                                     "title": req.body.title,
                                     "price": req.body.price,
-                                    "availability": req.body.availability,
+                                    "availability": req.body.avalablity,
                                     "cartimage": urlData[0],
                                     "description": req.body.description
                                 })
@@ -286,6 +286,50 @@ app.post("/order", (req, res, next) => {
 
 app.get('/getorders', (req, res, next) => {
     sweetOrdersModel.find({}, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+app.get('/admin/getorders', (req, res, next) => {
+    console.log("status from admin status", req)
+    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+app.get('/admin/getorders/accepted', (req, res, next) => {
+    console.log("status from admin status", req.body.status)
+    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+app.get('/admin/getorders/review', (req, res, next) => {
+    console.log("status from admin status", req.body.status)
+    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
             res.send({

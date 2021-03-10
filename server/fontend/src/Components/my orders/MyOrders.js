@@ -89,6 +89,9 @@ export default function MyOrders() {
               </div>
               <br /> */}
               <div>
+                <p style={{color: 'red'}}><b>Order Status : </b> {product.status} </p> 
+              </div>
+              <div style={{color: 'red'}}>
                 <b>Ordered Time : </b> 
                 <Moment fromNow>{product.createdOn}</Moment>
               </div>
