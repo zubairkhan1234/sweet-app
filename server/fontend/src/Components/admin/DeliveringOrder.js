@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Allorders() {
+export default function DeliveringOrder() {
     const globalState = UseGlobalState()
     const globalStateUpdate = UseGlobalStateUpdate()
 
@@ -58,7 +58,7 @@ export default function Allorders() {
 
         axios({
             method: "get",
-            url: BaseURL + '/admin/getorders/review',
+            url: BaseURL + '/admin/getorders/delivering',
             withCredentials: true
         })
             .then(function (response) {
@@ -75,35 +75,6 @@ export default function Allorders() {
 
             })
     }, [])
-
-
-    const AcceptOrder = (product) => {
-        
-
-        axios({
-            method: "post",
-            url: BaseURL + '/admin/getorders/updatestatus',
-            data: {
-                id: product._id,
-                status: 'Your Order Accepeted'
-            },
-            withCredentials: true
-        })
-            .then(function (response) {
-
-                if (response.status === 200) {
-                    // console.log(response.data.data)
-                    // console.log("lkdflasdfkj ", response.data.data)
-                    console.log(response.data.message)
-
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-
-            })
-
-    }
 
 
     const removeFromCart = (productToRemove) => {
@@ -152,7 +123,7 @@ export default function Allorders() {
                                                         />
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
+                                                        <span style={{ lineHeight: "100px", padding: "10px" }}  variant="h5" id="title" component="h2">
                                                             {order.title}
                                                         </span>
                                                     </div>
@@ -207,7 +178,7 @@ export default function Allorders() {
                                 <div>
                                     <button
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
-                                        size="small" onClick={() => AcceptOrder(product)} color="primary">
+                                        size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Accept Order
                                     </button>
                                     <button
@@ -227,3 +198,10 @@ export default function Allorders() {
         </div>
     )
 }
+
+
+
+
+
+
+

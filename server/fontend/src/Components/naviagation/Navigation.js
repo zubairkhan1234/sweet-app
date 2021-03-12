@@ -10,6 +10,7 @@ import AddShopCard from '../admin/AddShopCard'
 import AppRoute from '../routes/AppRouting'
 import Allorders from '../admin/Allorders'
 import AcceptedOrder from '../admin/AcceptedOrder'
+import DeliveringOrder from '../admin/DeliveringOrder'
 import MyOrders from '../my orders/MyOrders';
 import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
 
@@ -72,6 +73,9 @@ function Navigation() {
             </Route>
             <Route exact path="/Accepted-order">
               <AcceptedOrder />
+            </Route>
+            <Route exact path="/Delivered-order">
+              <DeliveringOrder />
             </Route>
             <Route path="*">
               <Redirect to="/" />

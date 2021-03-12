@@ -83,12 +83,10 @@ api.post('/signup', (req, res, next) => {
 });
 
 api.post("/login", (req, res, next) => {
-    var userEmail = req.body.email;
-    var userPassword = req.body.password;
-    console.log(userEmail)
-    console.log(userPassword)
+    console.log(req.body.email)
+    console.log(req.body.password)
 
-    if (!userEmail || !userPassword) {
+    if (!req.body.email || !req.body.password) {
 
         res.status(403).send(`
             please send email and passwod in json body.
@@ -100,9 +98,9 @@ api.post("/login", (req, res, next) => {
         return;
     }
 
-    userModle.findOne({ email: userEmail },
-        function (err, loginRequestUser) {
+    userModle.findOne({ email: req.body.email }, (err, loginRequestUser) => {
         console.log(loginRequestUser)
+        console.log(err)
 
             if (err) {
                 res.status(500).send({
@@ -113,7 +111,7 @@ api.post("/login", (req, res, next) => {
 
                 console.log(loginRequestUser)
 
-                bcrypt.varifyHash(userPassword, loginRequestUser.password).then(match => {
+                bcrypt.varifyHash(req.body.password, loginRequestUser.password).then(match => {
 
                     if (match) {
 
@@ -131,10 +129,10 @@ api.post("/login", (req, res, next) => {
                             maxAge: 86_400_000,
                             httpOnly: true
                         });
-
-                        res.status(200).send({
+                        res.send({
                             message: "login success",
-
+                            status: 200,
+        
                             loginRequestUser: {
                                 name: loginRequestUser.name,
                                 email: loginRequestUser.email,
@@ -142,11 +140,22 @@ api.post("/login", (req, res, next) => {
                                 role: loginRequestUser.role
                             }
                         });
+                        // res.status(200).send({
+                        //     message: "login success",
+
+                        //     loginRequestUser: {
+                        //         name: loginRequestUser.name,
+                        //         email: loginRequestUser.email,
+                        //         phone: loginRequestUser.phone,
+                        //         role: loginRequestUser.role
+                        //     }
+                        // });
 
                     } else {
                         console.log('not matched')
-                        res.status(404).send({
-                            message: "Incorrect password"
+                        res.send({
+                            message: "Incorrect password",
+                            status: 404
                         })
                     }
                 }).catch(e => {
@@ -212,8 +221,7 @@ api.post("/forget-password", (req, res, next) => {
                     }).then((status) => {
 
                         console.log("status: ", status);
-                        res.send({
-                            status: 200,
+                        res.status(200).send({
                             message: "email sent with otp"
                         })
 
@@ -288,8 +296,7 @@ api.post("/forget-password-step-2", (req, res, next) => {
 
                                 bcrypt.stringToHash(req.body.newPassword).then(function (hash) {
                                     user.update({ password: hash }, {}, function (err, data) {
-                                        res.send({
-                                            status:200,
+                                        res.status(200).send({
                                             message:"password updated"
                                         });
                                     })

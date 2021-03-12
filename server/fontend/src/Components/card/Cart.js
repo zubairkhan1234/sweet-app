@@ -164,7 +164,7 @@ export default function Cart({ cart, setCart }) {
                                     />
                                 </div>
                                 <div className={classes.header}>
-                                    <Typography style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
+                                    <Typography style={{ lineHeight: "100px", padding: "10px" }}  variant="h5" id="title" component="h2">
                                         {product.title}
                                     </Typography>
                                 </div>

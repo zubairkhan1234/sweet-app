@@ -52,7 +52,7 @@ export default function MyOrders() {
 
     axios({
       method: "get",
-      url: BaseURL + '/myorders',
+      url: BaseURL + '/getorders',
       withCredentials: true
     })
       .then(function (response) {
@@ -77,8 +77,7 @@ export default function MyOrders() {
       <div maxWidth="xl">
         <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
           {order.map((product, idx) => {
-            return <div style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} key={idx} value={product.id}>
-
+            return <div key={idx}  style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} >
               {/* <div>
                 Name:  {product.createdOn}
               </div> <br />
@@ -89,10 +88,10 @@ export default function MyOrders() {
               </div>
               <br /> */}
               <div>
-                <p style={{color: 'red'}}><b>Order Status : </b> {product.status} </p> 
+                <p style={{ color: 'red' }}><b>Order Status : </b> {product.status} </p>
               </div>
-              <div style={{color: 'red'}}>
-                <b>Ordered Time : </b> 
+              <div style={{ color: 'red' }}>
+                <b>Ordered Time : </b>
                 <Moment fromNow>{product.createdOn}</Moment>
               </div>
               <br />
@@ -103,7 +102,7 @@ export default function MyOrders() {
 
                   return (
                     <>
-                      <div key={index} value={order.id}  >
+                      <div key={index}>
 
                         <div style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
 
@@ -116,12 +115,12 @@ export default function MyOrders() {
                             />
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
+                            <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
                               {order.title}
                             </span>
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
+                            <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
                               {order.description}
                             </span>
                           </div>

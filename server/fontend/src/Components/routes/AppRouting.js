@@ -57,8 +57,8 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ color: 'white', textDecoration: 'none' }} to="/">  <Button color="inherit">Login</Button></Link>
-                <Link style={{ color: 'white', textDecoration: 'none' }} to="/signup">  <Button color="inherit">Sign up</Button></Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to="/">  <Button color="inherit" style={{ textTransform: 'capitalize'}}>Login</Button></Link>
+                <Link style={{ color: 'white', textDecoration: 'none' }} to="/signup">  <Button color="inherit"  style={{ textTransform: 'capitalize'}}>Sign up</Button></Link>
                 {/* <Link style={{ color: 'black' }} to="/">  <Button color="inherit">Home</Button></Link> */}
                 {/* <CheckOut /> */}
               </>
@@ -67,8 +67,8 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ textDecoration: 'none' }} to="/" ><Button style={{ color: 'white', textDecoration: 'none' }}>Dashboard</Button></Link>
-                <Link style={{ textDecoration: "none" }} to="/my-all-orders" ><Button style={{ color: 'white', textDecoration: 'none' }}>my orders</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/" ><Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Dashboard</Button></Link>
+                <Link style={{ textDecoration: "none" }} to="/my-all-orders" ><Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>my orders</Button></Link>
                 <LogoutRequest />
 
               </> : null}
@@ -78,9 +78,10 @@ function AppRoute() {
               <>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"> <MenuIcon /> </IconButton>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ textDecoration: 'none' }} to="/">  <Button style={{ color: 'white', textDecoration: 'none' }}>Allorders</Button></Link>
-                <Link style={{ textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'white', textDecoration: 'none' }}>AddShopCard</Button></Link>
-                <Link style={{ textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'white', textDecoration: 'none' }}>Accepted Order</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Allorders</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>AddShop Card</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Accepted Order</Button></Link>
+                <Link style={{ textDecoration: 'none' }} to="/Delivered-order">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Delivered Order</Button></Link>
                 <LogoutRequest />
 
               </>

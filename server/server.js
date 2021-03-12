@@ -36,10 +36,10 @@ app.use(function (req, res, next) {
         res.status(401).send("include http-only credentials with every request")
         return;
     }
-    console.log("Asign value of token  " , req.cookies.jToken)
+    console.log("Asign value of token  ", req.cookies.jToken)
 
     jwt.verify(req.cookies.jToken, SERVER_SECRET, function (err, decodedData) {
-        console.log("decodedData .................>>>>>>>>>>  " , decodedData)
+        console.log("decodedData .................>>>>>>>>>>  ", decodedData)
         if (!err) {
             const issueDate = decodedData.iat * 1000
             const nowDate = new Date().getTime()
@@ -55,7 +55,7 @@ app.use(function (req, res, next) {
                     email: decodedData.email,
                     role: decodedData.role
                 }, SERVER_SECRET)
-                
+
                 res.cookie('jToken', token, {
                     maxAge: 86_400_000,
                     httpOnly: true
@@ -84,8 +84,8 @@ app.get('/profile', (req, res, next) => {
     userModle.findById(req.body.jToken.id, "name email phone role cratedOn",
         function (err, data) {
 
-            console.log("Get profile Err " , err)
-            console.log("Get Profile Data " ,data)
+            console.log("Get profile Err ", err)
+            console.log("Get Profile Data ", data)
             if (!err) {
                 res.send({
                     status: 200,
@@ -151,13 +151,13 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
                     action: 'read',
                     expires: '03-09-2491'
                 }).then((urlData, err) => {
-              
+
                     if (!err) {
                         // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
                         console.log(req.body.email)
                         console.log(req.body.avalablity)
-                        console.log( "headerskdflasfjks ka data  ===================>>>>> " ,req.headers.jToken.id)
-                        console.log( "headerskdflasfjks request headers  ===================>>>>> " ,req.headers)
+                        console.log("headerskdflasfjks ka data  ===================>>>>> ", req.headers.jToken.id)
+                        console.log("headerskdflasfjks request headers  ===================>>>>> ", req.headers)
                         userModle.findById(req.headers.jToken.id, 'email role', (err, users) => {
                             console.log("Adminperson ====> ", users.email)
 
@@ -215,7 +215,7 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
 
 app.get('/getProducts', (req, res, next) => {
     shopCartModel.find({}, (err, data) => {
-        console.log('hfhfhfhhfhfhfhhhhhhhhhhhhhhhhhhhhhhh' , data )
+        console.log('hfhfhfhhfhfhfhhhhhhhhhhhhhhhhhhhhhhh', data)
         if (!err) {
             res.send({
                 data: data
@@ -276,14 +276,6 @@ app.post("/order", (req, res, next) => {
     })
 })
 
-
-/////// Get all orders in Admin panel 
-/////// Get all orders in Admin panel 
-/////// Get all orders in Admin panel 
-/////// Get all orders in Admin panel 
-/////// Get all orders in Admin panel 
-
-
 app.get('/getorders', (req, res, next) => {
     sweetOrdersModel.find({}, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
@@ -298,24 +290,9 @@ app.get('/getorders', (req, res, next) => {
     })
 })
 
-
-app.get('/admin/getorders', (req, res, next) => {
-    console.log("status from admin status", req)
-    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
-        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
-        if (!err) {
-            res.send({
-                data: data
-            })
-        }
-        else {
-            res.send(err)
-        }
-    })
-})
 app.get('/admin/getorders/accepted', (req, res, next) => {
     console.log("status from admin status", req.body.status)
-    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
+    sweetOrdersModel.find({ status: "Your Order Accepeted" }, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
             res.send({
@@ -327,9 +304,10 @@ app.get('/admin/getorders/accepted', (req, res, next) => {
         }
     })
 })
+
 app.get('/admin/getorders/review', (req, res, next) => {
     console.log("status from admin status", req.body.status)
-    sweetOrdersModel.find({status : req.body.status}, (err, data) => {
+    sweetOrdersModel.find({ status: "Your Order in Review" }, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
             res.send({
@@ -343,17 +321,69 @@ app.get('/admin/getorders/review', (req, res, next) => {
 })
 
 
+app.post('/admin/getorders/updatestatus', (req, res, next) => {
+    console.log("status from admin status", req.body.status)
+    console.log("status from admin status", req.body.id)
+    sweetOrdersModel.findOne({ _id: req.body.id }, (err, match) => {
+        console.log("Update data + ", match)
+        console.log("Update data + ", err)
+        if (match) {
+
+            match.updateOne({ status: req.body.status }, (err, update) => {
+                console.log("alaaaallallallalalal ", update)
+                if (update) {
+                    res.status(200).send({
+                        message: 'Status Updated'
+                    })
+                } else {
+                    res.status(401).send({
+                        message: err
+                    })
+                }
+            })
+
+        } else {
+            res.send(err)
+        }
+    })
+})
+
+app.post('/admin/getorders/confirmorder', (req, res, next) => {
+    console.log("status from admin status", req.body.status)
+    console.log("status from admin status", req.body.id)
+    sweetOrdersModel.findOne({ _id: req.body.id }, (err, match) => {
+        console.log("Update data + ", match)
+        console.log("Update data + ", err)
+        if (match) {
+
+            match.updateOne({ status: req.body.status }, (err, update) => {
+                console.log("alaaaallallallalalal ", update)
+                if (update) {
+                    res.status(200).send({
+                        message: 'Status Updated'
+                    })
+                } else {
+                    res.status(401).send({
+                        message: err
+                    })
+                }
+            })
+
+        } else {
+            res.send(err)
+        }
+    })
+})
 
 
-/////// Get my all orders in user Interface 
-/////// Get my all orders in user Interface 
-/////// Get my all orders in user Interface 
-/////// Get my all orders in user Interface 
-/////// Get my all orders in user Interface 
 
 
-app.get('/myorders', (req, res, next) => {
-    sweetOrdersModel.find({email: req.body.jToken.email  }, (err, data) => {
+
+
+
+app.get('/admin/getorders/delivering', (req, res, next) => {
+    sweetOrdersModel.find({ status: "your Order has been deliverd" }, (err, data) => {
+
         console.log("get Order in UserInterface", data)
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
@@ -363,7 +393,7 @@ app.get('/myorders', (req, res, next) => {
         }
         else {
             res.status(304).send({
-                message : 'you have not ordered Now'
+                message: 'you have not ordered Now'
             })
         }
     })

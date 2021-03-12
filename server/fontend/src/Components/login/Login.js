@@ -68,32 +68,32 @@ function Login() {
             withCredentials: true
         })
             .then(function (response) {
-                if (response.status === 200) {
+                if (response.data.status === 200) {
                     // alert(response.status)
                     // console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
                     globalStateUpdate(prev => ({
                         ...prev,
-
                         loginStatus: true,
                         user: response.data.loginRequestUser,
                         role: response.data.loginRequestUser.role
                     }))
+
                     alert(response.data.message)
-                } else if (response.status === 404) {
+                }else{
                     alert(response.data.message)
                 }
             })
             .catch(function (error) {
-                if (error.status === 403) {
-                    alert(error.message)
-                }
+                alert(error)
+                console.log("ldafjldja ", error.response.data.message)
+
             });
-            
+
         return false;
 
     }
 
-    console.log("GlobalState on Login Component   " , globalState)
+    console.log("GlobalState on Login Component   ", globalState)
 
 
 

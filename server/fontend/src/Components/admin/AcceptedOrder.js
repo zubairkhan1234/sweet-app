@@ -54,14 +54,42 @@ export default function AcceptedOrder() {
 
     const [order, setorder] = useState([])
 
+
+
+
+    const conFirmOrder = (product) => {
+
+        axios({
+            method: "post",
+            url: BaseURL + '/admin/getorders/confirmorder',
+            data: {
+                id: product._id,
+                status: 'your Order has been deliverd'
+            },
+            withCredentials: true
+        })
+            .then(function (response) {
+
+                if (response.status === 200) {
+                    // console.log(response.data.data)
+                    // console.log("lkdflasdfkj ", response.data.data)
+                    console.log(response.data.message)
+                    alert(response.data.message)
+
+                }
+            })
+            .catch(function (error) {
+                console.log(error)
+
+            })
+    }
+
+
     useEffect(() => {
 
         axios({
             method: "get",
             url: BaseURL + '/admin/getorders/accepted',
-            data: {
-                status: "Your Order Accepeted"
-            },
             withCredentials: true
         })
             .then(function (response) {
@@ -80,6 +108,8 @@ export default function AcceptedOrder() {
     }, [])
 
 
+
+
     const removeFromCart = (productToRemove) => {
         setorder(
             order.filter((product) => product !== productToRemove)
@@ -95,7 +125,7 @@ export default function AcceptedOrder() {
             <div maxWidth="xl">
                 <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
                     {order.map((product, idx) => {
-                        return <div style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} key={idx} value={product.id}>
+                        return <div key={idx} style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }}  >
 
 
                             <h1>Order Detail</h1>
@@ -114,7 +144,7 @@ export default function AcceptedOrder() {
 
                                     return (
                                         <>
-                                            <div key={index} value={order.id}  >
+                                            <div key={index}>
 
                                                 <div style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
 
@@ -126,12 +156,12 @@ export default function AcceptedOrder() {
                                                         />
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
+                                                        <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
                                                             {order.title}
                                                         </span>
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} gutterBottom variant="h5" id="title" component="h2">
+                                                        <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
                                                             {order.description}
                                                         </span>
                                                     </div>
@@ -181,8 +211,8 @@ export default function AcceptedOrder() {
                                 <div>
                                     <button
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
-                                        size="small" onClick={() => removeFromCart(product)} color="primary">
-                                        Accept Order
+                                        size="small" onClick={() => conFirmOrder(product)} color="primary">
+                                        Delivered
                                     </button>
                                     <button
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
