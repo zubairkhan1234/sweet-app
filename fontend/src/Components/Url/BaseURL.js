@@ -1,2 +1,11 @@
-// export const BaseURL = "http://localhost:5000";
-export const BaseURL = "https://m-sweet-app.herokuapp.com/";
+
+
+
+var url = window.location.href.split(":");
+if (BaseURL[0] === "https") {
+    BaseURL = 'https://m-sweet-app.herokuapp.com/'
+}
+else {
+    BaseURL = "http://localhost:5000"
+}
+export default url;
