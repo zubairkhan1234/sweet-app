@@ -20,13 +20,13 @@ const PORT = process.env.PORT || 5000;
 
 var app = express()
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: [,'http://localhost:3000', "https://m-sweet-app.herokuapp.com/"],
     credentials: true
 }))
 app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use("/", express.static(path.resolve(path.join(__dirname, "public"))));
+app.use("/", express.static(path.resolve(path.join(__dirname, "./fontend/build"))));
 app.use('/', authRoutes)
 
 app.use(function (req, res, next) {
