@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import css from './admin.css'
-import { BaseURL } from '../Url/BaseURL'
+import  BaseURL  from '../Url/BaseURL'
 import axios from 'axios'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';

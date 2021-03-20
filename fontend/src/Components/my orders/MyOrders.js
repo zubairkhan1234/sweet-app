@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BaseURL } from '../Url/BaseURL'
+import  BaseURL  from '../Url/BaseURL'
 import { makeStyles } from '@material-ui/core/styles';
 import Moment from 'react-moment';
 import 'moment-timezone';

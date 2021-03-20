@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 // import { Alert, AlertTitle } from '@material-ui/lab';
-import { BaseURL } from '../Url/BaseURL'
+import  BaseURL  from '../Url/BaseURL'
 import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';

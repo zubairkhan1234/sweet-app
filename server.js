@@ -116,11 +116,13 @@ var upload = multer({ storage: storage })
 
 //==============================================
 
+
 var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
     DATABASE_URL: process.env.DATABASE_URL
+  
 });
 
 const bucket = admin.storage().bucket("gs://sweet-shop-95e0d.appspot.com");
