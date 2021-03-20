@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 
 
-// let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.9qvbs.mongodb.net/testdatabase";
-// let dbURI = 'mongodb://localhost:27017/abc-database';
-let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.j83vk.mongodb.net/testdatabase?retryWrites=true&w=majority"
 
+// let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.j83vk.mongodb.net/testdatabase?retryWrites=true&w=majority"
+let dbURI = process.env.MONGOOSE_DBURI
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 ///////////************** Mongodb connected or disconnected Events ***********/////////////
