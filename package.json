@@ -28,15 +28,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zubairkhan1234/hash-and-token-form-.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zubairkhan1234/hash-and-token-form-/issues"
-  },
-  "homepage": "https://github.com/zubairkhan1234/hash-and-token-form-#readme"
+  }
 }
