@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 5000;
 
 var app = express()
 app.use(cors({
-    origin: [,'http://localhost:3000', "https://m-sweet-app.herokuapp.com/"],
+    origin: [, 'http://localhost:3000', "https://m-sweet-app.herokuapp.com/"],
     credentials: true
 }))
 app.use(morgan('dev'))
@@ -116,7 +116,7 @@ var upload = multer({ storage: storage })
 
 //==============================================
 
-var SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT
+var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
