@@ -77,11 +77,11 @@ export default function DeliveringOrder() {
     }, [])
 
 
-    const removeFromCart = (productToRemove) => {
-        setorder(
-            order.filter((product) => product !== productToRemove)
-        );
-    };
+    // const removeFromCart = (productToRemove) => {
+    //     setorder(
+    //         order.filter((product) => product !== productToRemove)
+    //     );
+    // };
 
     console.log(globalState)
 
@@ -176,7 +176,8 @@ export default function DeliveringOrder() {
                                     {product.total}
                                 </div> <br />
                                 <div>
-                                    <button
+                                    <h1 style={{color: "#3f51b5"}}>Delivered</h1>
+                                    {/* <button
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
                                         size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Accept Order
@@ -185,7 +186,7 @@ export default function DeliveringOrder() {
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
                                         size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Remove Order
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>

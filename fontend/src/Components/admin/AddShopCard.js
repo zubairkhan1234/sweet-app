@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +10,13 @@ import Button from '@material-ui/core/Button';
 import css from './admin.css'
 import { BaseURL } from '../Url/BaseURL'
 import axios from 'axios'
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 
 
 import Radio from '@material-ui/core/Radio';
@@ -81,7 +88,16 @@ const useStyles = makeStyles((theme) => ({
             color: '#3f51b5'
         }
     },
-    checked: {}
+    root: {
+        maxWidth: 345,
+        width: 345,
+    },
+    media: {
+        height: 200,
+    },
+    fontSize: {
+        fontSize: 18,
+    }
 
 }));
 
@@ -91,6 +107,8 @@ export default function AddShopCard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState('');
+    const [products, setProducts] = useState([])
+
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -105,13 +123,13 @@ export default function AddShopCard() {
         setOpen(false);
     };
 
+    const price = useRef()
+    const title = useRef()
+    const description = useRef()
     function CratUpload(event) {
         event.preventDefault()
 
-        var price = document.getElementById('price').value
-        var title = document.getElementById('title').value
-        var description = document.getElementById('description').value
-        var fileInput = document.getElementById('raised-button-file')
+        const fileInput = document.getElementById('raised-button-file')
 
         // console.log(price)
         // console.log(title)
@@ -120,9 +138,9 @@ export default function AddShopCard() {
 
         let formData = new FormData();
         formData.append("myFile", fileInput.files[0]);
-        formData.append("title", title);
-        formData.append("price", price);
-        formData.append("description", description);
+        formData.append("title", title.current.value);
+        formData.append("price", price.current.value);
+        formData.append("description", description.current.value);
         formData.append("avalablity", value);
 
         axios({
@@ -132,14 +150,28 @@ export default function AddShopCard() {
             headers: { 'Content-Type': 'multipart/form-data' },
             withCredentials: true
         })
-            .then(response => {
-                // console.log("response data=> ", response.data);
+            .then((response) => {
+                alert(response.data.message)
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
             })
 
     }
+
+
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/getProducts',
+            withCredentials: true
+        }).then((response) => {
+            console.log(response.data.data)
+            setProducts(response.data.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
 
 
     return (
@@ -163,11 +195,11 @@ export default function AddShopCard() {
                         <h2 id="transition-modal-title" className={classes.color}>Cart Form</h2>
                         <p id="transition-modal-description" className={classes.color}>Read careFully before Upload Cart</p>
                         <form onSubmit={CratUpload} style={{ padding: '10px 30px 10px 10px' }} className={classes.paper}>
-                            <input className={classes.input} type='text' id="title" placeholder="Title" /><br />
-                            <input className={classes.input} type='text' id="price" placeholder="Price" /><br />
+                            <input className={classes.input} type='text' ref={title} placeholder="Title" /><br />
+                            <input className={classes.input} type='text' ref={price} placeholder="Price" /><br />
                             <textarea
                                 className={classes.textArea}
-                                id="description"
+                                ref={description}
                                 rowsMax={4}
                                 aria-label="maximum height"
                                 placeholder="Type a short Description about cart"
@@ -190,6 +222,46 @@ export default function AddShopCard() {
 
                 </Fade>
             </Modal>
+
+
+
+
+            <Container maxWidth="xl" >
+                {products.map((product, index) => {
+                    return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
+                        <CardActionArea>
+                            <CardContent>
+                                <Typography variant="body2" style={{ color: 'red' }} id="title" component="p">
+                                    {product.availability}
+                                </Typography>
+                            </CardContent>
+                            <CardMedia
+                                className={classes.media}
+                                image={product.cartimage}
+                                title="Contemplative Reptile"
+                            />
+                            <CardContent>
+                                <Typography variant="h5" color="primary" id="title" component="h2">
+                                    {product.title}
+                                </Typography>
+                                <Typography id="description" variant="body2" color="primary" component="p">
+                                    {product.description}
+
+                                </Typography>
+                                <Typography id="price" variant="body2" color="primary" component="p">
+                                    Rs:{product.price}/=
+                                </Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        {/* <CardActions>
+
+                            <Button size="small" onClick={() => addToCart(product)} color="primary">
+                                Add To Card
+                            </Button>
+                        </CardActions> */}
+                    </Card>
+                })}
+            </Container>
         </>
     )
 }

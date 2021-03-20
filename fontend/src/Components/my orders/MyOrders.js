@@ -77,7 +77,7 @@ export default function MyOrders() {
       <div maxWidth="xl">
         <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
           {order.map((product, idx) => {
-            return <div key={idx}  style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} >
+            return <div key={idx} style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} >
               {/* <div>
                 Name:  {product.createdOn}
               </div> <br />
@@ -132,23 +132,22 @@ export default function MyOrders() {
                           <div className={classes.header}>
                             <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
                               {order.quantity}kg
-                                                        </span>
-
+                            </span>
                           </div>
                           <div className={classes.header}>
                             <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
                               {order.quantity * order.price}
                             </span>
-
                           </div>
-
                         </div>
                       </div>
 
                     </>
                   )
-                })
-              }
+                })}
+              <div style={{ textAlign: 'right', paddingRight: 90 }}>
+                <h2>{product.total}</h2>
+              </div>
             </div>
           })}
 
