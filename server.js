@@ -117,7 +117,7 @@ var upload = multer({ storage: storage })
 //==============================================
 
 
-var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
+var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICEACCOUNT)
 
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
