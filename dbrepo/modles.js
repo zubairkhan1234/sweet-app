@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 
 
-// let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.j83vk.mongodb.net/testdatabase?retryWrites=true&w=majority"
-let dbURI = process.env.MONGOOSE_DBURI
+let dbURI = "mongodb+srv://zubairabc:zubairabc@cluster0.j83vk.mongodb.net/testdatabase?retryWrites=true&w=majority"
+// let dbURI = process.env.MONGOOSE_DBURI
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 ///////////************** Mongodb connected or disconnected Events ***********/////////////
