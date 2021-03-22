@@ -1,7 +1,6 @@
 var express = require('express');
 var cors = require('cors');
 var morgan = require('morgan');
-var bodyParser = require('body-parser');
 var path = require("path");
 var jwt = require('jsonwebtoken');
 var cookieParser = require('cookie-parser');
@@ -24,7 +23,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(morgan('dev'))
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cookieParser())
 app.use("/", express.static(path.resolve(path.join(__dirname, "./fontend/build"))));
 app.use('/', authRoutes)
