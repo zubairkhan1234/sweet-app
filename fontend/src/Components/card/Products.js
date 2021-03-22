@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios'
 import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
 import Container from '@material-ui/core/Container';
+import BaseURL from '../Url/BaseURL';
 
 
 const useStyles = makeStyles({
@@ -35,7 +36,7 @@ export default function Products({ setCart, cart }) {
     useEffect(() => {
         axios({
             method: 'get',
-            url: 'http://localhost:5000/getProducts',
+            url: BaseURL +'/getProducts',
             withCredentials: true
         }).then((response) => {
             console.log(response.data.data)
