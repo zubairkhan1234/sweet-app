@@ -95,6 +95,7 @@ export default function Allorders() {
                     // console.log(response.data.data)
                     // console.log("lkdflasdfkj ", response.data.data)
                     console.log(response.data.message)
+                    alert(response.data.message)
 
                 }
             })

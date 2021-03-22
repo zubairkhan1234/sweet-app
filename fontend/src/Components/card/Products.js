@@ -14,11 +14,11 @@ import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
-        width: 345,
+        maxWidth: 300,
+        width: 300,
     },
     media: {
-        height: 200,
+        height: 160,
     },
     fontSize: {
         fontSize: 18,
@@ -64,7 +64,7 @@ export default function Products({ setCart, cart }) {
 
     return (
         <React.Fragment>
-            <Container maxWidth="xl" >
+            <Container maxWidth="xl" style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}} >
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>

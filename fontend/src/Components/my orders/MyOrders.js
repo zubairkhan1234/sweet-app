@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import  BaseURL  from '../Url/BaseURL'
+import BaseURL from '../Url/BaseURL'
 import { makeStyles } from '@material-ui/core/styles';
 import Moment from 'react-moment';
 import 'moment-timezone';
@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   header: {
     width: "15%",
     textAlign: 'center',
-    margin: '0px'
+    margin: '0px',
+  
   }
 }));
 
@@ -75,9 +76,18 @@ export default function MyOrders() {
 
       <h1 style={{ color: '#3f51b5' }}>This is my all order</h1>
       <div maxWidth="xl">
+      
         <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
           {order.map((product, idx) => {
             return <div key={idx} style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} >
+              <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', height: 70 }}>
+                <div className={classes.header}><h3>Image</h3></div>
+                <div className={classes.header}><h3>Sweet Name</h3></div>
+                <div className={classes.header}><h3>sweet description</h3></div>
+                <div className={classes.header}><h3>Sweet Price</h3></div>
+                <div className={classes.header}><h3>Sweet Quantity in kg</h3></div>
+                <div className={classes.header}><h3>total</h3></div>
+              </div>
               {/* <div>
                 Name:  {product.createdOn}
               </div> <br />

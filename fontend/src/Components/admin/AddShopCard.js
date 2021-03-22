@@ -226,7 +226,7 @@ export default function AddShopCard() {
 
 
 
-            <Container maxWidth="xl" >
+            <Container maxWidth="xl" style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
