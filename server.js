@@ -120,11 +120,13 @@ var upload = multer({ storage: storage })
 var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 
+
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
     DATABASE_URL: process.env.DATABASE_URL
-    
-  
+
+
+
 });
 
 const bucket = admin.storage().bucket("gs://sweet-shop-95e0d.appspot.com");
@@ -271,6 +273,19 @@ app.post("/order", (req, res, next) => {
 
 app.get('/getorders', (req, res, next) => {
     sweetOrdersModel.find({}, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+app.get('/get/myOrder', (req, res, next) => {
+    sweetOrdersModel.find({email: req.headers.jToken.email}, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
             res.send({

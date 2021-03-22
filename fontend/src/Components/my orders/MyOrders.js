@@ -53,7 +53,7 @@ export default function MyOrders() {
 
     axios({
       method: "get",
-      url: BaseURL + '/getorders',
+      url: BaseURL + '/get/myOrder',
       withCredentials: true
     })
       .then(function (response) {
