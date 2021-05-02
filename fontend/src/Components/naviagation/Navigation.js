@@ -16,7 +16,7 @@ import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
 
 
 import {
-  BrowserRouter as Router,
+  HashRouter  as Router,
   Route,
   Redirect
 } from "react-router-dom";
@@ -42,9 +42,6 @@ function Navigation() {
             <Route path="/signup">
               <Signup />
             </Route>
-            {/* <Route exact path="/">
-              <Home />
-            </Route> */}
             <Route path="*">
               <Redirect to="/" />
             </Route>
