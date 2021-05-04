@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import css from './admin.css'
-import  BaseURL  from '../Url/BaseURL'
+import BaseURL from '../Url/BaseURL'
 import axios from 'axios'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -53,8 +53,26 @@ const useStyles = makeStyles((theme) => ({
     },
 
     marginnn: {
-        marginLeft: 550,
-        marginTop: 200,
+        marginLeft: '40%',
+        marginTop: '25%',
+        marginBottom: '25%',
+        [theme.breakpoints.down('md')]: {
+            marginLeft: '35%',
+            marginTop: '25%',
+            marginBottom: '25%'
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: '30%',
+            marginTop: '25%',
+            marginBottom: '25%'
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: '10%',
+            marginTop: '25%',
+            marginBottom: '25%'
+        }
+
+
     },
     input: {
         width: "100%",
@@ -91,6 +109,10 @@ const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
         width: 345,
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: 245,
+            width: 245
+        }
     },
     media: {
         height: 200,
@@ -163,7 +185,7 @@ export default function AddShopCard() {
     useEffect(() => {
         axios({
             method: 'get',
-            url: BaseURL +'/getProducts',
+            url: BaseURL + '/getProducts',
             withCredentials: true
         }).then((response) => {
             console.log(response.data.data)
@@ -176,6 +198,7 @@ export default function AddShopCard() {
 
     return (
         <>
+
             <Button className={classes.marginnn} style={{ color: '#3f51b5' }}><AddShoppingCartIcon className={classes.sizeeee} onClick={handleOpen} /></Button>
 
             <Modal
@@ -226,7 +249,7 @@ export default function AddShopCard() {
 
 
 
-            <Container maxWidth="xl" style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+            <Container maxWidth="xl" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>

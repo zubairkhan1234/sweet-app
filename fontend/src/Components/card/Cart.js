@@ -21,6 +21,18 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 345,
         width: 145,
         height: 100,
+        [theme.breakpoints.down("md")]:{
+            width: 115,
+            height: 75,
+        },
+        [theme.breakpoints.down("sm")]:{
+            width: 95,
+            height:75,
+        },
+        [theme.breakpoints.down("xs")]:{
+            width: 75,
+            height: 50,
+        }
     },
     media: {
         height: 200,
@@ -41,7 +53,17 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
         width: "20%",
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('xs')]: {
+            width: "auto",
+            textAlign: 'center',
+            margin: '0px',
+        },
+        [theme.breakpoints.down('md')]: {
+            width: "auto",
+            textAlign: 'center',
+            margin: '0px',
+        }
     },
     input: {
         width: "100%",
@@ -58,6 +80,31 @@ const useStyles = makeStyles((theme) => ({
         color: "#3f51b5",
         border: 'none',
         backgroundColor: 'none',
+    },
+    heading: {
+        [theme.breakpoints.down('md')]:{
+            fontWeight: 500,
+            fontSize: 20
+        },
+        [theme.breakpoints.down('sm')]:{
+            fontWeight: 500,
+            fontSize: 16
+
+        },
+        [theme.breakpoints.down('xs')]:{
+            fontWeight: 500,
+            fontSize: 14
+
+        }
+    },
+    forFont: {
+        lineHeight: "100px",
+        fontSize: '18px',
+        [theme.breakpoints.down('xs')]: {
+            lineHeight: "30px",
+            paddingLeft: "3px",
+            fontSize : '18px'
+        }
     },
 }));
 
@@ -143,11 +190,11 @@ export default function Cart({ cart, setCart }) {
             <h1>Cart</h1>
             <Container maxWidth="xl" >
                 <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
-                    <div className={classes.header}><h2>Image</h2></div>
-                    <div className={classes.header}><h2>Sweet Name</h2></div>
-                    <div className={classes.header}><h2>Sweet Price</h2></div>
-                    <div className={classes.header}><h2>Sweet Quantity in kg</h2></div>
-                    <div className={classes.header}><h2>action</h2></div>
+                    <div className={classes.header}><h2 className={classes.heading}>Image</h2></div>
+                    <div className={classes.header}><h2 className={classes.heading}>Sweet Name</h2></div>
+                    <div className={classes.header}><h2 className={classes.heading}>Sweet Price</h2></div>
+                    <div className={classes.header}><h2 className={classes.heading}>Sweet Quantity in kg</h2></div>
+                    <div className={classes.header}><h2 className={classes.heading}>action</h2></div>
                 </div>
                 <div>
                     {cart.map((product, idx) => (
@@ -164,17 +211,17 @@ export default function Cart({ cart, setCart }) {
                                     />
                                 </div>
                                 <div className={classes.header}>
-                                    <Typography style={{ lineHeight: "100px", padding: "10px" }}  variant="h5" id="title" component="h2">
+                                    <Typography className={classes.forFont}  variant="h5" id="title" component="h2">
                                         {product.title}
                                     </Typography>
                                 </div>
                                 <div className={classes.header}>
-                                    <Typography style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                                    <Typography className={classes.forFont} id="price" variant="body2" component="h2">
                                         {product.price}
                                     </Typography>
                                 </div>
                                 <div className={classes.header}>
-                                    <Typography style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2" onChange={(e) =>
+                                    <Typography className={classes.forFont} id="price" variant="body2" component="h2" onChange={(e) =>
                                         setQuantity(
                                             product,
                                             parseInt(e.target.value)
@@ -186,7 +233,7 @@ export default function Cart({ cart, setCart }) {
                                 </div>
                                 <div style={{ width: "20%", textAlign: '' }}>
                                     <CardActions className={classes.header}>
-                                        <Button style={{ lineHeight: "100px", padding: "10px" }} className={classes.header} size="small" onClick={() => removeFromCart(product)} color="primary">
+                                        <Button className={classes.forFont} style={{fontSize: 11}} onClick={() => removeFromCart(product)} color="primary">
                                             Remove
                                     </Button>
                                     </CardActions>

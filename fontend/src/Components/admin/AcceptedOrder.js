@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import  BaseURL  from '../Url/BaseURL'
+import BaseURL from '../Url/BaseURL'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 345,
         width: 70,
         height: 60,
+        [theme.breakpoints.down('xs')]: {
+            width: 30,
+            height: 25,
+        }
     },
     media: {
         height: 100,
@@ -41,7 +45,85 @@ const useStyles = makeStyles((theme) => ({
     header: {
         width: "15%",
         textAlign: 'center',
-        margin: '0px'
+        margin: '0px',
+        [theme.breakpoints.down('xs')]: {
+            width: "auto",
+            textAlign: 'center',
+            margin: '0px',
+        },
+        [theme.breakpoints.down('md')]: {
+            width: "auto",
+            textAlign: 'center',
+            margin: '0px',
+        }
+    },
+    heading: {
+        [theme.breakpoints.down('xs')]: {
+            display: "none"
+        }
+    },
+    forFont: {
+        lineHeight: "100px",
+        [theme.breakpoints.down('xs')]: {
+            lineHeight: "30px",
+            paddingLeft: "3px",
+        }
+    },
+    border1: {
+        border: '2px solid #3f51b5', borderRadius: '10px',
+    },
+    border2: {
+        border: '2px solid #3f51b5',
+        backgroundColor: '#bacaff',
+        margin: 20,
+        padding: 20,
+        borderRadius: 10,
+        [theme.breakpoints.down('xs')]: {
+            margin: 6,
+            padding: 20,
+            borderRadius: 5,
+
+        }
+    },
+    display: {
+        lineHeight: "100px",
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+
+        }
+    },
+    button: {
+        margin: '20px',
+        backgroundColor: '#3f51b5',
+        border: 'none',
+        padding: '10px',
+        borderRadius: '4px',
+        color: '#ffff',
+        [theme.breakpoints.down('xs')]: {
+            margin: '0px 15px 0px 0px',
+            backgroundColor: '#3f51b5',
+            border: 'none',
+            padding: '10px',
+            borderRadius: '4px',
+            color: '#ffff',
+        }
+    },
+    headingArea: {
+        margin: "15px",
+        display: 'flex',
+        justifyContent: 'space-between',
+        height: 70,
+        [theme.breakpoints.down('xs')]: {
+            height: 0,
+        }
+    },
+    detailArea: {
+        padding: 20,
+        textAlign: 'left',
+        [theme.breakpoints.down('xs')]: {
+            padding: 3,
+            
+        }
     }
 }));
 
@@ -123,19 +205,19 @@ export default function AcceptedOrder() {
 
             <h1>All Order With delever detail</h1>
             <div maxWidth="xl">
-                <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
+                <div className={classes.border1}>
                     {order.map((product, idx) => {
-                        return <div key={idx} style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }}  >
+                        return <div key={idx} className={classes.border2}  >
 
 
                             <h1>Order Detail</h1>
-                            <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', height: 70 }}>
-                                <div className={classes.header}><h2>Image</h2></div>
-                                <div className={classes.header}><h2>Sweet Name</h2></div>
-                                <div className={classes.header}><h2>sweet description</h2></div>
-                                <div className={classes.header}><h2>Sweet Price</h2></div>
-                                <div className={classes.header}><h2>Sweet Quantity in kg</h2></div>
-                                <div className={classes.header}><h2>total</h2></div>
+                            <div className={classes.headingArea}>
+                                <div className={classes.header}><h4 className={classes.heading}>Image</h4></div>
+                                <div className={classes.header}><h4 className={classes.heading}>Sweet Name</h4></div>
+                                <div className={classes.header}><h4 className={classes.heading}>sweet description</h4></div>
+                                <div className={classes.header}><h4 className={classes.heading}>Sweet Price</h4></div>
+                                <div className={classes.header}><h4 className={classes.heading}>Sweet Quantity in kg</h4></div>
+                                <div className={classes.header}><h4 className={classes.heading}>total</h4></div>
                             </div>
 
                             {
@@ -156,28 +238,28 @@ export default function AcceptedOrder() {
                                                         />
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
+                                                        <span className={classes.forFont} variant="h5" id="title" component="h2">
                                                             {order.title}
                                                         </span>
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
+                                                        <span className={classes.display} variant="h5" id="title" component="h2">
                                                             {order.description}
                                                         </span>
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
                                                             {order.price}
                                                         </span>
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
                                                             {order.quantity}kg
                                                         </span>
 
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
                                                             {order.quantity * order.price}
                                                         </span>
 
@@ -192,7 +274,7 @@ export default function AcceptedOrder() {
                             }
 
                             <h1>Reciever Detail</h1>
-                            <div style={{ padding: 20, textAlign: 'left' }} >
+                            <div className={classes.detailArea} >
                                 <div>
                                     Name:  {product.name}
                                 </div> <br />
@@ -210,12 +292,12 @@ export default function AcceptedOrder() {
                                 </div> <br />
                                 <div>
                                     <button
-                                        style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
+                                        className={classes.button}
                                         size="small" onClick={() => conFirmOrder(product)} color="primary">
                                         Delivered
                                     </button>
                                     <button
-                                        style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
+                                        className={classes.button}
                                         size="small" onClick={() => removeFromCart(product)} color="primary">
                                         Remove Order
                                     </button>

@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 345,
     width: 70,
     height: 60,
+    [theme.breakpoints.down('xs')]: {
+      width: 30,
+      height: 25,
+    }
   },
   media: {
     height: 100,
@@ -36,7 +40,84 @@ const useStyles = makeStyles((theme) => ({
     width: "15%",
     textAlign: 'center',
     margin: '0px',
-  
+    [theme.breakpoints.down('xs')]: {
+      width: "auto",
+      textAlign: 'center',
+      margin: '0px',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: "auto",
+      textAlign: 'center',
+      margin: '0px',
+    }
+  },
+  heading: {
+    [theme.breakpoints.down('xs')]: {
+      display: "none"
+    }
+  },
+  forFont: {
+    lineHeight: "100px",
+    [theme.breakpoints.down('xs')]: {
+      lineHeight: "30px",
+      paddingLeft: "3px",
+    }
+  },
+  border1: {
+    border: '2px solid #3f51b5', borderRadius: '10px',
+  },
+  border2: {
+    border: '2px solid #3f51b5',
+    backgroundColor: '#bacaff',
+    margin: 20,
+    padding: 20,
+    borderRadius: 10,
+    [theme.breakpoints.down('xs')]: {
+      margin: 6,
+      padding: 20,
+      borderRadius: 5,
+
+    }
+  },
+  display: {
+    lineHeight: "100px",
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+
+    }
+  },
+  button: {
+    margin: '20px',
+    backgroundColor: '#3f51b5',
+    border: 'none',
+    padding: '10px',
+    borderRadius: '4px',
+    color: '#ffff',
+    [theme.breakpoints.down('xs')]: {
+      margin: '0px 15px 0px 0px',
+      backgroundColor: '#3f51b5',
+      border: 'none',
+      padding: '10px',
+      borderRadius: '4px',
+      color: '#ffff',
+    }
+  },
+  headingArea: {
+    margin: "15px",
+    display: 'flex',
+    justifyContent: 'space-between',
+    height: 70,
+    [theme.breakpoints.down('xs')]: {
+      height: 0,
+    }
+  },
+  detailArea: {
+    padding: 20,
+    textAlign: 'left',
+    [theme.breakpoints.down('xs')]: {
+      padding: 3,
+
+    }
   }
 }));
 
@@ -76,17 +157,17 @@ export default function MyOrders() {
 
       <h1 style={{ color: '#3f51b5' }}>This is my all order</h1>
       <div maxWidth="xl">
-      
-        <div style={{ border: '2px solid #3f51b5', borderRadius: '10px' }}>
+
+        <div className={classes.border1}>
           {order.map((product, idx) => {
-            return <div key={idx} style={{ border: '2px solid #3f51b5', backgroundColor: '#bacaff', margin: 20, padding: 20, borderRadius: 10 }} >
-              <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', height: 70 }}>
-                <div className={classes.header}><h3>Image</h3></div>
-                <div className={classes.header}><h3>Sweet Name</h3></div>
-                <div className={classes.header}><h3>sweet description</h3></div>
-                <div className={classes.header}><h3>Sweet Price</h3></div>
-                <div className={classes.header}><h3>Sweet Quantity in kg</h3></div>
-                <div className={classes.header}><h3>total</h3></div>
+            return <div key={idx} className={classes.border2} >
+              <div className={classes.headingArea}>
+                <div className={classes.header}><h4 className={classes.heading}>Image</h4></div>
+                <div className={classes.header}><h4 className={classes.heading}>Sweet Name</h4></div>
+                <div className={classes.header}><h4 className={classes.heading}>sweet description</h4></div>
+                <div className={classes.header}><h4 className={classes.heading}>Sweet Price</h4></div>
+                <div className={classes.header}><h4 className={classes.heading}>Sweet Quantity in kg</h4></div>
+                <div className={classes.header}><h4 className={classes.heading}>total</h4></div>
               </div>
               {/* <div>
                 Name:  {product.createdOn}
@@ -125,27 +206,27 @@ export default function MyOrders() {
                             />
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
+                            <span className={classes.forFont} variant="h5" id="title" component="h2">
                               {order.title}
                             </span>
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} variant="h5" id="title" component="h2">
+                            <span className={classes.display} variant="h5" id="title" component="h2">
                               {order.description}
                             </span>
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                            <span className={classes.forFont} id="price" variant="body2" component="h2">
                               {order.price}
                             </span>
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                            <span className={classes.forFont} id="price" variant="body2" component="h2">
                               {order.quantity}kg
                             </span>
                           </div>
                           <div className={classes.header}>
-                            <span style={{ lineHeight: "100px", padding: "10px" }} id="price" variant="body2" component="h2">
+                            <span className={classes.forFont} id="price" variant="body2" component="h2">
                               {order.quantity * order.price}
                             </span>
                           </div>
