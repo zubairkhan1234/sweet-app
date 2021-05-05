@@ -119,7 +119,37 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         [theme.breakpoints.down('xs')]: {
             padding: 3,
-            
+
+        }
+    },
+    headerHeading: {
+        marginTop: '7%',
+        marginBottom: '2%',
+        textAlign: 'center',
+        fontSize: '30px',
+        fontWeight: 600,
+        textShadow: '5px 5px 5px #758287',
+        color: '#3f51b5',
+        [theme.breakpoints.down('md')]: {
+            marginTop: '9%',
+            marginBottom: '2%',
+            textAlign: 'center',
+            fontSize: '25px',
+            fontWeight: 600,
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '11%',
+            marginBottom: '2%',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontWeight: 600,
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '22%',
+            marginBottom: '5%',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontWeight: 600,
         }
     }
 }));
@@ -197,8 +227,10 @@ export default function Allorders() {
     return (
         <div style={{ margin: 20 }}>
 
-            <h1>All Order With delever detail</h1>
             <div maxWidth="xl">
+                <div className={classes.headerHeading}>
+                    <span >All Order With Reciever detail</span>
+                </div>
                 <div className={classes.border1}>
                     {order.map((product, idx) => {
                         return <div key={idx} className={classes.border2} key={idx} value={product.id}>

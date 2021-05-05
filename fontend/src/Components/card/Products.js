@@ -36,7 +36,7 @@ export default function Products({ setCart, cart }) {
     useEffect(() => {
         axios({
             method: 'get',
-            url: BaseURL +'/getProducts',
+            url: BaseURL + '/getProducts',
             withCredentials: true
         }).then((response) => {
             console.log(response.data.data)
@@ -65,12 +65,13 @@ export default function Products({ setCart, cart }) {
 
     return (
         <React.Fragment>
-            <Container maxWidth="xl" style={{display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}} >
+            <Container maxWidth="xl" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }} >
+                
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
                             <CardContent>
-                                <Typography   variant="body2"  style={{color: 'red'}} id="title" component="p">
+                                <Typography variant="body2" style={{ color: 'red' }} id="title" component="p">
                                     {product.availability}
                                 </Typography>
                             </CardContent>

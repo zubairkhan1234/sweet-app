@@ -187,7 +187,6 @@ export default function Cart({ cart, setCart }) {
 
     return (
         <>
-            <h1>Cart</h1>
             <Container maxWidth="xl" >
                 <div style={{ margin: "15px", display: 'flex', justifyContent: 'space-between', textAlign: 'center' }}>
                     <div className={classes.header}><h2 className={classes.heading}>Image</h2></div>

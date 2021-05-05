@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import  BaseURL  from '../Url/BaseURL'
+import BaseURL from '../Url/BaseURL'
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Card from '@material-ui/core/Card';
@@ -106,7 +106,37 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'left',
         [theme.breakpoints.down('xs')]: {
             padding: 3,
-            
+
+        }
+    },
+    headerHeading: {
+        marginTop: '7%',
+        marginBottom: '2%',
+        textAlign: 'center',
+        fontSize: '30px',
+        fontWeight: 600,
+        textShadow: '5px 5px 5px #758287',
+        color: '#3f51b5',
+        [theme.breakpoints.down('md')]: {
+            marginTop: '9%',
+            marginBottom: '2%',
+            textAlign: 'center',
+            fontSize: '25px',
+            fontWeight: 600,
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '11%',
+            marginBottom: '2%',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontWeight: 600,
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginTop: '22%',
+            marginBottom: '5%',
+            textAlign: 'center',
+            fontSize: '20px',
+            fontWeight: 600,
         }
     }
 }));
@@ -154,8 +184,11 @@ export default function DeliveringOrder() {
     return (
         <div style={{ margin: 20 }}>
 
-            <h1>All Order With delever detail</h1>
+
             <div maxWidth="xl">
+                <div className={classes.headerHeading}>
+                    <span >Delivered Orders </span>
+                </div>
                 <div className={classes.border1}>
                     {order.map((product, idx) => {
                         return <div className={classes.border2} key={idx} value={product.id}>
@@ -189,12 +222,12 @@ export default function DeliveringOrder() {
                                                         />
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span className={classes.forFont}  variant="h5" id="title" component="h2">
+                                                        <span className={classes.forFont} variant="h5" id="title" component="h2">
                                                             {order.title}
                                                         </span>
                                                     </div>
                                                     <div className={classes.header}>
-                                                        <span className={classes.display}  variant="h5" id="title" component="h2">
+                                                        <span className={classes.display} variant="h5" id="title" component="h2">
                                                             {order.description}
                                                         </span>
                                                     </div>
@@ -242,7 +275,7 @@ export default function DeliveringOrder() {
                                     {product.total}
                                 </div> <br />
                                 <div>
-                                    <h1 style={{color: "#3f51b5"}}>Delivered</h1>
+                                    <h1 style={{ color: "#3f51b5" }}>Delivered</h1>
                                     {/* <button
                                         style={{ margin: '20px', backgroundColor: '#3f51b5', border: 'none', padding: '10px', borderRadius: '4px', color: '#ffff' }}
                                         size="small" onClick={() => removeFromCart(product)} color="primary">

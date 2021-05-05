@@ -198,16 +198,17 @@ function AppRoute() {
             {(globalState.role === null) ?
               <>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ display: 'block', color: 'black', textDecoration: 'none' }} to="/">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Login</Button></Link>
-                <Link style={{ display: 'block', color: 'black', textDecoration: 'none' }} to="/signup">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Sign up</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', color: 'black', textDecoration: 'none' }} to="/">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Login</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', color: 'black', textDecoration: 'none' }} to="/signup">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Sign up</Button></Link>
               </>
               : null}
             {(globalState.role === "user") ?
               <>
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ display: 'block', textDecoration: 'none' }} to="/" ><Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Dashboard</Button></Link>
-                <Link style={{ display: 'block', textDecoration: "none" }} to="/my-all-orders" ><Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>my orders</Button></Link>
-                <LogoutRequest />
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/" ><Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Dashboard</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: "none" }} to="/my-all-orders" ><Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>my orders</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Delivered-order"><LogoutRequest/></Link>
+
 
               </>
               : null}
@@ -215,12 +216,11 @@ function AppRoute() {
               <>
 
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
-                <Link style={{ display: 'block', textDecoration: 'none' }} to="/">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Allorders</Button></Link>
-                <Link style={{ display: 'block', textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>AddShop Card</Button></Link>
-                <Link style={{ display: 'block', textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Accepted Order</Button></Link>
-                <Link style={{ display: 'block', textDecoration: 'none' }} to="/Delivered-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Delivered Order</Button></Link>
-                <LogoutRequest />
-
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Allorders</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>AddShop Card</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Accepted Order</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Delivered-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Delivered Order</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Delivered-order"><LogoutRequest/></Link>
               </>
               : null}
           </List>
