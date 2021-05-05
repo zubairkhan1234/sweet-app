@@ -17,7 +17,7 @@ And it is fully responsive **`Mobile`, `Tablet`, `Desktop`** please check out th
    3. User can do `Order` 
    4. user can see `his Ordrs` and see status, Which is status of his product Order in `rewiew` or `accepted` or `Delivered`
 
-2. # Admin functionaluty
+2. # Admin functionality
 
    1. Admin can see `All Order`
    2. Admin can `Accept` Order
