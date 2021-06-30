@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-
-
+const dotenv = require('dotenv')
 
 
 let dbURI = process.env.MONGOOSE_DBURI
