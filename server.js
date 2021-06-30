@@ -7,11 +7,12 @@ var cookieParser = require('cookie-parser');
 const fs = require('fs')
 const multer = require('multer')
 const admin = require("firebase-admin");
+var dotenv = require('dotenv').config()
+
 
 var { userModle, shopCartModel, sweetOrdersModel } = require("./dbrepo/modles");
 var authRoutes = require("./routes/auth")
 console.log(userModle, shopCartModel, sweetOrdersModel)
-
 var { SERVER_SECRET } = require("./core/index");
 
 const PORT = process.env.PORT || 5000;
@@ -119,19 +120,11 @@ var upload = multer({ storage: storage })
 
 var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
-
-
-
 admin.initializeApp({
     credential: admin.credential.cert(SERVICE_ACCOUNT),
     DATABASE_URL: process.env.DATABASE_URL
-
-
-
-
 });
-
-const bucket = admin.storage().bucket("gs://sweet-shop-95e0d.appspot.com");
+const bucket = admin.storage().bucket(process.env.FIREBASE_BUCKET);
 
 //==============================================
 
