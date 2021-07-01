@@ -7,6 +7,7 @@ import Signup from '../signup/SignUp'
 import Dashboard from '../dashboard/Dashboard'
 import Home from "../home/Home";
 import AddShopCard from '../admin/AddShopCard'
+import DeletedOrder from '../admin/deletedOrder'
 import AppRoute from '../routes/AppRouting'
 import Allorders from '../admin/Allorders'
 import AcceptedOrder from '../admin/AcceptedOrder'
@@ -42,6 +43,7 @@ function Navigation() {
             <Route path="/signup">
               <Signup />
             </Route>
+           
             <Route path="*">
               <Redirect to="/" />
             </Route>
@@ -67,6 +69,9 @@ function Navigation() {
             </Route>
             <Route exact path="/">
               <Allorders />
+            </Route>
+            <Route path="/order/delete">
+              <DeletedOrder />
             </Route>
             <Route exact path="/Accepted-order">
               <AcceptedOrder />

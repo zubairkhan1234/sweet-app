@@ -217,6 +217,31 @@ export default function Allorders() {
 
 
     const removeFromCart = (productToRemove) => {
+
+
+        axios({
+            method: 'post',
+            url: BaseURL + '/order/rejected',
+            data: {
+                 id : productToRemove._id,
+                 rejectedProduct : productToRemove
+            },
+            withCredentials: true
+        }).then(function (response){
+            if(response.status === 200){
+                alert(response.data.message)
+            }else{
+                alert(response.data.message)
+            }
+            console.log("dfjasl", response)
+
+        }).catch(function (err){
+            alert(err)
+            console.log(err)
+            
+        })
+
+
         setorder(
             order.filter((product) => product !== productToRemove)
         );
@@ -323,7 +348,7 @@ export default function Allorders() {
                                     <button
                                         className={classes.button}
                                         size="small" onClick={() => removeFromCart(product)} color="primary">
-                                        Remove Order
+                                        UnAccept Order
                                     </button>
                                 </div>
                             </div>

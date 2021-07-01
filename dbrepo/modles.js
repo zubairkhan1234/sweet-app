@@ -17,7 +17,6 @@ mongoose.connection.on('disconnectes', function () {
     process.exit(1)
 })
 
-
 mongoose.connection.on('error', function (err) {
     console.log('mongoose connecion is in error: ', err)
     process.exit(1)
@@ -43,7 +42,7 @@ var userSchema = new mongoose.Schema({
     email: String,
     password: String,
     phone: String,
-    role: {type: String , "default": "user"},
+    role: { type: String, "default": "user" },
     createdOn: { type: Date, 'default': Date.now },
     activeSince: Date
 
@@ -71,15 +70,29 @@ var sweetOrders = new mongoose.Schema({
     "phone": String,
     "address": String,
     "total": String,
-    "status" : {"type": String, "default" : "Your Order in Review" },
+    "status": { "type": String, "default": "Your Order in Review" },
     "orders": Array,
     "createdOn": { "type": Date, "default": Date.now },
 });
 var sweetOrdersModel = mongoose.model("orders", sweetOrders);
 
+var rejectedOrder = new mongoose.Schema({
+    "name": String,
+    "email": String,
+    "phone": String,
+    "address": String,
+    "total": String,
+    "status": { "type": String, "default": "Your Order in Review" },
+    "orders": Array,
+    "createdOn": { "type": Date, "default": Date.now },
+})
+
+var rejected = mongoose.model("deletedOrder", rejectedOrder)
+
 module.exports = {
     userModle: userModle,
     otpModel: otpModel,
-    shopCartModel : shopCartModel,
+    shopCartModel: shopCartModel,
     sweetOrdersModel: sweetOrdersModel,
+    rejected: rejected
 }

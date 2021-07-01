@@ -166,6 +166,7 @@ function AppRoute() {
               {(globalState.role === "admin") ?
                 <>
                   <Link style={{ textDecoration: 'none' }} to="/">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Allorders</Button></Link>
+                  <Link style={{ color: 'white', textDecoration: 'none' }} to="/order/delete">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Deleted Order</Button></Link>
                   <Link style={{ textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>AddShop Card</Button></Link>
                   <Link style={{ textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Accepted Order</Button></Link>
                   <Link style={{ textDecoration: 'none' }} to="/Delivered-order">  <Button style={{ color: 'white', textDecoration: 'none', textTransform: 'capitalize' }}>Delivered Order</Button></Link>
@@ -217,6 +218,7 @@ function AppRoute() {
 
                 <Typography variant="h6" className={classes.title}> Sweet Place </Typography>
                 <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Allorders</Button></Link>
+                <Link  onClick={handleDrawerClose}  style={{ display: 'block', color: 'black', textDecoration: 'none' }} to="/order/delete">  <Button color="inherit" style={{ textTransform: 'capitalize' }}>Deleted Order</Button></Link>
                 <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/AddShopCard">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>AddShop Card</Button></Link>
                 <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Accepted-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Accepted Order</Button></Link>
                 <Link  onClick={handleDrawerClose}  style={{ display: 'block', textDecoration: 'none' }} to="/Delivered-order">  <Button style={{ color: 'black', textDecoration: 'none', textTransform: 'capitalize' }}>Delivered Order</Button></Link>

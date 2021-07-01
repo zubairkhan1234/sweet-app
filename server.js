@@ -9,20 +9,19 @@ const multer = require('multer')
 const admin = require("firebase-admin");
 var dotenv = require('dotenv').config()
 
-
-var { userModle, shopCartModel, sweetOrdersModel } = require("./dbrepo/modles");
+var { userModle, shopCartModel, sweetOrdersModel, rejected } = require("./dbrepo/modles");
 var authRoutes = require("./routes/auth")
-console.log(userModle, shopCartModel, sweetOrdersModel)
+console.log(userModle, shopCartModel, sweetOrdersModel, rejected)
 var { SERVER_SECRET } = require("./core/index");
 
 const PORT = process.env.PORT || 5000;
-
 
 var app = express()
 app.use(cors({
     origin: [, 'http://localhost:3000', "https://m-sweet-app.herokuapp.com/"],
     credentials: true
 }))
+
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(cookieParser())
@@ -116,8 +115,6 @@ var upload = multer({ storage: storage })
 
 //==============================================
 
-
-
 var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
 admin.initializeApp({
@@ -195,13 +192,11 @@ app.post("/uploadcart", upload.any(), (req, res, next) => {
         });
 })
 
-
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
-
 
 app.get('/getProducts', (req, res, next) => {
     shopCartModel.find({}, (err, data) => {
@@ -217,13 +212,11 @@ app.get('/getProducts', (req, res, next) => {
     })
 })
 
-
 /////// Save order in Database
 /////// Save order in Database
 /////// Save order in Database
 /////// Save order in Database
 /////// Save order in Database
-
 
 app.post("/order", (req, res, next) => {
     console.log("fsfsf", req.body)
@@ -279,8 +272,9 @@ app.get('/getorders', (req, res, next) => {
         }
     })
 })
+
 app.get('/get/myOrder', (req, res, next) => {
-    sweetOrdersModel.find({email: req.headers.jToken.email}, (err, data) => {
+    sweetOrdersModel.find({ email: req.headers.jToken.email }, (err, data) => {
         console.log("dlfsdjlaskdfj data datat tatdta + ", data)
         if (!err) {
             res.send({
@@ -322,7 +316,6 @@ app.get('/admin/getorders/review', (req, res, next) => {
         }
     })
 })
-
 
 app.post('/admin/getorders/updatestatus', (req, res, next) => {
     console.log("status from admin status", req.body.status)
@@ -378,12 +371,6 @@ app.post('/admin/getorders/confirmorder', (req, res, next) => {
     })
 })
 
-
-
-
-
-
-
 app.get('/admin/getorders/delivering', (req, res, next) => {
     sweetOrdersModel.find({ status: "your Order has been deliverd" }, (err, data) => {
 
@@ -402,8 +389,50 @@ app.get('/admin/getorders/delivering', (req, res, next) => {
     })
 })
 
+app.post('/order/rejected', (req, res, next) => {
 
+    console.log("hahahahhaha 11111111", req.body.rejectedProduct)
+    console.log("hahahahhaha 22222222222", req.body.id)
+    sweetOrdersModel.findById( req.body.id, {}, (err, Order) => {
+        console.log("match value", Order)
 
+        if(!err){
+            rejected.create({
+                name: Order.name ,
+                email: Order.email ,
+                phone: Order.phone,
+                address: Order.address,
+                total: Order.total ,
+                status: "Order Rejected",
+                orders: Order.orders
+           })
+           Order.remove()
+           res.status(200).send({
+               message: "Order has been unAccepted"
+           })
+        }else{
+            res.send({
+                status: 404,
+                message:"Server Error please Try Again"
+            })
+        }         
+    })
+})
+
+app.get('/admin/getorders/rejected', (req, res, next) => {
+    console.log("status from admin status", req.body.status)
+    rejected.find({ status: "Your Order in Review" }, (err, data) => {
+        console.log("dlfsdjlaskdfj data datat tatdta + ", data)
+        if (!err) {
+            res.send({
+                data: data
+            })
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
 
 app.listen(PORT, () => {
     console.log("surver is running on : ", PORT)
