@@ -69,6 +69,8 @@ function SignUp() {
             userPhone: userPhone,
             userPassword: userPassword
         }
+
+        console.log(userData)
         // console.log(userData)
         axios({
             method: 'post',

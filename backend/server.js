@@ -14,11 +14,11 @@ var authRoutes = require("./routes/auth")
 console.log(userModle, shopCartModel, sweetOrdersModel, rejected)
 var { SERVER_SECRET } = require("./core/index");
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8001;
 
 var app = express()
 app.use(cors({
-    origin: [, 'http://localhost:3000', "https://m-sweet-app.herokuapp.com/"],
+    origin: [, 'http://localhost:8000', "https://m-sweet-app.herokuapp.com/"],
     credentials: true
 }))
 
@@ -115,82 +115,82 @@ var upload = multer({ storage: storage })
 
 //==============================================
 
-var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
+// var SERVICE_ACCOUNT = JSON.parse(process.env.SERVICE_ACCOUNT)
 
-admin.initializeApp({
-    credential: admin.credential.cert(SERVICE_ACCOUNT),
-    DATABASE_URL: process.env.DATABASE_URL
-});
-const bucket = admin.storage().bucket(process.env.FIREBASE_BUCKET);
+// admin.initializeApp({
+//     credential: admin.credential.cert(SERVICE_ACCOUNT),
+//     DATABASE_URL: process.env.DATABASE_URL
+// });
+// const bucket = admin.storage().bucket(process.env.FIREBASE_BUCKET);
 
 //==============================================
 
-app.post("/uploadcart", upload.any(), (req, res, next) => {
+// app.post("/uploadcart", upload.any(), (req, res, next) => {
 
-    bucket.upload(
-        req.files[0].path,
+//     bucket.upload(
+//         req.files[0].path,
 
-        function (err, file, apiResponse) {
-            if (!err) {
-                console.log("api resp: ", apiResponse);
+//         function (err, file, apiResponse) {
+//             if (!err) {
+//                 console.log("api resp: ", apiResponse);
 
-                file.getSignedUrl({
-                    action: 'read',
-                    expires: '03-09-2491'
-                }).then((urlData, err) => {
+//                 file.getSignedUrl({
+//                     action: 'read',
+//                     expires: '03-09-2491'
+//                 }).then((urlData, err) => {
 
-                    if (!err) {
-                        // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
-                        console.log(req.body.email)
-                        console.log(req.body.avalablity)
-                        console.log("headerskdflasfjks ka data  ===================>>>>> ", req.headers.jToken.id)
-                        console.log("headerskdflasfjks request headers  ===================>>>>> ", req.headers)
-                        userModle.findById(req.headers.jToken.id, 'email role', (err, users) => {
-                            console.log("Adminperson ====> ", users.email)
+//                     if (!err) {
+//                         // console.log("public downloadable url: ", urlData[0]) // this is public downloadable url 
+//                         console.log(req.body.email)
+//                         console.log(req.body.avalablity)
+//                         console.log("headerskdflasfjks ka data  ===================>>>>> ", req.headers.jToken.id)
+//                         console.log("headerskdflasfjks request headers  ===================>>>>> ", req.headers)
+//                         userModle.findById(req.headers.jToken.id, 'email role', (err, users) => {
+//                             console.log("Adminperson ====> ", users.email)
 
-                            if (!err) {
-                                shopCartModel.create({
-                                    "title": req.body.title,
-                                    "price": req.body.price,
-                                    "availability": req.body.avalablity,
-                                    "cartimage": urlData[0],
-                                    "description": req.body.description
-                                })
-                                    .then((data) => {
-                                        console.log(data)
-                                        res.send({
-                                            status: 200,
-                                            message: "Product add successfully",
-                                            data: data
-                                        })
+//                             if (!err) {
+//                                 shopCartModel.create({
+//                                     "title": req.body.title,
+//                                     "price": req.body.price,
+//                                     "availability": req.body.avalablity,
+//                                     "cartimage": urlData[0],
+//                                     "description": req.body.description
+//                                 })
+//                                     .then((data) => {
+//                                         console.log(data)
+//                                         res.send({
+//                                             status: 200,
+//                                             message: "Product add successfully",
+//                                             data: data
+//                                         })
 
-                                    }).catch(() => {
-                                        console.log(err);
-                                        res.status(500).send({
-                                            message: "Not added, " + err
-                                        })
-                                    })
-                            }
-                            else {
-                                res.send({
-                                    message: "error"
-                                });
-                            }
-                        })
-                        try {
-                            fs.unlinkSync(req.files[0].path)
-                            //file removed
-                        } catch (err) {
-                            console.error(err)
-                        }
-                    }
-                })
-            } else {
-                console.log("err: ", err)
-                res.status(500).send();
-            }
-        });
-})
+//                                     }).catch(() => {
+//                                         console.log(err);
+//                                         res.status(500).send({
+//                                             message: "Not added, " + err
+//                                         })
+//                                     })
+//                             }
+//                             else {
+//                                 res.send({
+//                                     message: "error"
+//                                 });
+//                             }
+//                         })
+//                         try {
+//                             fs.unlinkSync(req.files[0].path)
+//                             //file removed
+//                         } catch (err) {
+//                             console.error(err)
+//                         }
+//                     }
+//                 })
+//             } else {
+//                 console.log("err: ", err)
+//                 res.status(500).send();
+//             }
+//         });
+// })
 
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
@@ -393,29 +393,29 @@ app.post('/order/rejected', (req, res, next) => {
 
     console.log("hahahahhaha 11111111", req.body.rejectedProduct)
     console.log("hahahahhaha 22222222222", req.body.id)
-    sweetOrdersModel.findById( req.body.id, {}, (err, Order) => {
+    sweetOrdersModel.findById(req.body.id, {}, (err, Order) => {
         console.log("match value", Order)
 
-        if(!err){
+        if (!err) {
             rejected.create({
-                name: Order.name ,
-                email: Order.email ,
+                name: Order.name,
+                email: Order.email,
                 phone: Order.phone,
                 address: Order.address,
-                total: Order.total ,
+                total: Order.total,
                 status: "Order Rejected",
                 orders: Order.orders
-           })
-           Order.remove()
-           res.status(200).send({
-               message: "Order has been unAccepted"
-           })
-        }else{
+            })
+            Order.remove()
+            res.status(200).send({
+                message: "Order has been unAccepted"
+            })
+        } else {
             res.send({
                 status: 404,
-                message:"Server Error please Try Again"
+                message: "Server Error please Try Again"
             })
-        }         
+        }
     })
 })
 

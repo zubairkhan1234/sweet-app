@@ -12,6 +12,7 @@ var api = express.Router()
 
 
 api.post('/signup', (req, res, next) => {
+    
     console.log(req.body.userName)
     console.log(req.body.userEmail)
     console.log(req.body.userPhone)
