@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 // import { Alert, AlertTitle } from '@material-ui/lab';
 import  BaseURL  from '../Url/BaseURL'
-import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
+import { UseGlobalStateUpdate } from '../../context/context'
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -41,12 +41,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
 
-    const globalState = UseGlobalState()
     const globalStateUpdate = UseGlobalStateUpdate()
-    // console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", golobalState)
-    // console.log("lsdflafljl===============>>>>>>>>>>>>>>>>>... ", globalStateUpdate)
-
-
+    
 
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
@@ -90,8 +86,6 @@ function Login() {
         return false;
 
     }
-
-    console.log("GlobalState on Login Component   ", globalState)
 
 
 

@@ -97,7 +97,6 @@ import React from 'react';
 import Login from '../login/Login';
 import Signup from '../signup/SignUp';
 import Dashboard from '../dashboard/Dashboard';
-import Home from "../home/Home";
 import AddShopCard from '../admin/AddShopCard';
 import DeletedOrder from '../admin/deletedOrder';
 import AppRoute from '../routes/AppRouting';
@@ -105,7 +104,7 @@ import Allorders from '../admin/Allorders';
 import AcceptedOrder from '../admin/AcceptedOrder';
 import DeliveringOrder from '../admin/DeliveringOrder';
 import MyOrders from '../my orders/MyOrders';
-import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context";
+import { UseGlobalState } from "../../context/context";
 
 import {
   HashRouter as Router,
@@ -116,10 +115,10 @@ import {
 
 function Navigation() {
   const globalState = UseGlobalState();
-  const setGlobalState = UseGlobalStateUpdate();
 
   return (
     <Router>
+      <AppRoute />
       <Routes>
         <Route path="/" element={globalState.role === null ? <Login /> : (globalState.role === "user" ? <Dashboard /> : <Allorders />)} />
         <Route path="/signup" element={globalState.role === null ? <Signup /> : <Navigate to="/" replace />} />

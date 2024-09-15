@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 const dotenv = require('dotenv')
 
 
-// let dbURI = process.env.MONGOOSE_DBURI
-let dbURI = 'mongodb://localhost:27017/'
+let dbURI = process.env.MONGOOSE_DBURI
+
 
 
 // mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })

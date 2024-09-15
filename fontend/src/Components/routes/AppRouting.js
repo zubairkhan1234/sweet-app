@@ -1,13 +1,12 @@
 
 import Button from '@material-ui/core/Button';
 import LogoutRequest from '../logout/Logout'
-import { UseGlobalState, UseGlobalStateUpdate } from "../../context/context"
+import { UseGlobalState } from "../../context/context"
 
 
 
 import {
   Link,
-  useNavigate
 } from "react-router-dom";
 
 
@@ -99,7 +98,6 @@ marginLeft: 'auto',
 function AppRoute() {
 
   const globalState = UseGlobalState();
-  const setGlobalState = UseGlobalStateUpdate()
 
   const classes = useStyles();
   const theme = useTheme();
