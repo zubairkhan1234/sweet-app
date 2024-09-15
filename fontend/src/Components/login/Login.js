@@ -12,7 +12,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,7 +48,6 @@ function Login() {
 
 
 
-    const history = useHistory();
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
     function Login(event) {

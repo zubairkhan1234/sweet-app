@@ -1,7 +1,3 @@
-import Products from '../card/Products';
-
-
-
 function Home() {
 
     return (

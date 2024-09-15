@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import  BaseURL  from '../Url/BaseURL'
-import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
 
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 
 
 import axios from 'axios'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -48,9 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 
-    const setGlobalState = UseGlobalStateUpdate()
-    const globalState = UseGlobalState();
-    let history = useHistory()
+    let history = useNavigate()
     const classes = useStyles();
 
     function signup(event) {

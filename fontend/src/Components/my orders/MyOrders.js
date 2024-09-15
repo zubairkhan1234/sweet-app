@@ -219,55 +219,46 @@ export default function MyOrders() {
               </div>
               <br />
 
-              {
-                product.orders.map((order, index) => {
-                  {/* console.log(order) */ }
+              {product.orders.map((order, index) => {
+                return (
+                  <div key={index} style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
 
-                  return (
-                    <>
-                      <div key={index}>
-
-                        <div style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
-
-                          <div className={classes.header} >
-                            <img
-                              className={`products ${classes.root}`}
-                              style={{ borderRadius: '5px' }}
-                              src={order.cartimage}
-                              alt={order.cartimage}
-                            />
-                          </div>
-                          <div className={classes.header}>
-                            <span className={classes.forFont} variant="h5" id="title" component="h2">
-                              {order.title}
-                            </span>
-                          </div>
-                          <div className={classes.header}>
-                            <span className={classes.display} variant="h5" id="title" component="h2">
-                              {order.description}
-                            </span>
-                          </div>
-                          <div className={classes.header}>
-                            <span className={classes.forFont} id="price" variant="body2" component="h2">
-                              {order.price}
-                            </span>
-                          </div>
-                          <div className={classes.header}>
-                            <span className={classes.forFont} id="price" variant="body2" component="h2">
-                              {order.quantity}kg
-                            </span>
-                          </div>
-                          <div className={classes.header}>
-                            <span className={classes.forFont} id="price" variant="body2" component="h2">
-                              {order.quantity * order.price}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                    </>
-                  )
-                })}
+                    <div className={classes.header} >
+                      <img
+                        className={`products ${classes.root}`}
+                        style={{ borderRadius: '5px' }}
+                        src={order.cartimage}
+                        alt={order.cartimage}
+                      />
+                    </div>
+                    <div className={classes.header}>
+                      <span className={classes.forFont} variant="h5" id="title" component="h2">
+                        {order.title}
+                      </span>
+                    </div>
+                    <div className={classes.header}>
+                      <span className={classes.display} variant="h5" id="title" component="h2">
+                        {order.description}
+                      </span>
+                    </div>
+                    <div className={classes.header}>
+                      <span className={classes.forFont} id="price" variant="body2" component="h2">
+                        {order.price}
+                      </span>
+                    </div>
+                    <div className={classes.header}>
+                      <span className={classes.forFont} id="price" variant="body2" component="h2">
+                        {order.quantity}kg
+                      </span>
+                    </div>
+                    <div className={classes.header}>
+                      <span className={classes.forFont} id="price" variant="body2" component="h2">
+                        {order.quantity * order.price}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
               <div style={{ textAlign: 'right', paddingRight: 90 }}>
                 <h2>{product.total}</h2>
               </div>

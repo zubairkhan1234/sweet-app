@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import BaseURL from '../Url/BaseURL'
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { Table } from '@material-ui/core';
-import CardActions from '@material-ui/core/CardActions';
-import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
+import { UseGlobalState } from '../../context/context'
 
 
 
@@ -159,7 +150,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AcceptedOrder() {
     const globalState = UseGlobalState()
-    const globalStateUpdate = UseGlobalStateUpdate()
 
     const classes = useStyles()
 
@@ -254,53 +244,48 @@ export default function AcceptedOrder() {
 
                             {
                                 product.orders.map((order, index) => {
-                                    {/* console.log(order) */ }
-
                                     return (
-                                        <>
-                                            <div key={index}>
+                                        <div key={index}>
 
-                                                <div style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
+                                            <div style={{ margin: "0px", display: 'flex', justifyContent: 'space-between', textAlign: 'center', height: 70 }}>
 
-                                                    <div className={classes.header} >
-                                                        <img
-                                                            className={`products ${classes.root}`}
-                                                            src={order.cartimage}
-                                                            alt={order.cartimage}
-                                                        />
-                                                    </div>
-                                                    <div className={classes.header}>
-                                                        <span className={classes.forFont} variant="h5" id="title" component="h2">
-                                                            {order.title}
-                                                        </span>
-                                                    </div>
-                                                    <div className={classes.header}>
-                                                        <span className={classes.display} variant="h5" id="title" component="h2">
-                                                            {order.description}
-                                                        </span>
-                                                    </div>
-                                                    <div className={classes.header}>
-                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
-                                                            {order.price}
-                                                        </span>
-                                                    </div>
-                                                    <div className={classes.header}>
-                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
-                                                            {order.quantity}kg
-                                                        </span>
-
-                                                    </div>
-                                                    <div className={classes.header}>
-                                                        <span className={classes.forFont} id="price" variant="body2" component="h2">
-                                                            {order.quantity * order.price}
-                                                        </span>
-
-                                                    </div>
+                                                <div className={classes.header} >
+                                                    <img
+                                                        className={`products ${classes.root}`}
+                                                        src={order.cartimage}
+                                                        alt={order.cartimage}
+                                                    />
+                                                </div>
+                                                <div className={classes.header}>
+                                                    <span className={classes.forFont} variant="h5" id="title" component="h2">
+                                                        {order.title}
+                                                    </span>
+                                                </div>
+                                                <div className={classes.header}>
+                                                    <span className={classes.display} variant="h5" id="title" component="h2">
+                                                        {order.description}
+                                                    </span>
+                                                </div>
+                                                <div className={classes.header}>
+                                                    <span className={classes.forFont} id="price" variant="body2" component="h2">
+                                                        {order.price}
+                                                    </span>
+                                                </div>
+                                                <div className={classes.header}>
+                                                    <span className={classes.forFont} id="price" variant="body2" component="h2">
+                                                        {order.quantity}kg
+                                                    </span>
 
                                                 </div>
-                                            </div>
+                                                <div className={classes.header}>
+                                                    <span className={classes.forFont} id="price" variant="body2" component="h2">
+                                                        {order.quantity * order.price}
+                                                    </span>
 
-                                        </>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     )
                                 })
                             }

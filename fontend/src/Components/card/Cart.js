@@ -11,9 +11,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import TextField from '@material-ui/core/TextField';
 import axios from 'axios'
-import { yellow } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles((theme) => ({

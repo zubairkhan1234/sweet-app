@@ -8,7 +8,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios'
-import { UseGlobalState, UseGlobalStateUpdate } from '../../context/context'
 import Container from '@material-ui/core/Container';
 import BaseURL from '../Url/BaseURL';
 
@@ -28,8 +27,6 @@ const useStyles = makeStyles({
 
 
 export default function Products({ setCart, cart }) {
-    const golobalState = UseGlobalState()
-    const globalStateUpdate = UseGlobalStateUpdate()
     const classes = useStyles();
     const [products, setProducts] = useState([])
 

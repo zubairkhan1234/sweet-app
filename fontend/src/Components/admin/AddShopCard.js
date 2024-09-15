@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import TextField from '@material-ui/core/TextField';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import css from './admin.css'
 import BaseURL from '../Url/BaseURL'
 import axios from 'axios'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -23,8 +19,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-
 
 
 
@@ -86,8 +80,6 @@ const useStyles = makeStyles((theme) => ({
     },
     textArea: {
         width: "100%",
-        height: "25px",
-        border: "none",
         backgroundColor: "#3f51b5",
         opacity: 0.9,
         color: "#ffffff",
@@ -235,7 +227,7 @@ export default function AddShopCard() {
                                 </RadioGroup>
                             </FormControl><br />
                             <input accept="image/*" className={classes.input} style={{ display: 'none' }} id="raised-button-file" multiple type="file" />
-                            <label className={classes.button} htmlFor="raised-button-file" className={classes.color}>
+                            <label className={[classes.button, classes.color]} htmlFor="raised-button-file">
                                 Upload Image
                                 {/* <Button variant="raised" component="span" className={classes.button}>  Upload image </Button> */}
                             </label>
