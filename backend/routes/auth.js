@@ -1,5 +1,8 @@
 var express = require('express');
-var bcrypt = require("bcrypt-inzi");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/\/\P4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
 var jwt = require('jsonwebtoken');
 var postmark = require("postmark");
 var { SERVER_SECRET } = require("../core/index");
@@ -12,7 +15,7 @@ var api = express.Router()
 
 
 api.post('/signup', (req, res, next) => {
-    
+
     console.log(req.body.userName)
     console.log(req.body.userEmail)
     console.log(req.body.userPhone)
@@ -35,50 +38,53 @@ api.post('/signup', (req, res, next) => {
 
 
 
-    userModle.findOne({ email: req.body.userEmail }, function (err, data) {
+    userModle.findOne({ email: req.body.userEmail }).then((data) => {
+        console.log("respose ", res)
 
+        if (!data) {
+            bcrypt.genSalt(saltRounds, function (err, salt) {
+                bcrypt.hash(req.body.userPassword, salt, function (err, hash) {
+                    // Store hash in your password DB.
 
+                    var newUaser = new userModle({
+                        "name": req.body.userName,
+                        "email": req.body.userEmail,
+                        "password": hash,
+                        "phone": req.body.userPhone,
+                    });
 
-        if (err) {
-            console.log(err)
-        } else if (!data) {
-
-            bcrypt.stringToHash(req.body.userPassword).then(function (HashPassword) {
-                var newUaser = new userModle({
-                    "name": req.body.userName,
-                    "email": req.body.userEmail,
-                    "password": HashPassword,
-                    "phone": req.body.userPhone,
-                });
-
-                newUaser.save((err, data) => {
-                    if (!err) {
+                    newUaser.save().then(() => {
                         res.status(200).send({
                             message: "User created"
                         })
-                    } else {
-                        console.log(err)
+                    }).catch((error) => {
                         res.status(403).send({
                             message: "user already exist"
                         })
-                    };
-
+                    });
                 });
+            });
+            // bcrypt.stringToHash(req.body.userPassword).then(function (HashPassword) {
 
-            })
+
+            // })
 
 
-        } else if (err){
-            res.status(500).send({
-                message:"db error"
-            })
         } else {
-
             res.status(403).send({
                 message: "User already exist"
             })
         }
+    }).catch((error) => {
+        console.log('error in signUP api ', error)
+        res.status(500).send({
+            message: "db error"
+        })
     })
+
+
+
+
 
 
 });
@@ -103,78 +109,78 @@ api.post("/login", (req, res, next) => {
         console.log(loginRequestUser)
         console.log(err)
 
-            if (err) {
-                res.status(500).send({
-                    message: 'an errer occured'
-                })
-                console.log(err)
-            } else if (loginRequestUser) {
+        if (err) {
+            res.status(500).send({
+                message: 'an errer occured'
+            })
+            console.log(err)
+        } else if (loginRequestUser) {
 
-                console.log(loginRequestUser)
+            console.log(loginRequestUser)
 
-                bcrypt.varifyHash(req.body.password, loginRequestUser.password).then(match => {
+            // bcrypt.varifyHash(req.body.password, loginRequestUser.password).then(match => {
 
-                    if (match) {
+            //     if (match) {
 
-                        var token = jwt.sign({
-                            name: loginRequestUser.name,
-                            email: loginRequestUser.email,
-                            phone: loginRequestUser.phone,
-                            role: loginRequestUser.role,
-                            id: loginRequestUser.id,
-                            ip: req.connection.remoteAddress
+            //         var token = jwt.sign({
+            //             name: loginRequestUser.name,
+            //             email: loginRequestUser.email,
+            //             phone: loginRequestUser.phone,
+            //             role: loginRequestUser.role,
+            //             id: loginRequestUser.id,
+            //             ip: req.connection.remoteAddress
 
-                        }, SERVER_SECRET);
+            //         }, SERVER_SECRET);
 
-                        res.cookie('jToken', token, {
-                            maxAge: 86_400_000,
-                            httpOnly: true
-                        });
-                        res.send({
-                            message: "login success",
-                            status: 200,
-        
-                            loginRequestUser: {
-                                name: loginRequestUser.name,
-                                email: loginRequestUser.email,
-                                phone: loginRequestUser.phone,
-                                role: loginRequestUser.role
-                            }
-                        });
-                        // res.status(200).send({
-                        //     message: "login success",
+            //         res.cookie('jToken', token, {
+            //             maxAge: 86_400_000,
+            //             httpOnly: true
+            //         });
+            //         res.send({
+            //             message: "login success",
+            //             status: 200,
 
-                        //     loginRequestUser: {
-                        //         name: loginRequestUser.name,
-                        //         email: loginRequestUser.email,
-                        //         phone: loginRequestUser.phone,
-                        //         role: loginRequestUser.role
-                        //     }
-                        // });
+            //             loginRequestUser: {
+            //                 name: loginRequestUser.name,
+            //                 email: loginRequestUser.email,
+            //                 phone: loginRequestUser.phone,
+            //                 role: loginRequestUser.role
+            //             }
+            //         });
+            //         // res.status(200).send({
+            //         //     message: "login success",
 
-                    } else {
-                        console.log('not matched')
-                        res.send({
-                            message: "Incorrect password",
-                            status: 404
-                        })
-                    }
-                }).catch(e => {
-                    console.log("errer : ", e)
-                })
+            //         //     loginRequestUser: {
+            //         //         name: loginRequestUser.name,
+            //         //         email: loginRequestUser.email,
+            //         //         phone: loginRequestUser.phone,
+            //         //         role: loginRequestUser.role
+            //         //     }
+            //         // });
 
-            } else {
-                res.send({
-                    message: "User not found",
-                    status: 403
-                })
-            }
+            //     } else {
+            //         console.log('not matched')
+            //         res.send({
+            //             message: "Incorrect password",
+            //             status: 404
+            //         })
+            //     }
+            // }).catch(e => {
+            //     console.log("errer : ", e)
+            // })
 
-        })
+        } else {
+            res.send({
+                message: "User not found",
+                status: 403
+            })
+        }
+
+    })
 
 })
 
-api.post("/logout",(req, res, next) =>{
+api.post("/logout", (req, res, next) => {
 
     res.cookie('jToken', "", {
         maxAge: 86_400_000,
@@ -231,8 +237,8 @@ api.post("/forget-password", (req, res, next) => {
                 }).catch((err) => {
                     console.log("error in creating otp: ", err);
                     res.send({
- 
-                        message:"unexpected error "
+
+                        message: "unexpected error "
                     })
                 })
 
@@ -276,7 +282,7 @@ api.post("/forget-password-step-2", (req, res, next) => {
                 otpModel.find({ email: req.body.emailVarification },
                     function (err, otpData) {
 
-                        
+
 
                         if (err) {
                             res.send({
@@ -298,7 +304,7 @@ api.post("/forget-password-step-2", (req, res, next) => {
                                 bcrypt.stringToHash(req.body.newPassword).then(function (hash) {
                                     user.update({ password: hash }, {}, function (err, data) {
                                         res.status(200).send({
-                                            message:"password updated"
+                                            message: "password updated"
                                         });
                                     })
                                 })

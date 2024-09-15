@@ -83,12 +83,14 @@ function SignUp() {
                     // console.log(response.data)
                     history.push('/login')
                 } else {
+                    console.log(response)
                     alert(response.data.message)
                     // console.log(response.data)
                 }
             })
             .catch(function (error) {
-                alert(error)
+                console.log(error.response.data.message)
+                alert(error.response.data.message)
 
             });
 

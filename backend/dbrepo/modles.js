@@ -6,7 +6,8 @@ const dotenv = require('dotenv')
 let dbURI = 'mongodb://localhost:27017/'
 
 
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(dbURI)
 
 ///////////************** Mongodb connected or disconnected Events ***********/////////////
 
