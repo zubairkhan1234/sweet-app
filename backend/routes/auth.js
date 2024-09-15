@@ -81,12 +81,6 @@ api.post('/signup', (req, res, next) => {
             message: "db error"
         })
     })
-
-
-
-
-
-
 });
 
 api.post("/login", (req, res, next) => {
@@ -105,79 +99,56 @@ api.post("/login", (req, res, next) => {
         return;
     }
 
-    userModle.findOne({ email: req.body.email }, (err, loginRequestUser) => {
-        console.log(loginRequestUser)
-        console.log(err)
+    userModle.findOne({ email: req.body.email }).then((loginRequestUser )=>{
 
-        if (err) {
-            res.status(500).send({
-                message: 'an errer occured'
-            })
-            console.log(err)
-        } else if (loginRequestUser) {
-
+        if (loginRequestUser) {
             console.log(loginRequestUser)
+            bcrypt.compare(req.body.password, loginRequestUser.password, function(err, result) {
+                if (result) {
+                    var token = jwt.sign({
+                        name: loginRequestUser.name,
+                        email: loginRequestUser.email,
+                        phone: loginRequestUser.phone,
+                        role: loginRequestUser.role,
+                        id: loginRequestUser.id,
+                        ip: req.connection.remoteAddress
 
-            // bcrypt.varifyHash(req.body.password, loginRequestUser.password).then(match => {
+                    }, SERVER_SECRET);
 
-            //     if (match) {
+                    res.cookie('jToken', token, {
+                        maxAge: 86_400_000,
+                        httpOnly: true
+                    });
+                    res.send({
+                        message: "login success",
+                        status: 200,
 
-            //         var token = jwt.sign({
-            //             name: loginRequestUser.name,
-            //             email: loginRequestUser.email,
-            //             phone: loginRequestUser.phone,
-            //             role: loginRequestUser.role,
-            //             id: loginRequestUser.id,
-            //             ip: req.connection.remoteAddress
+                        loginRequestUser: {
+                            name: loginRequestUser.name,
+                            email: loginRequestUser.email,
+                            phone: loginRequestUser.phone,
+                            role: loginRequestUser.role
+                        }
+                    })     
 
-            //         }, SERVER_SECRET);
-
-            //         res.cookie('jToken', token, {
-            //             maxAge: 86_400_000,
-            //             httpOnly: true
-            //         });
-            //         res.send({
-            //             message: "login success",
-            //             status: 200,
-
-            //             loginRequestUser: {
-            //                 name: loginRequestUser.name,
-            //                 email: loginRequestUser.email,
-            //                 phone: loginRequestUser.phone,
-            //                 role: loginRequestUser.role
-            //             }
-            //         });
-            //         // res.status(200).send({
-            //         //     message: "login success",
-
-            //         //     loginRequestUser: {
-            //         //         name: loginRequestUser.name,
-            //         //         email: loginRequestUser.email,
-            //         //         phone: loginRequestUser.phone,
-            //         //         role: loginRequestUser.role
-            //         //     }
-            //         // });
-
-            //     } else {
-            //         console.log('not matched')
-            //         res.send({
-            //             message: "Incorrect password",
-            //             status: 404
-            //         })
-            //     }
-            // }).catch(e => {
-            //     console.log("errer : ", e)
-            // })
-
+                } else {
+                    console.log('not matched')
+                    res.send({
+                        message: "Invalid Credentails",
+                        status: 404
+                    })
+                }
+            });
         } else {
             res.send({
-                message: "User not found",
+                message: "Invalid Credentails",
                 status: 403
             })
         }
 
-    })
+    }).catch((error) => {
 
+    }) 
 })
 
 api.post("/logout", (req, res, next) => {
