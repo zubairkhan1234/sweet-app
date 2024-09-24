@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 8001;
 
 var app = express()
 app.use(cors({
-    origin: [, 'http://localhost:8000', "https://m-sweet-app.herokuapp.com/", 'http://192.168.0.102:8000'],
+    origin: [, 'http://localhost:3000', "https://m-sweet-app.herokuapp.com/", 'http://192.168.0.102:3000'],
     credentials: true
 }))
 

@@ -1,16 +1,9 @@
-// import React, {useState} from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-// import { Alert, AlertTitle } from '@material-ui/lab';
-import  BaseURL  from '../Url/BaseURL'
+import React, { useRef } from 'react'
+import BaseURL from '../Url/BaseURL'
 import { UseGlobalStateUpdate } from '../../context/context'
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-
+import { Container, Avatar, TextField, Button, Typography, CssBaseline } from '@mui/material'
+import { makeStyles } from '@mui/styles'
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,29 +35,30 @@ const useStyles = makeStyles((theme) => ({
 function Login() {
 
     const globalStateUpdate = UseGlobalStateUpdate()
-    
+    var loginEmail = useRef('')
+    var loginPassword = useRef('')
 
+    console.log(globalStateUpdate)
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
     function Login(event) {
         event.preventDefault()
-
-        var loginEmail = document.getElementById('loginEmail').value
-        var loginPassword = document.getElementById('loginPassword').value
+        console.log(loginEmail.current.value)
+        console.log(loginPassword.current.value)
 
         axios({
             method: 'post',
             url: BaseURL + '/login',
             data: {
-                email: loginEmail,
-                password: loginPassword
+                email: loginEmail.current.value,
+                password: loginPassword.current.value
             },
             withCredentials: true
         })
             .then(function (response) {
                 if (response.data.status === 200) {
-                    // alert(response.status)
-                    // console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
+                    console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
+
                     globalStateUpdate(prev => ({
                         ...prev,
                         loginStatus: true,
@@ -73,13 +67,13 @@ function Login() {
                     }))
 
                     alert(response.data.message)
-                }else{
+                } else {
                     alert(response.data.message)
                 }
             })
             .catch(function (error) {
-                alert(error)
-                console.log("ldafjldja ", error.response.data.message)
+                console.log("ldafjldja ", error)
+                // console.log("ldafjldja ", error.response.data.message)
 
             });
 
@@ -95,7 +89,7 @@ function Login() {
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
+                        <LockOpenIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Login
@@ -110,6 +104,7 @@ function Login() {
                             label="Email Address"
                             autoComplete="email"
                             autoFocus
+                            inputRef={loginEmail}
                         />
                         <TextField
                             variant="outlined"
@@ -120,6 +115,7 @@ function Login() {
                             type="password"
                             id="loginPassword"
                             autoComplete="current-password"
+                            inputRef={loginPassword}
                         />
                         <Button
                             type="submit"
@@ -127,6 +123,7 @@ function Login() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+
                         >
                             Login
                         </Button>
