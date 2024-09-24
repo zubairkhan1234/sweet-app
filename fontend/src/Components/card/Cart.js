@@ -1,16 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import  BaseURL  from '../Url/BaseURL'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { makeStyles } from '@mui/styles';
+import { Container, Button, Typography, Card, CardActions, CardMedia, Backdrop, Fade, Modal } from '@mui/material'
+
+import BaseURL from '../Url/BaseURL'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import axios from 'axios'
 
 
@@ -19,15 +12,15 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 345,
         width: 145,
         height: 100,
-        [theme.breakpoints.down("md")]:{
+        [theme.breakpoints.down("md")]: {
             width: 115,
             height: 75,
         },
-        [theme.breakpoints.down("sm")]:{
+        [theme.breakpoints.down("sm")]: {
             width: 95,
-            height:75,
+            height: 75,
         },
-        [theme.breakpoints.down("xs")]:{
+        [theme.breakpoints.down("xs")]: {
             width: 75,
             height: 50,
         }
@@ -80,16 +73,16 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'none',
     },
     heading: {
-        [theme.breakpoints.down('md')]:{
+        [theme.breakpoints.down('md')]: {
             fontWeight: 500,
             fontSize: 20
         },
-        [theme.breakpoints.down('sm')]:{
+        [theme.breakpoints.down('sm')]: {
             fontWeight: 500,
             fontSize: 16
 
         },
-        [theme.breakpoints.down('xs')]:{
+        [theme.breakpoints.down('xs')]: {
             fontWeight: 500,
             fontSize: 14
 
@@ -101,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             lineHeight: "30px",
             paddingLeft: "3px",
-            fontSize : '18px'
+            fontSize: '18px'
         }
     },
 }));
@@ -208,7 +201,7 @@ export default function Cart({ cart, setCart }) {
                                     />
                                 </div>
                                 <div className={classes.header}>
-                                    <Typography className={classes.forFont}  variant="h5" id="title" component="h2">
+                                    <Typography className={classes.forFont} variant="h5" id="title" component="h2">
                                         {product.title}
                                     </Typography>
                                 </div>
@@ -230,9 +223,9 @@ export default function Cart({ cart, setCart }) {
                                 </div>
                                 <div style={{ width: "20%", textAlign: '' }}>
                                     <CardActions className={classes.header}>
-                                        <Button className={classes.forFont} style={{fontSize: 11}} onClick={() => removeFromCart(product)} color="primary">
+                                        <Button className={classes.forFont} style={{ fontSize: 11 }} onClick={() => removeFromCart(product)} color="primary">
                                             Remove
-                                    </Button>
+                                        </Button>
                                     </CardActions>
                                 </div>
                             </div>

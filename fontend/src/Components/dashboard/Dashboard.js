@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Products from '../card/Products';
 import Cart from '../card/Cart';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
 
 
 const PAGE_PRODUCTS = 'products';

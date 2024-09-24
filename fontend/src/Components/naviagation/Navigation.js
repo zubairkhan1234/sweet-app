@@ -95,12 +95,12 @@
 
 import React from 'react';
 import Login from '../login/Login';
-// import Signup from '../signup/SignUp';
-// import Dashboard from '../dashboard/Dashboard';
+import Signup from '../signup/SignUp';
+import Dashboard from '../dashboard/Dashboard';
 // import AddShopCard from '../admin/AddShopCard';
 // import DeletedOrder from '../admin/deletedOrder';
 // import AppRoute from '../routes/AppRouting';
-// import Allorders from '../admin/Allorders';
+import Allorders from '../admin/Allorders';
 // import AcceptedOrder from '../admin/AcceptedOrder';
 // import DeliveringOrder from '../admin/DeliveringOrder';
 // import MyOrders from '../my orders/MyOrders';
@@ -120,10 +120,9 @@ function Navigation() {
     <Router>
       {/* <AppRoute /> */}
       <Routes>
-        <Route path="/" element={<Login />} />
-        {/* <Route path="/" element={globalState.role === null ? <Login /> : (globalState.role === "user" ? <Dashboard /> : <Allorders />)} /> */}
-        {/* <Route path="/signup" element={globalState.role === null ? <Signup /> : <Navigate to="/" replace />} />
-        <Route path="/my-all-orders" element={globalState.role === "user" ? <MyOrders /> : <Navigate to="/" replace />} />
+        <Route path="/" element={globalState.role === null ? <Login /> : (globalState.role === "user" ? <Dashboard /> : <Allorders />)} />
+        <Route path="/signup" element={globalState.role === null ? <Signup /> : <Navigate to="/" replace />} />
+        {/* <Route path="/my-all-orders" element={globalState.role === "user" ? <MyOrders /> : <Navigate to="/" replace />} />
         <Route path="/AddShopCard" element={globalState.role === "admin" ? <AddShopCard /> : <Navigate to="/" replace />} />
         <Route path="/order/delete" element={globalState.role === "admin" ? <DeletedOrder /> : <Navigate to="/" replace />} />
         <Route path="/Accepted-order" element={globalState.role === "admin" ? <AcceptedOrder /> : <Navigate to="/" replace />} />

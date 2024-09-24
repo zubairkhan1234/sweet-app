@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BaseURL from '../Url/BaseURL';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles'
 import { UseGlobalState } from '../../context/context'
 
 

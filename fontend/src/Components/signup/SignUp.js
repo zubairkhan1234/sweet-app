@@ -1,14 +1,8 @@
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import  BaseURL  from '../Url/BaseURL'
-
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
+import { TextField, Button, Container, Avatar, CssBaseline, Typography } from "@mui/material"
+import LockClockOutlined from '@mui/icons-material/LockClockOutlined';
+import BaseURL from '../Url/BaseURL'
 
 
 
@@ -53,7 +47,7 @@ function SignUp() {
     function signup(event) {
         event.preventDefault()
 
-        
+
         var userName = document.getElementById('name').value
         var userEmail = document.getElementById('email').value.toLowerCase()
         var userPhone = document.getElementById('phone').value
@@ -120,7 +114,7 @@ function SignUp() {
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
+                        <LockClockOutlined />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Sign up
@@ -136,13 +130,13 @@ function SignUp() {
                             autoFocus
                         />
                         <TextField
-                        id="phone"
-                        label="Phone"
-                        variant="outlined" 
-                        margin="normal"
-                        required
-                        fullWidth
-                        autoFocus
+                            id="phone"
+                            label="Phone"
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            autoFocus
                         />
                         <TextField
                             variant="outlined"

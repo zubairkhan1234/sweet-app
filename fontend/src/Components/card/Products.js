@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Container, Button, Typography, Card, CardActionArea, CardActions, CardMedia, CardContent } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import axios from 'axios'
-import Container from '@material-ui/core/Container';
 import BaseURL from '../Url/BaseURL';
 
 
@@ -63,7 +56,7 @@ export default function Products({ setCart, cart }) {
     return (
         <React.Fragment>
             <Container maxWidth="xl" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }} >
-                
+
                 {products.map((product, index) => {
                     return <Card key={index} value={product.id} className={`products ${classes.root}`} style={{ display: "inline-block", margin: "15px" }} >
                         <CardActionArea>
