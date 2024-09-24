@@ -70,4 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-Suported node version 16.20.2
+### Suported node version 16.20.2
+
+### source design links
+https://www.figma.com/design/4yhZTwikzeGdLi4rcoeuc6/Bakery-Website-(Community)?node-id=0-1&node-type=canvas&t=3CEbHiK6uYWCRRyJ-0
+https://www.figma.com/design/OUUy05k9QbUNG3fIPJm2E3/Ice-Cream---Web---Ui---Design-(Community)?node-id=0-1&node-type=canvas&t=scJ0gYjRpnnt6wYM-0
+https://www.figma.com/design/rD7e7T4X0WsJpKhGXpKXJq/5-Websites-UI-(Community)?node-id=0-1&node-type=canvas&t=BfT4tOoptECSlHS0-0
