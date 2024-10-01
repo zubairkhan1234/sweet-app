@@ -94,8 +94,8 @@
 // export default Navigation;
 
 import React from 'react';
-import Login from '../login/Login';
-import Signup from '../signup/SignUp';
+import Login from '../../pages/auth/login/Login';
+import Signup from '../../pages/auth/signup/SignUp';
 import Dashboard from '../dashboard/Dashboard';
 // import AddShopCard from '../admin/AddShopCard';
 // import DeletedOrder from '../admin/deletedOrder';
@@ -116,8 +116,9 @@ import {
 function Navigation() {
   const globalState = UseGlobalState();
 
+  console.log("navigation ", globalState.role)
   return (
-    <Router>
+    <Router basename='/'>
       {/* <AppRoute /> */}
       <Routes>
         <Route path="/" element={globalState.role === null ? <Login /> : (globalState.role === "user" ? <Dashboard /> : <Allorders />)} />

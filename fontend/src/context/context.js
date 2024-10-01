@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState, useContext } from 'react';
-import  BaseURL  from '../Components/Url/BaseURL'
+import BaseURL from '../Components/Url/BaseURL'
 import axios from 'axios'
 
 const GlobalStateContext = React.createContext()
@@ -27,11 +27,7 @@ function GlobalStateProvider({ children }) {
             withCredentials: true
         })
             .then(function (response) {
-                // handle success
-                // console.log("response: ", response.status);
                 if (response.data.status === 200) {
-                    // console.log(response.data)
-                    // console.log("lkdflasdfkj " , response.data.profile)
                     setData(prev => ({
                         ...prev,
                         user: response.data.profile,
@@ -41,10 +37,7 @@ function GlobalStateProvider({ children }) {
                 }
             })
             .catch(function (error) {
-                // handle error
-                // console.log("error: ==== ", error);
                 if (error && error.response && error.response.status) {
-                    // console.log("error ==============> ", error.response.status);
                     setData(prev => ({ ...prev, loginStatus: false }))
                 }
             })
@@ -53,12 +46,6 @@ function GlobalStateProvider({ children }) {
             // console.log("cleanup")
         }
     }, [])
-
-    console.log()
-
-    console.log(data);
-
-
 
     return (
 

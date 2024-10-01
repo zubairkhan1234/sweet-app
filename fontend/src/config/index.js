@@ -1,7 +1,4 @@
-
-
-
-var  BaseURL = window.location.href.split(":");
+var BaseURL = window.location.href.split(":");
 if (BaseURL[0] === "https") {
     BaseURL = 'https://new-sweet-app.herokuapp.com'
 }

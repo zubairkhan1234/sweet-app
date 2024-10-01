@@ -1,10 +1,11 @@
 import React, { useRef } from 'react'
-import BaseURL from '../Url/BaseURL'
-import { UseGlobalStateUpdate } from '../../context/context'
+import BaseURL from '../../../Components/Url/BaseURL'
+import { UseGlobalStateUpdate } from '../../../context/context'
 import { Container, Avatar, TextField, Button, Typography, CssBaseline } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -38,7 +39,6 @@ function Login() {
     var loginEmail = useRef('')
     var loginPassword = useRef('')
 
-    console.log(globalStateUpdate)
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
     function Login(event) {
@@ -127,6 +127,17 @@ function Login() {
                         >
                             Login
                         </Button>
+                        <Link to={'/signup'}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit}
+                            >
+                                signUp
+                            </Button>
+                        </Link>
                     </form>
                 </div>
 
