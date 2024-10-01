@@ -80,23 +80,24 @@ app.get('/profile', (req, res, next) => {
     console.log(req.body)
 
 
-    userModle.findById(req.body.jToken.id, "name email phone role cratedOn",
-        function (err, data) {
+    userModle.findById(req.body.jToken.id, "name email phone role cratedOn").then((data) => {
 
-            console.log("Get profile Err ", err)
-            console.log("Get Profile Data ", data)
-            if (!err) {
-                res.send({
-                    status: 200,
-                    profile: data
-                })
-            } else {
-                res.status(404).send({
-                    message: "server err"
-                })
-            }
+        console.log("Get profile Err ", err)
+        console.log("Get Profile Data ", data)
+        if (data) {
+            res.send({
+                status: 200,
+                profile: data
+            })
+        } else {
+            res.status(404).send({
+                message: "server err"
+            })
+        }
 
-        })
+    }).catch((error) => {
+        console.log(error)
+    })
 
 })
 
