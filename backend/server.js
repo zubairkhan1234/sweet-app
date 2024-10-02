@@ -29,7 +29,7 @@ app.use("/", express.static(path.resolve(path.join(__dirname, "./fontend/build")
 app.use('/', authRoutes)
 
 app.use(function (req, res, next) {
-    console.log('cookie', req.cookies)
+    console.log('cookie', req.cookies.jToken)
 
     if (!req.cookies.jToken) {
         res.status(401).send("include http-only credentials with every request")
@@ -199,18 +199,19 @@ var upload = multer({ storage: storage })
 ////// Get Products frrom Database in user Interfase
 ////// Get Products frrom Database in user Interfase
 
-app.get('/getProducts', (req, res, next) => {
-    shopCartModel.find({}, (err, data) => {
-        console.log('hfhfhfhhfhfhfhhhhhhhhhhhhhhhhhhhhhhh', data)
-        if (!err) {
-            res.send({
-                data: data
-            })
-        }
-        else {
-            res.send(err)
-        }
-    })
+app.get('/getProducts', async (req, res, next) => {
+    try {
+        let resposne = await shopCartModel.find({})
+        console.log("response of get product ", resposne)
+        res.send({
+            data: resposne
+        })
+    } catch (error) {
+        console.log('erorr getproduct', error)
+        res.send(error)
+
+    }
+
 })
 
 /////// Save order in Database

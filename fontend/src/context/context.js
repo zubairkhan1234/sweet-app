@@ -19,33 +19,33 @@ function GlobalStateProvider({ children }) {
     })
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        axios({
-            method: "get",
-            url: BaseURL + `/profile`,
-            withCredentials: true
-        })
-            .then(function (response) {
-                if (response.data.status === 200) {
-                    setData(prev => ({
-                        ...prev,
-                        user: response.data.profile,
-                        loginStatus: true,
-                        role: response.data.profile.role
-                    }))
-                }
-            })
-            .catch(function (error) {
-                if (error && error.response && error.response.status) {
-                    setData(prev => ({ ...prev, loginStatus: false }))
-                }
-            })
+    //     axios({
+    //         method: "get",
+    //         url: BaseURL + `/profile`,
+    //         withCredentials: true
+    //     })
+    //         .then(function (response) {
+    //             if (response.data.status === 200) {
+    //                 setData(prev => ({
+    //                     ...prev,
+    //                     user: response.data.profile,
+    //                     loginStatus: true,
+    //                     role: response.data.profile.role
+    //                 }))
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             if (error && error.response && error.response.status) {
+    //                 setData(prev => ({ ...prev, loginStatus: false }))
+    //             }
+    //         })
 
-        return () => {
-            // console.log("cleanup")
-        }
-    }, [])
+    //     return () => {
+    //         // console.log("cleanup")
+    //     }
+    // }, [])
 
     return (
 

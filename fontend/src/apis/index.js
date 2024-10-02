@@ -21,17 +21,13 @@ import axios from "axios";
 
 
 export const POST = async (url, data) => {
-
-    console.log(url, data)
-
     try {
         let response = await axios.post(url, data)
-        console.log(response)
+        console.log("response ", response.data)
+        return response
     } catch (error) {
-        console.log(error)
+        console.log("error", error)
     }
-
-
 }
 // export const UPDATE = async (url, params, data) => {
 //     await axios.put({ url, data }).then((response) => {

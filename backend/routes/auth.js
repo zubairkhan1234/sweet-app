@@ -99,11 +99,11 @@ api.post("/login", (req, res, next) => {
         return;
     }
 
-    userModle.findOne({ email: req.body.email }).then((loginRequestUser )=>{
+    userModle.findOne({ email: req.body.email }).then((loginRequestUser) => {
 
         if (loginRequestUser) {
             console.log(loginRequestUser)
-            bcrypt.compare(req.body.password, loginRequestUser.password, function(err, result) {
+            bcrypt.compare(req.body.password, loginRequestUser.password, function (err, result) {
                 if (result) {
                     var token = jwt.sign({
                         name: loginRequestUser.name,
@@ -114,7 +114,7 @@ api.post("/login", (req, res, next) => {
                         ip: req.connection.remoteAddress
 
                     }, SERVER_SECRET);
-
+                    console.log("login token", token)
                     res.cookie('jToken', token, {
                         maxAge: 86_400_000,
                         httpOnly: true
@@ -129,7 +129,7 @@ api.post("/login", (req, res, next) => {
                             phone: loginRequestUser.phone,
                             role: loginRequestUser.role
                         }
-                    })     
+                    })
 
                 } else {
                     console.log('not matched')
@@ -148,7 +148,7 @@ api.post("/login", (req, res, next) => {
 
     }).catch((error) => {
 
-    }) 
+    })
 })
 
 api.post("/logout", (req, res, next) => {

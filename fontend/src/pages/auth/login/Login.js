@@ -47,11 +47,20 @@ function Login() {
         console.log(loginEmail.current.value)
         console.log(loginPassword.current.value)
 
-     let response = await   POST(BaseURL + '/login', {
+        let response = await POST(BaseURL + '/login', {
             email: loginEmail.current.value,
             password: loginPassword.current.value
         })
 
+
+        if (response?.data) {
+            globalStateUpdate(prev => ({
+                ...prev,
+                loginStatus: true,
+                user: response.data.loginRequestUser,
+                role: response.data.loginRequestUser.role
+            }))
+        }
 
 
         // axios({
