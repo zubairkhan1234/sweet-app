@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
-import BaseURL from '../../../Components/Url/BaseURL'
+import BaseURL from '../../../config/index'
 import { UseGlobalStateUpdate } from '../../../context/context'
 import { Container, Avatar, TextField, Button, Typography, CssBaseline } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
+import { POST } from '../../../apis'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,43 +42,50 @@ function Login() {
 
     const classes = useStyles();
     // const [alertMessage, setAlertMessage] = useState("")
-    function Login(event) {
+    async function Login(event) {
         event.preventDefault()
         console.log(loginEmail.current.value)
         console.log(loginPassword.current.value)
 
-        axios({
-            method: 'post',
-            url: BaseURL + '/login',
-            data: {
-                email: loginEmail.current.value,
-                password: loginPassword.current.value
-            },
-            withCredentials: true
+     let response = await   POST(BaseURL + '/login', {
+            email: loginEmail.current.value,
+            password: loginPassword.current.value
         })
-            .then(function (response) {
-                if (response.data.status === 200) {
-                    console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
 
-                    globalStateUpdate(prev => ({
-                        ...prev,
-                        loginStatus: true,
-                        user: response.data.loginRequestUser,
-                        role: response.data.loginRequestUser.role
-                    }))
 
-                    alert(response.data.message)
-                } else {
-                    alert(response.data.message)
-                }
-            })
-            .catch(function (error) {
-                console.log("ldafjldja ", error)
-                // console.log("ldafjldja ", error.response.data.message)
 
-            });
+        // axios({
+        //     method: 'post',
+        //     url: BaseURL + '/login',
+        //     data: {
+        //         email: loginEmail.current.value,
+        //         password: loginPassword.current.value
+        //     },
+        //     withCredentials: true
+        // })
+        //     .then(function (response) {
+        //         if (response.data.status === 200) {
+        //             console.log("loginRequestUser ====>", response.data.loginRequestUser.role)
 
-        return false;
+        //             globalStateUpdate(prev => ({
+        //                 ...prev,
+        //                 loginStatus: true,
+        //                 user: response.data.loginRequestUser,
+        //                 role: response.data.loginRequestUser.role
+        //             }))
+
+        //             alert(response.data.message)
+        //         } else {
+        //             alert(response.data.message)
+        //         }
+        //     })
+        //     .catch(function (error) {
+        //         console.log("ldafjldja ", error)
+        //         // console.log("ldafjldja ", error.response.data.message)
+
+        //     });
+
+        // return false;
 
     }
 

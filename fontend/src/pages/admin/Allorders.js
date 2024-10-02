@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import BaseURL from '../Url/BaseURL';
+import BaseURL from '../../config/index';
 import { makeStyles } from '@mui/styles'
 import { UseGlobalState } from '../../context/context'
 

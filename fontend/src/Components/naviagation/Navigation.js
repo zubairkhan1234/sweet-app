@@ -100,7 +100,7 @@ import Dashboard from '../dashboard/Dashboard';
 // import AddShopCard from '../admin/AddShopCard';
 // import DeletedOrder from '../admin/deletedOrder';
 // import AppRoute from '../routes/AppRouting';
-import Allorders from '../admin/Allorders';
+import Allorders from '../../pages/admin/Allorders';
 // import AcceptedOrder from '../admin/AcceptedOrder';
 // import DeliveringOrder from '../admin/DeliveringOrder';
 // import MyOrders from '../my orders/MyOrders';

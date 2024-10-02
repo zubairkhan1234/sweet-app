@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Button, Typography, Card, CardActionArea, CardActions, CardMedia, CardContent } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import axios from 'axios'
-import BaseURL from '../Url/BaseURL';
+import BaseURL from '../../config/index';
 
 
 const useStyles = makeStyles({

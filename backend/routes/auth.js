@@ -84,7 +84,7 @@ api.post('/signup', (req, res, next) => {
 });
 
 api.post("/login", (req, res, next) => {
-    console.log(req.body.email)
+    console.log(req.body)
     console.log(req.body.password)
 
     if (!req.body.email || !req.body.password) {

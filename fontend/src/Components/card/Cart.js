@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Container, Button, Typography, Card, CardActions, CardMedia, Backdrop, Fade, Modal } from '@mui/material'
 
-import BaseURL from '../Url/BaseURL'
+import BaseURL from '../../config/index'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import axios from 'axios'
 
